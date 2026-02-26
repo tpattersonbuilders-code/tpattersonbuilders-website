@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tristan Patterson Builders | Quality Construction Wellington</title>
+    <meta name="description" content="Licensed Building Practitioner (LBP) based in Wellington. New builds, renovations, decks, and project management. No-nonsense quality.">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #1a2e44; /* Navy - matches report branding */
+            --accent: #7ecfcf;  /* Teal - matches report branding */
+            --white: #ffffff;
+            --light-gray: #f4f4f4;
+            --dark-gray: #333333;
+            --text-color: #2c3e50;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: var(--white);
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* --- Header & Nav --- */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 20px;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            transition: color 0.3s;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .cta-button {
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 10px 25px;
+            border-radius: 4px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background-color: #5fb8b8;
+            transform: translateY(-2px);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(26, 46, 68, 0.8), rgba(26, 46, 68, 0.7)), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            margin-top: 0; /* Override margin */
+            padding: 0 20px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            color: var(--white);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background-color: var(--accent);
+            color: var(--primary);
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 4px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .hero-btn:hover {
+            background-color: #fff;
+            color: var(--primary);
+        }
+
+        /* --- Features/Services --- */
+        .section {
+            padding: 80px 20px;
+        }
+
+        .bg-light {
+            background-color: var(--light-gray);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--accent);
+            margin: 10px auto 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        /* --- About Section --- */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--dark-gray);
+        }
+
+        .lbp-badge {
+            display: inline-flex;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 10px 20px;
+            border-left: 5px solid var(--accent);
+            border-radius: 4px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-top: 10px;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+        }
+
+        /* --- Gallery --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .gallery-item {
+            position: relative;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            padding: 20px;
+            color: white;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        /* --- Contact --- */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 30px;
+        }
+
+        .contact-icon {
+            background: var(--accent);
+            color: var(--primary);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+        }
+
+        .contact-form button {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.3s;
+        }
+
+        .contact-form button:hover {
+            background: #2c4a6b;
+        }
+
+        /* --- Footer --- */
+        footer {
+            background: var(--primary);
+            color: white;
+            padding: 50px 20px;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            color: var(--accent);
+            text-transform: uppercase;
+        }
+
+        .copyright {
+            margin-top: 30px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        /* --- Responsive --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
+            .nav-links { display: none; } /* Simplified for mobile example */
+            .logo { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nav -->
+    <header>
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-hammer"></i> TPB
+            </div>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact" class="cta-button">Get a Quote</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Solid Builds. Honest Work.</h1>
+            <p>Licensed Building Practitioners serving the greater Wellington region. From renovations to new builds, we get it done right the first time.</p>
+            <a href="#contact" class="hero-btn">Start Your Project</a>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section id="services" class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Comprehensive building solutions tailored to your needs.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-house-chimney"></i></div>
+                    <h3>Renovations</h3>
+                    <p>Transform your existing space. Bathrooms, kitchens, and full-home makeovers delivered with precision.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-ruler-combined"></i></div>
+                    <h3>Decks & Fences</h3>
+                    <p>High-quality outdoor living areas. We build durable decks and fences designed to withstand Wellington weather.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                    <h3>Project Management</h3>
+                    <p>We handle the stress so you don't have to. Full coordination of trades, council consents, and timelines.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-image">
+                    <!-- Placeholder: Replace with photo of Tristan/Site -->
+                    <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Construction Site">
+                </div>
+                <div class="about-text">
+                    <h3>We Build With Pride</h3>
+                    <p>Tristan Patterson Builders is a locally owned and operated construction company based in Newlands, Wellington.</p>
+                    <p>We believe in clear communication, turning up when we say we will, and leaving the site tidy. No corporate fluff, just solid building practices backed by years of experience.</p>
+                    <div class="lbp-badge">
+                        <i class="fa-solid fa-certificate" style="margin-right:10px;"></i> Licensed Building Practitioner (LBP #111780)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Gallery -->
+    <section id="projects" class="section bg-light">
+        <div class="container">
+            <div class="section-title">
+                <h2>Recent Work</h2>
+                <p>A snapshot of our latest projects across Wellington.</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Modern Kitchen">
+                    <div class="gallery-overlay">
+                        <h4>Kitchen Renovation</h4>
+                        <p>Khandallah</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1595846519845-68e298c2edd8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Deck Build">
+                    <div class="gallery-overlay">
+                        <h4>Kwila Deck</h4>
+                        <p>Newlands</p>
+                    </div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Bathroom Reno">
+                    <div class="gallery-overlay">
+                        <h4>Bathroom Update</h4>
+                        <p>Johnsonville</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>Get In Touch</h2>
+                <p>Ready to start your project? Give us a shout.</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>021 104 1289</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>tpattersonbuilders@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-info-item">
+                        <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>71 Baylands Drive, Newlands, Wellington</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Simple Form (uses Formspree free tier, replace EMAIL with your Formspree endpoint later) -->
+                <form class="contact-form" action="https://formspree.io/f/xbjvqglq" method="POST">
+                    <input type="text" name="name" placeholder="Your Name" required>
+                    <input type="email" name="email" placeholder="Your Email" required>
+                    <textarea name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+                    <button type="submit">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-logo">Tristan Patterson Builders</div>
+            <p>Licensed Building Practitioner #111780</p>
+            <div class="copyright">
+                &copy; 2026 Tristan Patterson Builders. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
+
