@@ -400,7 +400,7 @@
         .logo-svg { flex-shrink: 0; }
         .nav-links a { color: rgba(255,255,255,0.80); }
         .nav-links a:hover { color: #ffffff; }
-        .cta-button { background-color: #ffffff; color: #111111; }
+        .cta-button { background-color: #ffffff !important; color: #111111 !important; border: 2px solid #111111 !important; font-weight: 700; }
         .cta-button:hover { background-color: #dddddd; transform: translateY(-2px); }
         .hero-btn { background-color: #ffffff; color: #111111; }
         .hero-btn:hover { background-color: #e0e0e0; color: #111111; }
@@ -431,6 +431,12 @@
     <!-- Hero -->
     <section id="home" class="hero">
         <div class="hero-content">
+            <div style="margin-bottom:24px;">
+                <svg viewBox="0 0 280 220" height="110" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5))">
+                    <polygon points="140,8 274,85 274,212 6,212 6,85" fill="white"/>
+                    <text x="140" y="176" font-family="Georgia,serif" font-size="94" font-weight="bold" text-anchor="middle" fill="#111111">TPB</text>
+                </svg>
+            </div>
             <h1>Solid Builds. Honest Work.</h1>
             <p>Licensed Building Practitioners serving the greater Wellington region. From renovations to new builds, we get it done right the first time.</p>
             <a href="#contact" class="hero-btn">Start Your Project</a>
