@@ -604,6 +604,59 @@
         </div>
     </footer>
 
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" onclick="if(event.target===this)closeLightbox()" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:9999;align-items:center;justify-content:center;flex-direction:column;">
+        <button onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;background:none;border:none;color:#fff;font-size:44px;cursor:pointer;line-height:1;z-index:10001;">&times;</button>
+        <div id="lb-counter" style="position:absolute;top:20px;left:24px;color:rgba(255,255,255,0.55);font-size:0.85rem;font-family:sans-serif;"></div>
+        <button id="lb-prev" onclick="navLightbox(-1)" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:48px;cursor:pointer;padding:8px 16px;border-radius:4px;z-index:10001;">&#8249;</button>
+        <img id="lb-img" style="max-width:90vw;max-height:82vh;object-fit:contain;display:block;margin:auto;" src="" alt="">
+        <div id="lb-title" style="position:absolute;bottom:24px;left:0;right:0;text-align:center;color:#fff;font-size:1.05rem;font-weight:600;font-family:sans-serif;text-shadow:0 1px 4px rgba(0,0,0,0.8);"></div>
+        <button id="lb-next" onclick="navLightbox(1)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:48px;cursor:pointer;padding:8px 16px;border-radius:4px;z-index:10001;">&#8250;</button>
+    </div>
+
+    <script>
+    const lbGalleries = {
+        'deck-build': { title: 'Timber Deck Build — Wellington', photos: ['images/deck-build-wellington.jpg','images/deck-build-01.jpg','images/deck-build-02.jpg','images/deck-build-03.jpg','images/deck-build-04.jpg','images/deck-build-05.jpg'] },
+        'hataitai-addition': { title: 'Weatherboard Addition — Hataitai', photos: ['images/hataitai-addition-exterior.jpg','images/hataitai-addition-01.jpg','images/hataitai-addition-02.jpg','images/hataitai-addition-03.jpg','images/hataitai-addition-04.jpg','images/hataitai-addition-05.jpg','images/hataitai-addition-06.jpg'] },
+        'addition-renovation': { title: 'Addition & Renovation — Wellington', photos: ['images/addition-renovation-roofing.jpg','images/addition-renovation-01.jpg','images/addition-renovation-02.jpg','images/addition-renovation-03.jpg','images/addition-renovation-04.jpg','images/addition-renovation-05.jpg','images/addition-renovation-06.jpg'] },
+        'architectural-addition': { title: 'Architectural Addition — South Wellington', photos: ['images/architectural-addition-south-wellington.jpg','images/architectural-addition-01.jpg','images/architectural-addition-02.jpg','images/architectural-addition-03.jpg','images/architectural-addition-04.jpg','images/architectural-addition-05.jpg','images/architectural-addition-06.jpg'] },
+        'cedar-bifold-doors': { title: 'Cedar Bifold Doors Installation — Wellington', photos: ['images/cedar-bifold-doors.jpg','images/cedar-bifold-doors-01.jpg','images/cedar-bifold-doors-02.jpg','images/cedar-bifold-doors-03.jpg','images/cedar-bifold-doors-04.jpg','images/cedar-bifold-doors-05.jpg','images/cedar-bifold-doors-06.jpg'] },
+        'high-end-bathroom': { title: 'High-End Bathroom Build — Wellington', photos: ['images/high-end-bathroom.jpg','images/high-end-bathroom-01.jpg','images/high-end-bathroom-02.jpg','images/high-end-bathroom-03.jpg','images/high-end-bathroom-04.jpg','images/high-end-bathroom-05.jpg','images/high-end-bathroom-06.jpg'] }
+    };
+    let lbKey = null, lbIdx = 0;
+    function openLightbox(key, idx) {
+        lbKey = key; lbIdx = idx;
+        const lb = document.getElementById('lightbox');
+        lb.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+        updateLightbox();
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox').style.display = 'none';
+        document.body.style.overflow = '';
+        lbKey = null;
+    }
+    function navLightbox(dir) {
+        const photos = lbGalleries[lbKey].photos;
+        lbIdx = (lbIdx + dir + photos.length) % photos.length;
+        updateLightbox();
+    }
+    function updateLightbox() {
+        const g = lbGalleries[lbKey];
+        document.getElementById('lb-img').src = g.photos[lbIdx];
+        document.getElementById('lb-title').textContent = g.title;
+        document.getElementById('lb-counter').textContent = (lbIdx + 1) + ' / ' + g.photos.length;
+        document.getElementById('lb-prev').style.display = g.photos.length > 1 ? 'block' : 'none';
+        document.getElementById('lb-next').style.display = g.photos.length > 1 ? 'block' : 'none';
+    }
+    document.addEventListener('keydown', function(e) {
+        if (!lbKey) return;
+        if (e.key === 'ArrowLeft') navLightbox(-1);
+        if (e.key === 'ArrowRight') navLightbox(1);
+        if (e.key === 'Escape') closeLightbox();
+    });
+    </script>
 </body>
 </html>
 
