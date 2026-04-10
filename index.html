@@ -2121,16 +2121,38 @@
             drawParticles();
             drawPlayer();
 
-            ctx.fillStyle = 'rgba(255,255,255,0.08)';
-            ctx.fillRect(18, 18, 184, 54);
-            ctx.strokeStyle = 'rgba(255,255,255,0.12)';
-            ctx.strokeRect(18, 18, 184, 54);
+            ctx.save();
+            const hudX = 24;
+            const hudY = 20;
+            const hudW = 270;
+            const hudH = 78;
+            const hudRadius = 16;
+            ctx.fillStyle = 'rgba(9,16,24,0.52)';
+            ctx.beginPath();
+            ctx.moveTo(hudX + hudRadius, hudY);
+            ctx.lineTo(hudX + hudW - hudRadius, hudY);
+            ctx.quadraticCurveTo(hudX + hudW, hudY, hudX + hudW, hudY + hudRadius);
+            ctx.lineTo(hudX + hudW, hudY + hudH - hudRadius);
+            ctx.quadraticCurveTo(hudX + hudW, hudY + hudH, hudX + hudW - hudRadius, hudY + hudH);
+            ctx.lineTo(hudX + hudRadius, hudY + hudH);
+            ctx.quadraticCurveTo(hudX, hudY + hudH, hudX, hudY + hudH - hudRadius);
+            ctx.lineTo(hudX, hudY + hudRadius);
+            ctx.quadraticCurveTo(hudX, hudY, hudX + hudRadius, hudY);
+            ctx.closePath();
+            ctx.fill();
+            ctx.strokeStyle = 'rgba(255,255,255,0.10)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
             ctx.fillStyle = '#ffffff';
-            ctx.font = '700 14px Montserrat, sans-serif';
-            ctx.fillText('TPB SITE RUN', 32, 40);
+            ctx.font = '700 13px Montserrat, sans-serif';
+            ctx.fillText('TPB SITE RUN', hudX + 18, hudY + 24);
+
             ctx.font = '12px Open Sans, sans-serif';
-            ctx.fillStyle = 'rgba(255,255,255,0.78)';
-            ctx.fillText('Collect coins from cleared paperwork', 32, 60);
+            ctx.fillStyle = 'rgba(255,255,255,0.82)';
+            ctx.fillText('Collect coins from cleared', hudX + 18, hudY + 46);
+            ctx.fillText('paperwork', hudX + 18, hudY + 63);
+            ctx.restore();
 
             if (state.flash > 0) {
                 ctx.fillStyle = `rgba(255,255,255,${state.flash / 30})`;
