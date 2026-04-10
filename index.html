@@ -769,6 +769,91 @@
             background: linear-gradient(180deg, #faf9f6 0%, #ffffff 100%);
         }
 
+        .game-section {
+            background:
+                radial-gradient(circle at top, rgba(212,180,131,0.15), transparent 28%),
+                linear-gradient(180deg, #161616 0%, #0d0d0d 100%);
+            color: #ffffff;
+            overflow: hidden;
+        }
+
+        .game-shell {
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            border-radius: 28px;
+            padding: 24px;
+            box-shadow: 0 28px 60px rgba(0,0,0,0.24);
+        }
+
+        .game-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 18px;
+        }
+
+        .game-topbar h3 {
+            color: #ffffff;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .game-topbar p {
+            color: rgba(255,255,255,0.74);
+            max-width: 620px;
+        }
+
+        .game-hud {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .game-pill {
+            border: 1px solid rgba(255,255,255,0.14);
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.84);
+            background: rgba(255,255,255,0.06);
+        }
+
+        .site-runner-canvas {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 7;
+            border-radius: 22px;
+            background: linear-gradient(180deg, #27364a 0%, #131313 100%);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .game-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            margin-top: 18px;
+            flex-wrap: wrap;
+        }
+
+        .game-controls p {
+            color: rgba(255,255,255,0.72);
+            font-size: 0.95rem;
+        }
+
+        .game-jump {
+            border: none;
+            border-radius: 999px;
+            padding: 12px 18px;
+            font-weight: 800;
+            background: #ffffff;
+            color: #111111;
+            cursor: pointer;
+        }
+
         .contact-card {
             background: #111111;
             color: white;
@@ -798,7 +883,8 @@
             .trust-grid,
             .process-grid,
             .about-grid,
-            .contact-wrapper {
+            .contact-wrapper,
+            .game-topbar {
                 grid-template-columns: 1fr 1fr;
             }
         }
@@ -844,6 +930,19 @@
             .contact-wrapper,
             .values-list {
                 grid-template-columns: 1fr;
+            }
+
+            .game-topbar {
+                display: block;
+            }
+
+            .game-hud {
+                justify-content: flex-start;
+                margin-top: 14px;
+            }
+
+            .game-shell {
+                padding: 16px;
             }
 
             .trust-strip {
@@ -940,6 +1039,33 @@
                 <div class="trust-card">
                     <strong>BCITO qualified</strong>
                     <p>Trade background backed by formal qualification and a practical, buildable approach on site.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="site-run" class="section game-section">
+        <div class="container">
+            <div class="game-shell">
+                <div class="game-topbar">
+                    <div>
+                        <div class="eyebrow" style="margin-bottom:14px;">
+                            <i class="fa-solid fa-gamepad"></i>
+                            Site Run
+                        </div>
+                        <h3>Run the paperwork off the site.</h3>
+                        <p>A small monochrome side-scroller for the landing page. Jump stamped contracts, site forms, and variation docs. Stomp them cleanly and they flip into coins.</p>
+                    </div>
+                    <div class="game-hud">
+                        <div class="game-pill">Construction mode: monochrome</div>
+                        <div class="game-pill">Docs stomped: <span id="site-run-stomped">0</span></div>
+                        <div class="game-pill">Coins banked: <span id="site-run-score">0</span></div>
+                    </div>
+                </div>
+                <canvas id="site-runner-canvas" class="site-runner-canvas" width="960" height="420" aria-label="Construction side-scroller mini game"></canvas>
+                <div class="game-controls">
+                    <p>Press <strong>space</strong>, <strong>up</strong>, or tap jump. Side-hit a document and the run resets.</p>
+                    <button type="button" class="game-jump" id="site-run-jump">Jump</button>
                 </div>
             </div>
         </div>
@@ -1188,6 +1314,429 @@
         menu.classList.remove('open');
         button.setAttribute('aria-expanded', 'false');
     }
+
+    (function setupSiteRunner() {
+        const canvas = document.getElementById('site-runner-canvas');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        const scoreNode = document.getElementById('site-run-score');
+        const stompedNode = document.getElementById('site-run-stomped');
+        const jumpButton = document.getElementById('site-run-jump');
+
+        const state = {
+            worldOffset: 0,
+            score: 0,
+            stomped: 0,
+            speed: 4.8,
+            gravity: 0.65,
+            jumpPower: -12.5,
+            groundY: 330,
+            running: true,
+            flash: 0,
+            player: {
+                x: 140,
+                y: 0,
+                w: 44,
+                h: 70,
+                vy: 0,
+                onGround: true,
+                facing: 1
+            },
+            documents: [],
+            coins: [],
+            particles: [],
+            skyline: []
+        };
+
+        function resetDocuments() {
+            state.documents = [];
+            state.coins = [];
+            state.particles = [];
+            state.worldOffset = 0;
+            state.score = 0;
+            state.stomped = 0;
+            state.speed = 4.8;
+            state.flash = 0;
+            state.player.y = state.groundY - state.player.h;
+            state.player.vy = 0;
+            state.player.onGround = true;
+
+            let cursor = 480;
+            const types = ['contract', 'variation', 'invoice', 'consent'];
+            for (let i = 0; i < 18; i++) {
+                const width = 42 + (i % 3) * 6;
+                const height = 48 + (i % 2) * 10;
+                state.documents.push({
+                    x: cursor,
+                    y: state.groundY - height,
+                    w: width,
+                    h: height,
+                    type: types[i % types.length],
+                    cleared: false
+                });
+                cursor += 230 + (i % 4) * 70;
+            }
+        }
+
+        function resetSkyline() {
+            state.skyline = Array.from({ length: 12 }, (_, index) => ({
+                x: index * 140,
+                w: 90 + (index % 3) * 30,
+                h: 90 + (index % 4) * 28
+            }));
+        }
+
+        function updateHud() {
+            scoreNode.textContent = String(state.score);
+            stompedNode.textContent = String(state.stomped);
+        }
+
+        function jump() {
+            if (!state.player.onGround) return;
+            state.player.vy = state.jumpPower;
+            state.player.onGround = false;
+        }
+
+        function failRun() {
+            state.flash = 16;
+            resetDocuments();
+            updateHud();
+        }
+
+        function spawnCoin(doc) {
+            state.coins.push({
+                x: doc.x + doc.w / 2,
+                y: doc.y + 8,
+                vy: -4.2,
+                life: 90,
+                collected: false
+            });
+            for (let i = 0; i < 8; i++) {
+                state.particles.push({
+                    x: doc.x + doc.w / 2,
+                    y: doc.y + doc.h / 2,
+                    vx: (Math.random() - 0.5) * 4,
+                    vy: -Math.random() * 3,
+                    life: 22 + Math.random() * 18
+                });
+            }
+        }
+
+        function overlaps(a, b) {
+            return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
+        }
+
+        function update() {
+            state.worldOffset += state.speed;
+            state.speed += 0.001;
+            state.player.vy += state.gravity;
+            state.player.y += state.player.vy;
+
+            if (state.player.y >= state.groundY - state.player.h) {
+                state.player.y = state.groundY - state.player.h;
+                state.player.vy = 0;
+                state.player.onGround = true;
+            }
+
+            state.documents.forEach((doc) => {
+                if (doc.cleared) return;
+                const screenDoc = {
+                    x: doc.x - state.worldOffset,
+                    y: doc.y,
+                    w: doc.w,
+                    h: doc.h
+                };
+                const playerBox = {
+                    x: state.player.x,
+                    y: state.player.y,
+                    w: state.player.w,
+                    h: state.player.h
+                };
+
+                if (overlaps(playerBox, screenDoc)) {
+                    const playerFeet = state.player.y + state.player.h;
+                    const docTop = screenDoc.y + 14;
+                    if (state.player.vy > 2 && playerFeet - state.player.vy <= docTop) {
+                        doc.cleared = true;
+                        state.player.vy = -8.2;
+                        state.player.onGround = false;
+                        state.stomped += 1;
+                        spawnCoin(screenDoc);
+                        updateHud();
+                    } else {
+                        failRun();
+                    }
+                }
+            });
+
+            state.coins.forEach((coin) => {
+                if (coin.collected) return;
+                coin.y += coin.vy;
+                coin.vy += 0.18;
+                coin.life -= 1;
+                const playerCenterX = state.player.x + state.player.w / 2;
+                const playerCenterY = state.player.y + state.player.h / 2;
+                if (Math.abs(playerCenterX - coin.x) < 34 && Math.abs(playerCenterY - coin.y) < 40) {
+                    coin.collected = true;
+                    state.score += 1;
+                    updateHud();
+                }
+            });
+            state.coins = state.coins.filter((coin) => !coin.collected && coin.life > 0 && coin.y < canvas.height + 40);
+
+            state.particles.forEach((particle) => {
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                particle.vy += 0.14;
+                particle.life -= 1;
+            });
+            state.particles = state.particles.filter((particle) => particle.life > 0);
+
+            const lastDoc = state.documents[state.documents.length - 1];
+            if (lastDoc && lastDoc.x - state.worldOffset < canvas.width + 300) {
+                const types = ['contract', 'variation', 'invoice', 'consent'];
+                const nextIndex = state.documents.length;
+                const width = 42 + (nextIndex % 3) * 6;
+                const height = 48 + (nextIndex % 2) * 10;
+                state.documents.push({
+                    x: lastDoc.x + 230 + (nextIndex % 4) * 70,
+                    y: state.groundY - height,
+                    w: width,
+                    h: height,
+                    type: types[nextIndex % types.length],
+                    cleared: false
+                });
+            }
+
+            state.flash = Math.max(0, state.flash - 1);
+        }
+
+        function drawSky() {
+            const sky = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            sky.addColorStop(0, '#26384d');
+            sky.addColorStop(0.48, '#18222f');
+            sky.addColorStop(1, '#111111');
+            ctx.fillStyle = sky;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = 'rgba(255,255,255,0.05)';
+            state.skyline.forEach((building, index) => {
+                const x = (building.x - state.worldOffset * (0.18 + (index % 3) * 0.04)) % (canvas.width + 180);
+                const drawX = x < -180 ? x + canvas.width + 180 : x;
+                ctx.fillRect(drawX, state.groundY - building.h - 20, building.w, building.h);
+                ctx.fillStyle = 'rgba(255,255,255,0.09)';
+                for (let row = 0; row < 3; row++) {
+                    for (let col = 0; col < 3; col++) {
+                        ctx.fillRect(drawX + 12 + col * 20, state.groundY - building.h + 10 + row * 18 - 20, 8, 10);
+                    }
+                }
+                ctx.fillStyle = 'rgba(255,255,255,0.05)';
+            });
+
+            ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(0, 85);
+            ctx.lineTo(110, 45);
+            ctx.lineTo(220, 45);
+            ctx.lineTo(280, 70);
+            ctx.lineTo(360, 70);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.moveTo(150, 45);
+            ctx.lineTo(150, 130);
+            ctx.moveTo(220, 45);
+            ctx.lineTo(220, 110);
+            ctx.stroke();
+        }
+
+        function drawGround() {
+            ctx.fillStyle = '#171717';
+            ctx.fillRect(0, state.groundY, canvas.width, canvas.height - state.groundY);
+            ctx.fillStyle = '#c7c7c7';
+            for (let x = -40; x < canvas.width + 80; x += 56) {
+                const offset = (state.worldOffset * 0.9) % 56;
+                ctx.fillRect(x - offset, state.groundY + 34, 28, 6);
+            }
+            ctx.fillStyle = '#0f0f0f';
+            ctx.fillRect(0, state.groundY - 12, canvas.width, 12);
+        }
+
+        function drawDocument(doc) {
+            const x = doc.x - state.worldOffset;
+            if (x < -80 || x > canvas.width + 40 || doc.cleared) return;
+
+            ctx.save();
+            ctx.translate(x, doc.y);
+            ctx.fillStyle = '#f4f1ea';
+            ctx.strokeStyle = '#0f0f0f';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(0, 0);
+            ctx.lineTo(doc.w - 12, 0);
+            ctx.lineTo(doc.w, 12);
+            ctx.lineTo(doc.w, doc.h);
+            ctx.lineTo(0, doc.h);
+            ctx.closePath();
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(doc.w - 12, 0);
+            ctx.lineTo(doc.w - 12, 12);
+            ctx.lineTo(doc.w, 12);
+            ctx.stroke();
+
+            ctx.fillStyle = '#111111';
+            if (doc.type === 'contract') {
+                ctx.fillRect(9, 10, doc.w - 18, 6);
+                ctx.fillRect(9, 22, doc.w - 14, 4);
+                ctx.fillRect(9, 32, doc.w - 20, 4);
+            } else if (doc.type === 'variation') {
+                ctx.fillRect(9, 10, doc.w - 18, 5);
+                ctx.strokeRect(10, 22, 10, 10);
+                ctx.beginPath();
+                ctx.moveTo(12, 27);
+                ctx.lineTo(15, 30);
+                ctx.lineTo(21, 22);
+                ctx.stroke();
+                ctx.fillRect(26, 24, doc.w - 36, 4);
+                ctx.fillRect(26, 33, doc.w - 42, 4);
+            } else if (doc.type === 'invoice') {
+                for (let i = 0; i < 4; i++) ctx.fillRect(9, 10 + i * 9, doc.w - 18 - i * 4, 4);
+                ctx.fillRect(9, doc.h - 12, doc.w - 18, 5);
+            } else {
+                ctx.fillRect(9, 10, doc.w - 18, 5);
+                ctx.fillRect(9, 22, doc.w - 26, 4);
+                ctx.strokeRect(9, 32, doc.w - 18, doc.h - 42);
+            }
+            ctx.restore();
+        }
+
+        function drawCoin(coin) {
+            ctx.save();
+            ctx.translate(coin.x, coin.y);
+            const scale = 0.8 + Math.sin((90 - coin.life) * 0.18) * 0.15;
+            ctx.scale(scale, 1);
+            ctx.fillStyle = '#d4b483';
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.arc(0, 0, 12, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+            ctx.fillStyle = '#111111';
+            ctx.font = 'bold 11px Montserrat, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText('$', 0, 4);
+            ctx.restore();
+        }
+
+        function drawPlayer() {
+            const p = state.player;
+            ctx.save();
+            ctx.translate(p.x, p.y);
+
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(10, 18, 24, 34);
+            ctx.fillStyle = '#111111';
+            ctx.fillRect(14, 22, 6, 30);
+            ctx.fillRect(24, 22, 6, 30);
+            ctx.fillStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.arc(22, 12, 12, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.strokeStyle = '#111111';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+
+            ctx.fillStyle = '#111111';
+            ctx.fillRect(8, 6, 28, 6);
+            ctx.beginPath();
+            ctx.moveTo(8, 10);
+            ctx.quadraticCurveTo(22, -4, 36, 10);
+            ctx.closePath();
+            ctx.fill();
+
+            ctx.fillStyle = '#111111';
+            ctx.fillRect(6, 52, 32, 8);
+            ctx.fillStyle = '#ffffff';
+            ctx.fillRect(8, 54, 5, 4);
+            ctx.fillRect(16, 54, 5, 4);
+            ctx.fillRect(24, 54, 5, 4);
+
+            const armSwing = Math.sin(state.worldOffset * 0.14) * 5;
+            ctx.strokeStyle = '#111111';
+            ctx.lineWidth = 5;
+            ctx.beginPath();
+            ctx.moveTo(10, 24);
+            ctx.lineTo(2, 34 + armSwing);
+            ctx.moveTo(34, 24);
+            ctx.lineTo(42, 34 - armSwing);
+            ctx.moveTo(16, 60);
+            ctx.lineTo(12, 72 + armSwing);
+            ctx.moveTo(28, 60);
+            ctx.lineTo(32, 72 - armSwing);
+            ctx.stroke();
+            ctx.restore();
+        }
+
+        function drawParticles() {
+            ctx.fillStyle = '#ffffff';
+            state.particles.forEach((particle) => {
+                ctx.globalAlpha = Math.max(0, particle.life / 40);
+                ctx.fillRect(particle.x, particle.y, 3, 3);
+            });
+            ctx.globalAlpha = 1;
+        }
+
+        function draw() {
+            drawSky();
+            drawGround();
+            state.documents.forEach(drawDocument);
+            state.coins.forEach(drawCoin);
+            drawParticles();
+            drawPlayer();
+
+            ctx.fillStyle = 'rgba(255,255,255,0.08)';
+            ctx.fillRect(18, 18, 184, 54);
+            ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+            ctx.strokeRect(18, 18, 184, 54);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '700 14px Montserrat, sans-serif';
+            ctx.fillText('TPB SITE RUN', 32, 40);
+            ctx.font = '12px Open Sans, sans-serif';
+            ctx.fillStyle = 'rgba(255,255,255,0.78)';
+            ctx.fillText('Collect coins from cleared paperwork', 32, 60);
+
+            if (state.flash > 0) {
+                ctx.fillStyle = `rgba(255,255,255,${state.flash / 30})`;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+            }
+        }
+
+        function frame() {
+            update();
+            draw();
+            requestAnimationFrame(frame);
+        }
+
+        window.addEventListener('keydown', function(e) {
+            if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') {
+                e.preventDefault();
+                jump();
+            }
+        });
+
+        jumpButton.addEventListener('click', jump);
+        canvas.addEventListener('pointerdown', jump);
+
+        resetSkyline();
+        resetDocuments();
+        updateHud();
+        frame();
+    })();
     const lbGalleries = {
         'brougham-st': { title: 'Mt Vic Wellington Addition — Novak+Middleton Architects', photos: ['images/brougham-st-addition-exterior.jpg','images/brougham-st-addition-01.jpg','images/brougham-st-addition-02.jpg','images/brougham-st-addition-03.jpg','images/brougham-st-addition-04.jpg','images/brougham-st-addition-05.jpg','images/brougham-st-addition-06.jpg','images/brougham-st-addition-07.jpg','images/brougham-st-addition-08.jpg','images/brougham-st-addition-09.jpg','images/brougham-st-addition-10.jpg','images/brougham-st-addition-11.jpg','images/brougham-st-addition-12.jpg','images/brougham-st-addition-13.jpg','images/brougham-st-addition-14.jpg','images/brougham-st-addition-15.jpg','images/brougham-st-addition-16.jpg','images/brougham-st-addition-17.jpg','images/brougham-st-addition-18.jpg','images/brougham-st-addition-19.jpg','images/brougham-st-addition-20.jpg','images/brougham-st-addition-21.jpg','images/brougham-st-addition-22.jpg','images/brougham-st-addition-23.jpg','images/brougham-st-addition-24.jpg','images/brougham-st-addition-25.jpg','images/brougham-st-addition-26.jpg','images/brougham-st-addition-27.jpg','images/brougham-st-addition-28.jpg','images/brougham-st-addition-29.jpg','images/brougham-st-addition-30.jpg','images/brougham-st-addition-31.jpg','images/brougham-st-addition-32.jpg','images/brougham-st-addition-33.jpg','images/brougham-st-addition-34.jpg','images/brougham-st-addition-35.jpg','images/brougham-st-addition-36.jpg','images/brougham-st-addition-37.jpg','images/brougham-st-addition-38.jpg','images/brougham-st-addition-39.jpg','images/brougham-st-addition-40.jpg','images/brougham-st-addition-41.jpg','images/brougham-st-addition-42.jpg','images/brougham-st-addition-43.jpg','images/brougham-st-addition-44.jpg','images/brougham-st-addition-45.jpg','images/brougham-st-addition-46.jpg','images/brougham-st-addition-47.jpg','images/brougham-st-addition-48.jpg','images/brougham-st-addition-49.jpg','images/brougham-st-addition-50.jpg','images/brougham-st-addition-51.jpg','images/brougham-st-addition-52.jpg','images/brougham-st-addition-53.jpg'] },
         'potocki-gallery': { title: 'PotockiPatterson Art Gallery — Design and Build', photos: ['images/potocki-gallery-hero.jpg','images/potocki-gallery-01.jpg','images/potocki-gallery-02.jpg','images/potocki-gallery-03.jpg','images/potocki-gallery-04.jpg','images/potocki-gallery-05.jpg','images/potocki-gallery-06.jpg','images/potocki-gallery-07.jpg','images/potocki-gallery-08.jpg','images/potocki-gallery-09.jpg','images/potocki-gallery-10.jpg','images/potocki-gallery-11.jpg'] },
