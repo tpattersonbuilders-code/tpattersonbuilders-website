@@ -1328,9 +1328,9 @@
             worldOffset: 0,
             score: 0,
             stomped: 0,
-            speed: 4.8,
-            gravity: 0.65,
-            jumpPower: -12.5,
+            speed: 3.1,
+            gravity: 0.56,
+            jumpPower: -11.2,
             groundY: 330,
             running: true,
             flash: 0,
@@ -1356,7 +1356,7 @@
             state.worldOffset = 0;
             state.score = 0;
             state.stomped = 0;
-            state.speed = 4.8;
+            state.speed = 3.1;
             state.flash = 0;
             state.player.y = state.groundY - state.player.h;
             state.player.vy = 0;
@@ -1375,7 +1375,7 @@
                     type: types[i % types.length],
                     cleared: false
                 });
-                cursor += 230 + (i % 4) * 70;
+                cursor += 310 + (i % 4) * 90;
             }
         }
 
@@ -1429,7 +1429,7 @@
 
         function update() {
             state.worldOffset += state.speed;
-            state.speed += 0.001;
+            state.speed += 0.00035;
             state.player.vy += state.gravity;
             state.player.y += state.player.vy;
 
@@ -1459,7 +1459,7 @@
                     const docTop = screenDoc.y + 14;
                     if (state.player.vy > 2 && playerFeet - state.player.vy <= docTop) {
                         doc.cleared = true;
-                        state.player.vy = -8.2;
+                        state.player.vy = -7.1;
                         state.player.onGround = false;
                         state.stomped += 1;
                         spawnCoin(screenDoc);
@@ -1500,7 +1500,7 @@
                 const width = 42 + (nextIndex % 3) * 6;
                 const height = 48 + (nextIndex % 2) * 10;
                 state.documents.push({
-                    x: lastDoc.x + 230 + (nextIndex % 4) * 70,
+                    x: lastDoc.x + 310 + (nextIndex % 4) * 90,
                     y: state.groundY - height,
                     w: width,
                     h: height,
