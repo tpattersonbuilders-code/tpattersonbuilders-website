@@ -1794,6 +1794,30 @@
             renderHighscores();
         }
 
+        function createDocumentObstacle(index, x) {
+            const types = ['contract', 'variation', 'invoice', 'consent'];
+            const paperStyles = [
+                { fill: '#f4e27c', stroke: '#8a6f1d', line: '#5a4b14', accent: '#d9b92f' },
+                { fill: '#9cc7ff', stroke: '#2f5f9f', line: '#244777', accent: '#6da3f3' },
+                { fill: '#f4b3d7', stroke: '#9f4c78', line: '#7d355b', accent: '#e78abf' },
+                { fill: '#ffe9a8', stroke: '#8f6d22', line: '#624d1c', accent: '#f4cf66' }
+            ];
+            const width = 40 + (index % 4) * 7 + ((index * 3) % 5);
+            const height = 46 + (index % 3) * 11 + ((index + 2) % 4) * 3;
+            const style = paperStyles[index % paperStyles.length];
+            const tilt = ((index % 5) - 2) * 0.045;
+            return {
+                x,
+                y: state.groundY - height,
+                w: width,
+                h: height,
+                type: types[index % types.length],
+                cleared: false,
+                style,
+                tilt
+            };
+        }
+
         function resetDocuments() {
             state.documents = [];
             state.coins = [];
@@ -1807,18 +1831,8 @@
             state.player.vy = 0;
             state.player.onGround = true;
             let cursor = 480;
-            const types = ['contract', 'variation', 'invoice', 'consent'];
             for (let i = 0; i < 18; i++) {
-                const width = 42 + (i % 3) * 6;
-                const height = 48 + (i % 2) * 10;
-                state.documents.push({
-                    x: cursor,
-                    y: state.groundY - height,
-                    w: width,
-                    h: height,
-                    type: types[i % types.length],
-                    cleared: false
-                });
+                state.documents.push(createDocumentObstacle(i, cursor));
                 cursor += 430 + (i % 4) * 120;
             }
         }
@@ -1940,18 +1954,8 @@
 
             const lastDoc = state.documents[state.documents.length - 1];
             if (lastDoc && lastDoc.x - state.worldOffset < canvas.width + 300) {
-                const types = ['contract', 'variation', 'invoice', 'consent'];
                 const nextIndex = state.documents.length;
-                const width = 42 + (nextIndex % 3) * 6;
-                const height = 48 + (nextIndex % 2) * 10;
-                state.documents.push({
-                    x: lastDoc.x + 430 + (nextIndex % 4) * 120,
-                    y: state.groundY - height,
-                    w: width,
-                    h: height,
-                    type: types[nextIndex % types.length],
-                    cleared: false
-                });
+                state.documents.push(createDocumentObstacle(nextIndex, lastDoc.x + 430 + (nextIndex % 4) * 120));
             }
 
             state.flash = Math.max(0, state.flash - 1);
@@ -2015,10 +2019,15 @@
             if (x < -80 || x > canvas.width + 40 || doc.cleared) return;
 
             ctx.save();
-            ctx.translate(x, doc.y);
-            ctx.fillStyle = '#f4f1ea';
-            ctx.strokeStyle = '#0f0f0f';
-            ctx.lineWidth = 3;
+            ctx.translate(x + doc.w / 2, doc.y + doc.h / 2);
+            ctx.rotate(doc.tilt || 0);
+            ctx.translate(-doc.w / 2, -doc.h / 2);
+            ctx.shadowColor = 'rgba(0,0,0,0.18)';
+            ctx.shadowBlur = 10;
+            ctx.shadowOffsetY = 4;
+            ctx.fillStyle = doc.style.fill;
+            ctx.strokeStyle = doc.style.stroke;
+            ctx.lineWidth = 2.5;
             ctx.beginPath();
             ctx.moveTo(0, 0);
             ctx.lineTo(doc.w - 12, 0);
@@ -2035,28 +2044,36 @@
             ctx.lineTo(doc.w, 12);
             ctx.stroke();
 
-            ctx.fillStyle = '#111111';
+            ctx.shadowColor = 'transparent';
+            ctx.fillStyle = doc.style.line;
             if (doc.type === 'contract') {
-                ctx.fillRect(9, 10, doc.w - 18, 6);
-                ctx.fillRect(9, 22, doc.w - 14, 4);
-                ctx.fillRect(9, 32, doc.w - 20, 4);
-            } else if (doc.type === 'variation') {
                 ctx.fillRect(9, 10, doc.w - 18, 5);
+                ctx.fillRect(9, 21, doc.w - 16, 3);
+                ctx.fillRect(9, 30, doc.w - 20, 3);
+                ctx.fillStyle = doc.style.accent;
+                ctx.fillRect(9, doc.h - 12, doc.w - 18, 5);
+            } else if (doc.type === 'variation') {
+                ctx.fillRect(9, 10, doc.w - 18, 4);
                 ctx.strokeRect(10, 22, 10, 10);
                 ctx.beginPath();
                 ctx.moveTo(12, 27);
                 ctx.lineTo(15, 30);
                 ctx.lineTo(21, 22);
                 ctx.stroke();
-                ctx.fillRect(26, 24, doc.w - 36, 4);
-                ctx.fillRect(26, 33, doc.w - 42, 4);
+                ctx.fillRect(26, 24, doc.w - 36, 3);
+                ctx.fillRect(26, 33, doc.w - 42, 3);
+                ctx.fillStyle = doc.style.accent;
+                ctx.fillRect(doc.w - 16, 8, 8, 8);
             } else if (doc.type === 'invoice') {
-                for (let i = 0; i < 4; i++) ctx.fillRect(9, 10 + i * 9, doc.w - 18 - i * 4, 4);
+                for (let i = 0; i < 4; i++) ctx.fillRect(9, 10 + i * 9, doc.w - 18 - i * 4, 3);
+                ctx.fillStyle = doc.style.accent;
                 ctx.fillRect(9, doc.h - 12, doc.w - 18, 5);
             } else {
-                ctx.fillRect(9, 10, doc.w - 18, 5);
-                ctx.fillRect(9, 22, doc.w - 26, 4);
-                ctx.strokeRect(9, 32, doc.w - 18, doc.h - 42);
+                ctx.fillRect(9, 10, doc.w - 18, 4);
+                ctx.fillRect(9, 21, doc.w - 24, 3);
+                ctx.strokeRect(9, 30, doc.w - 18, doc.h - 40);
+                ctx.fillStyle = doc.style.accent;
+                ctx.fillRect(13, 34, doc.w - 26, 6);
             }
             ctx.restore();
         }
