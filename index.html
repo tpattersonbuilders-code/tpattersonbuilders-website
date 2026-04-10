@@ -4,7 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tristan Patterson Builders | Quality Construction Wellington</title>
-    <meta name="description" content="Licensed Building Practitioner (LBP) based in Wellington. New builds, renovations, decks, and project management. No-nonsense quality.">
+    <meta name="description" content="Trusted Wellington builders for renovations, additions, decks, fences, bathrooms, and project management. Honest communication and quality workmanship.">
+    <meta name="theme-color" content="#111111">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://tpattersonbuilders.co.nz/">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Tristan Patterson Builders | Quality Construction Wellington">
+    <meta property="og:description" content="Trusted Wellington builders for renovations, additions, decks, fences, bathrooms, and project management. Honest communication and quality workmanship.">
+    <meta property="og:url" content="https://tpattersonbuilders.co.nz/">
+    <meta property="og:image" content="https://tpattersonbuilders.co.nz/images/brougham-st-addition-exterior.jpg">
+    <meta property="og:site_name" content="Tristan Patterson Builders">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Tristan Patterson Builders | Quality Construction Wellington">
+    <meta name="twitter:description" content="Trusted Wellington builders for renovations, additions, decks, fences, bathrooms, and project management.">
+    <meta name="twitter:image" content="https://tpattersonbuilders.co.nz/images/brougham-st-addition-exterior.jpg">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +26,27 @@
     
     <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Tristan Patterson Builders",
+      "url": "https://tpattersonbuilders.co.nz/",
+      "telephone": "+64-21-104-1289",
+      "email": "tpattersonbuilders@gmail.com",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Newlands",
+        "addressRegion": "Wellington",
+        "postalCode": "6037",
+        "addressCountry": "NZ"
+      },
+      "areaServed": "Wellington Region",
+      "sameAs": [
+        "https://www.facebook.com/tpattersonbuilderswellington"
+      ]
+    }
+    </script>
 
     <style>
         :root {
@@ -411,6 +445,341 @@
         
         .gallery-overlay h4, .gallery-overlay p { color: #ffffff !important; }
         .gallery-overlay { background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%); }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --accent: #d4b483;
+            --accent-strong: #b78f56;
+            --light-gray: #f5f2eb;
+        }
+
+        .nav-container {
+            gap: 16px;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .phone-link {
+            color: rgba(255,255,255,0.85);
+            font-weight: 700;
+            font-size: 0.95rem;
+        }
+
+        .mobile-menu-button {
+            display: none;
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.18);
+            color: var(--white);
+            width: 44px;
+            height: 44px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: #111111;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 12px 20px 20px;
+        }
+
+        .mobile-menu.open {
+            display: block;
+        }
+
+        .mobile-menu a {
+            display: block;
+            color: rgba(255,255,255,0.9);
+            padding: 12px 0;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.92rem;
+            letter-spacing: 0.06em;
+        }
+
+        .hero {
+            min-height: 780px;
+            background:
+                radial-gradient(circle at top, rgba(212,180,131,0.2), transparent 35%),
+                linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.76)),
+                url('images/brougham-st-addition-exterior.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid rgba(255,255,255,0.18);
+            background: rgba(255,255,255,0.08);
+            border-radius: 999px;
+            padding: 10px 16px;
+            margin-bottom: 22px;
+            font-size: 0.82rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.9rem, 7vw, 5rem);
+            line-height: 1.05;
+        }
+
+        .hero p {
+            max-width: 720px;
+            margin: 0 auto 2rem;
+        }
+
+        .hero-actions,
+        .hero-trust,
+        .trust-grid,
+        .credentials-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .hero-actions,
+        .hero-trust {
+            justify-content: center;
+        }
+
+        .hero-btn,
+        .cta-button,
+        .contact-form button {
+            border-radius: 999px;
+        }
+
+        .hero-btn.secondary {
+            background: transparent;
+            color: var(--white);
+            border: 1px solid rgba(255,255,255,0.32);
+        }
+
+        .hero-btn.secondary:hover {
+            background: rgba(255,255,255,0.12);
+            color: var(--white);
+        }
+
+        .hero-trust span,
+        .credential-pill {
+            border: 1px solid rgba(255,255,255,0.18);
+            background: rgba(255,255,255,0.08);
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-weight: 600;
+        }
+
+        .trust-strip {
+            padding-top: 0;
+            margin-top: -60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .trust-card,
+        .service-card,
+        .process-card,
+        .gallery-item,
+        .contact-card {
+            border-radius: 20px;
+        }
+
+        .trust-card {
+            background: var(--white);
+            border: 1px solid rgba(17,17,17,0.08);
+            padding: 24px;
+            box-shadow: 0 20px 50px rgba(17,17,17,0.08);
+        }
+
+        .trust-card strong {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            color: var(--primary);
+        }
+
+        .section-intro {
+            max-width: 760px;
+            margin: 0 auto;
+            color: #5b5b5b;
+        }
+
+        .service-card {
+            text-align: left;
+            border: 1px solid rgba(17,17,17,0.06);
+        }
+
+        .service-card ul,
+        .values-list {
+            list-style: none;
+        }
+
+        .service-card ul {
+            margin-top: 16px;
+            color: var(--dark-gray);
+        }
+
+        .service-card li + li,
+        .values-list li + li {
+            margin-top: 8px;
+        }
+
+        .service-card li::before {
+            content: "•";
+            color: var(--accent-strong);
+            margin-right: 10px;
+        }
+
+        .values-list {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 12px 18px;
+            margin: 28px 0;
+        }
+
+        .values-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 600;
+        }
+
+        .values-list i,
+        .credential-pill i {
+            color: var(--accent-strong);
+        }
+
+        .credential-pill {
+            color: var(--primary);
+            border-color: rgba(17,17,17,0.12);
+            background: #faf9f6;
+            font-weight: 700;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 22px;
+        }
+
+        .process-card {
+            background: #101010;
+            color: white;
+            padding: 28px;
+        }
+
+        .process-step {
+            color: var(--accent);
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-size: 0.78rem;
+            margin-bottom: 10px;
+        }
+
+        .gallery-item {
+            min-height: 320px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+
+        .contact-section {
+            background: linear-gradient(180deg, #faf9f6 0%, #ffffff 100%);
+        }
+
+        .contact-card {
+            background: #111111;
+            color: white;
+            padding: 34px;
+            box-shadow: 0 24px 48px rgba(17,17,17,0.14);
+        }
+
+        .contact-card a {
+            color: white;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .contact-form label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            border-radius: 14px;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 980px) {
+            .trust-grid,
+            .process-grid,
+            .about-grid,
+            .contact-wrapper {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links,
+            .phone-link {
+                display: none;
+            }
+
+            .mobile-menu-button {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .hero {
+                min-height: 720px;
+                padding-top: 70px;
+            }
+
+            .hero-actions {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .hero-btn {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .trust-grid,
+            .process-grid,
+            .about-grid,
+            .contact-wrapper,
+            .values-list {
+                grid-template-columns: 1fr;
+            }
+
+            .trust-strip {
+                margin-top: -44px;
+            }
+        }
         </style>
 </head>
 <body>
@@ -421,28 +790,79 @@
             <div class="logo">
                 <svg viewBox="0 0 280 220" height="42" xmlns="http://www.w3.org/2000/svg" style="display:inline-block;vertical-align:middle;margin-right:8px;flex-shrink:0"><polygon points="140,8 274,85 274,212 6,212 6,85" fill="white"/><text x="140" y="176" font-family="Georgia,serif" font-size="94" font-weight="bold" text-anchor="middle" fill="#111111">TPB</text></svg>TRISTAN PATTERSON BUILDERS
             </div>
-            <nav class="nav-links">
-                <a href="#home">Home</a>
-                <a href="#services">Services</a>
-                <a href="#about">About</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact" class="cta-button">Get a Quote</a>
-            </nav>
+            <div class="nav-actions">
+                <a class="phone-link" href="tel:+64211041289">021 104 1289</a>
+                <nav class="nav-links">
+                    <a href="#home">Home</a>
+                    <a href="#services">Services</a>
+                    <a href="#about">About</a>
+                    <a href="#process">How We Work</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact" class="cta-button">Get a Quote</a>
+                </nav>
+                <button class="mobile-menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMenu()">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="#home" onclick="closeMenu()">Home</a>
+            <a href="#services" onclick="closeMenu()">Services</a>
+            <a href="#about" onclick="closeMenu()">About</a>
+            <a href="#process" onclick="closeMenu()">How We Work</a>
+            <a href="#projects" onclick="closeMenu()">Projects</a>
+            <a href="#contact" onclick="closeMenu()">Get a Quote</a>
+            <a href="tel:+64211041289" onclick="closeMenu()">Call 021 104 1289</a>
         </div>
     </header>
 
     <!-- Hero -->
     <section id="home" class="hero">
         <div class="hero-content">
+            <div class="eyebrow">
+                <i class="fa-solid fa-hammer"></i>
+                Wellington Builder
+            </div>
             <div style="margin-bottom:24px;">
                 <svg viewBox="0 0 280 220" height="110" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.5))">
                     <polygon points="140,8 274,85 274,212 6,212 6,85" fill="white"/>
                     <text x="140" y="176" font-family="Georgia,serif" font-size="94" font-weight="bold" text-anchor="middle" fill="#111111">TPB</text>
                 </svg>
             </div>
-            <h1>Solid Builds. Honest Work.</h1>
-            <p>Licensed Building Practitioners serving the greater Wellington region. From renovations to new builds, we get it done right the first time.</p>
-            <a href="#contact" class="hero-btn">Start Your Project</a>
+            <h1>Quality building work without the runaround.</h1>
+            <p>Tristan Patterson Builders helps Wellington homeowners and architects deliver renovations, additions, bathrooms, decks, fences, and new build work with straight communication, tidy sites, and workmanship you can stand behind.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="hero-btn">Request a Quote</a>
+                <a href="tel:+64211041289" class="hero-btn secondary">Call 021 104 1289</a>
+            </div>
+            <div class="hero-trust">
+                <span>Licensed Building Practitioner #111780</span>
+                <span>Based in Newlands, Wellington</span>
+                <span>Renovations, additions, and project management</span>
+            </div>
+        </div>
+    </section>
+
+    <section class="section trust-strip">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-card">
+                    <strong>30+ years</strong>
+                    <p>Trade experience across residential building, additions, and detailed fit-outs.</p>
+                </div>
+                <div class="trust-card">
+                    <strong>Clear communication</strong>
+                    <p>Real updates, realistic expectations, and no fluff when it comes to scope or timing.</p>
+                </div>
+                <div class="trust-card">
+                    <strong>Work done right</strong>
+                    <p>Quality-focused building backed by practical site knowledge and tidy delivery.</p>
+                </div>
+                <div class="trust-card">
+                    <strong>Wellington focused</strong>
+                    <p>Local knowledge for weather, detailing, access challenges, and council coordination.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -451,26 +871,41 @@
         <div class="container">
             <div class="section-title">
                 <h2>Our Services</h2>
-                <p>Comprehensive building solutions tailored to your needs.</p>
+                <p class="section-intro">From one-room upgrades to complex additions, we take on the work that needs practical planning, reliable site management, and quality finishing.</p>
             </div>
             <div class="services-grid">
                 <!-- Service 1 -->
                 <div class="service-card">
                     <div class="service-icon"><i class="fa-solid fa-house-chimney"></i></div>
-                    <h3>Renovations</h3>
-                    <p>Transform your existing space. Bathrooms, kitchens, and full-home makeovers delivered with precision.</p>
+                    <h3>Renovations & Additions</h3>
+                    <p>Careful upgrades that improve how your home looks, works, and holds value.</p>
+                    <ul>
+                        <li>Bathrooms, kitchens, and interior upgrades</li>
+                        <li>Architectural additions and reconfigurations</li>
+                        <li>Practical solutions for older Wellington homes</li>
+                    </ul>
                 </div>
                 <!-- Service 2 -->
                 <div class="service-card">
                     <div class="service-icon"><i class="fa-solid fa-ruler-combined"></i></div>
-                    <h3>Decks & Fences</h3>
-                    <p>High-quality outdoor living areas. We build durable decks and fences designed to withstand Wellington weather.</p>
+                    <h3>Decks, Fences & Exterior Work</h3>
+                    <p>Outdoor spaces and external works built for durability, clean detailing, and Wellington conditions.</p>
+                    <ul>
+                        <li>Decking and outdoor living spaces</li>
+                        <li>Fencing, cladding details, and exterior timberwork</li>
+                        <li>Finishes that look good and last</li>
+                    </ul>
                 </div>
                 <!-- Service 3 -->
                 <div class="service-card">
                     <div class="service-icon"><i class="fa-solid fa-clipboard-check"></i></div>
                     <h3>Project Management</h3>
-                    <p>We handle the stress so you don't have to. Full coordination of trades, council consents, and timelines.</p>
+                    <p>We keep the work moving and the communication clear from planning through completion.</p>
+                    <ul>
+                        <li>Coordination with architects and other trades</li>
+                        <li>Council consent and sequencing support</li>
+                        <li>A straightforward point of contact throughout the job</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -485,12 +920,53 @@
                     <img src="images/WP_000318.jpg" alt="Tristan Patterson Builder">
                 </div>
                 <div class="about-text">
-                    <h3>We Build With Pride</h3>
+                    <h3>Built on trust, workmanship, and turning up when we say we will.</h3>
                     <p>Tristan Patterson Builders is a locally owned and operated construction company based in Newlands, Wellington.</p>
-                    <p>We believe in clear communication, turning up when we say we will, and leaving the site tidy. No corporate fluff, just solid building practices backed by over 30 years of experience in the trade.</p>
+                    <p>We believe in clear communication, tidy sites, practical problem-solving, and doing the job properly. No corporate fluff, just solid building practices backed by over 30 years of experience in the trade.</p>
+                    <ul class="values-list">
+                        <li><i class="fa-solid fa-check"></i> Honest advice on scope and approach</li>
+                        <li><i class="fa-solid fa-check"></i> Respectful, tidy site management</li>
+                        <li><i class="fa-solid fa-check"></i> Detail-focused finishing</li>
+                        <li><i class="fa-solid fa-check"></i> Good coordination with designers and trades</li>
+                    </ul>
                     <div class="lbp-badge">
                         <i class="fa-solid fa-certificate" style="margin-right:10px;"></i> Licensed Building Practitioner (LBP #111780)
                     </div>
+                    <div class="credentials-row">
+                        <div class="credential-pill"><i class="fa-solid fa-location-dot"></i> Newlands, Wellington</div>
+                        <div class="credential-pill"><i class="fa-solid fa-phone"></i> 021 104 1289</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="process" class="section">
+        <div class="container">
+            <div class="section-title">
+                <h2>How We Work</h2>
+                <p class="section-intro">A building job runs better when expectations are clear from the start. We keep the process straightforward and transparent.</p>
+            </div>
+            <div class="process-grid">
+                <div class="process-card">
+                    <div class="process-step">Step 1</div>
+                    <h3>Talk through the job</h3>
+                    <p>We start with your goals, site conditions, timeframe, and whether plans or consents are involved.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-step">Step 2</div>
+                    <h3>Scope it properly</h3>
+                    <p>We help clarify the work, identify constraints early, and line up the right next steps before the build begins.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-step">Step 3</div>
+                    <h3>Build with care</h3>
+                    <p>We keep the site moving, coordinate what needs coordinating, and maintain a high standard of workmanship.</p>
+                </div>
+                <div class="process-card">
+                    <div class="process-step">Step 4</div>
+                    <h3>Finish strong</h3>
+                    <p>We focus on the details, tidy handover, and making sure the end result feels worth the investment.</p>
                 </div>
             </div>
         </div>
@@ -501,7 +977,7 @@
         <div class="container">
             <div class="section-title">
                 <h2>Recent Work</h2>
-                <p>A snapshot of our latest projects across Wellington.</p>
+                <p class="section-intro">A snapshot of recent residential and fit-out work across Wellington. Click through each project gallery to see more detail.</p>
             </div>
             <div class="gallery-grid">
                 <div class="gallery-item" onclick="openLightbox('brougham-st',0)" style="cursor:pointer;">
@@ -536,26 +1012,28 @@
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="section">
+    <section id="contact" class="section contact-section">
         <div class="container">
             <div class="section-title">
                 <h2>Get In Touch</h2>
-                <p>Ready to start your project? Give us a shout.</p>
+                <p class="section-intro">If you are planning a renovation, addition, bathroom, deck, fence, or other residential building work in Wellington, get in touch and tell us what you have in mind.</p>
             </div>
             <div class="contact-wrapper">
-                <div class="contact-info">
+                <div class="contact-card">
+                    <h3 style="margin-bottom:14px;color:#fff;">Talk to a local builder</h3>
+                    <p style="margin-bottom:28px;color:rgba(255,255,255,0.82);">The easiest way to get started is to call, email, or send a quick message with a few details about your job.</p>
                     <div class="contact-info-item">
                         <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
                         <div>
                             <h4>Phone</h4>
-                            <p>021 104 1289</p>
+                            <p><a href="tel:+64211041289">021 104 1289</a></p>
                         </div>
                     </div>
                     <div class="contact-info-item">
                         <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
                         <div>
                             <h4>Email</h4>
-                            <p>tpattersonbuilders@gmail.com</p>
+                            <p><a href="mailto:tpattersonbuilders@gmail.com">tpattersonbuilders@gmail.com</a></p>
                         </div>
                     </div>
                     <div class="contact-info-item">
@@ -565,14 +1043,24 @@
                             <p>Newlands, Wellington 6037</p>
                         </div>
                     </div>
+                    <div class="contact-info-item" style="margin-bottom:0;">
+                        <div class="contact-icon"><i class="fa-brands fa-facebook-f"></i></div>
+                        <div>
+                            <h4>Facebook</h4>
+                            <p><a href="https://www.facebook.com/tpattersonbuilderswellington" target="_blank" rel="noopener">Follow recent work and updates</a></p>
+                        </div>
+                    </div>
                 </div>
                 
-                <!-- Simple Form (uses Formspree free tier, replace EMAIL with your Formspree endpoint later) -->
                 <form class="contact-form" action="https://formspree.io/f/xbjvqglq" method="POST">
-                    <input type="text" name="name" placeholder="Your Name" required>
-                    <input type="email" name="email" placeholder="Your Email" required>
-                    <textarea name="message" rows="5" placeholder="Tell us about your project..." required></textarea>
+                    <label for="name">Your Name</label>
+                    <input id="name" type="text" name="name" placeholder="Your Name" required>
+                    <label for="email">Your Email</label>
+                    <input id="email" type="email" name="email" placeholder="Your Email" required>
+                    <label for="message">Project Details</label>
+                    <textarea id="message" name="message" rows="6" placeholder="Tell us about the job, where it is, and when you would like to get started..." required></textarea>
                     <button type="submit">Send Message</button>
+                    <p style="margin-top:14px;color:#666;">Prefer to talk directly? Call <a href="tel:+64211041289">021 104 1289</a>.</p>
                 </form>
             </div>
         </div>
@@ -604,6 +1092,18 @@
     </div>
 
     <script>
+    function toggleMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const button = document.querySelector('.mobile-menu-button');
+        const isOpen = menu.classList.toggle('open');
+        button.setAttribute('aria-expanded', String(isOpen));
+    }
+    function closeMenu() {
+        const menu = document.getElementById('mobile-menu');
+        const button = document.querySelector('.mobile-menu-button');
+        menu.classList.remove('open');
+        button.setAttribute('aria-expanded', 'false');
+    }
     const lbGalleries = {
         'brougham-st': { title: 'Mt Vic Wellington Addition — Novak+Middleton Architects', photos: ['images/brougham-st-addition-exterior.jpg','images/brougham-st-addition-01.jpg','images/brougham-st-addition-02.jpg','images/brougham-st-addition-03.jpg','images/brougham-st-addition-04.jpg','images/brougham-st-addition-05.jpg','images/brougham-st-addition-06.jpg','images/brougham-st-addition-07.jpg','images/brougham-st-addition-08.jpg','images/brougham-st-addition-09.jpg','images/brougham-st-addition-10.jpg','images/brougham-st-addition-11.jpg','images/brougham-st-addition-12.jpg','images/brougham-st-addition-13.jpg','images/brougham-st-addition-14.jpg','images/brougham-st-addition-15.jpg','images/brougham-st-addition-16.jpg','images/brougham-st-addition-17.jpg','images/brougham-st-addition-18.jpg','images/brougham-st-addition-19.jpg','images/brougham-st-addition-20.jpg','images/brougham-st-addition-21.jpg','images/brougham-st-addition-22.jpg','images/brougham-st-addition-23.jpg','images/brougham-st-addition-24.jpg','images/brougham-st-addition-25.jpg','images/brougham-st-addition-26.jpg','images/brougham-st-addition-27.jpg','images/brougham-st-addition-28.jpg','images/brougham-st-addition-29.jpg','images/brougham-st-addition-30.jpg','images/brougham-st-addition-31.jpg','images/brougham-st-addition-32.jpg','images/brougham-st-addition-33.jpg','images/brougham-st-addition-34.jpg','images/brougham-st-addition-35.jpg','images/brougham-st-addition-36.jpg','images/brougham-st-addition-37.jpg','images/brougham-st-addition-38.jpg','images/brougham-st-addition-39.jpg','images/brougham-st-addition-40.jpg','images/brougham-st-addition-41.jpg','images/brougham-st-addition-42.jpg','images/brougham-st-addition-43.jpg','images/brougham-st-addition-44.jpg','images/brougham-st-addition-45.jpg','images/brougham-st-addition-46.jpg','images/brougham-st-addition-47.jpg','images/brougham-st-addition-48.jpg','images/brougham-st-addition-49.jpg','images/brougham-st-addition-50.jpg','images/brougham-st-addition-51.jpg','images/brougham-st-addition-52.jpg','images/brougham-st-addition-53.jpg'] },
         'potocki-gallery': { title: 'PotockiPatterson Art Gallery — Design and Build', photos: ['images/potocki-gallery-hero.jpg','images/potocki-gallery-01.jpg','images/potocki-gallery-02.jpg','images/potocki-gallery-03.jpg','images/potocki-gallery-04.jpg','images/potocki-gallery-05.jpg','images/potocki-gallery-06.jpg','images/potocki-gallery-07.jpg','images/potocki-gallery-08.jpg','images/potocki-gallery-09.jpg','images/potocki-gallery-10.jpg','images/potocki-gallery-11.jpg'] },
@@ -643,6 +1143,13 @@
         if (e.key === 'ArrowLeft') navLightbox(-1);
         if (e.key === 'ArrowRight') navLightbox(1);
         if (e.key === 'Escape') closeLightbox();
+    });
+    document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+        link.addEventListener('click', function() {
+            if (this.getAttribute('href') !== '#') {
+                closeMenu();
+            }
+        });
     });
     </script>
 </body>
