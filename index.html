@@ -778,7 +778,47 @@
         }
 
         .game-shell {
-            padding: 0;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            border-radius: 28px;
+            padding: 24px;
+            box-shadow: 0 28px 60px rgba(0,0,0,0.24);
+        }
+
+        .game-topbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 18px;
+        }
+
+        .game-topbar h3 {
+            color: #ffffff;
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .game-topbar p {
+            color: rgba(255,255,255,0.74);
+            max-width: 620px;
+        }
+
+        .game-hud {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+
+        .game-pill {
+            border: 1px solid rgba(255,255,255,0.14);
+            padding: 10px 14px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.84);
+            background: rgba(255,255,255,0.06);
         }
 
         .site-runner-canvas {
@@ -815,7 +855,27 @@
         }
 
         .game-scoreboard {
-            display: none;
+            margin-top: 18px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            border-radius: 18px;
+            padding: 16px 18px;
+        }
+
+        .game-scoreboard h4 {
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .game-scoreboard ol {
+            margin: 0;
+            padding-left: 20px;
+            color: rgba(255,255,255,0.78);
+        }
+
+        .game-scoreboard li + li {
+            margin-top: 6px;
         }
 
         .contact-card {
@@ -848,6 +908,9 @@
             .process-grid,
             .about-grid,
             .contact-wrapper,
+            .game-topbar {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -893,8 +956,17 @@
                 grid-template-columns: 1fr;
             }
 
+            .game-topbar {
+                display: block;
+            }
+
+            .game-hud {
+                justify-content: flex-start;
+                margin-top: 14px;
+            }
+
             .game-shell {
-                padding: 0;
+                padding: 16px;
             }
 
             .trust-strip {
@@ -999,10 +1071,31 @@
     <section id="site-run" class="section game-section">
         <div class="container">
             <div class="game-shell">
+                <div class="game-topbar">
+                    <div>
+                        <div class="eyebrow" style="margin-bottom:14px;">
+                            <i class="fa-solid fa-gamepad"></i>
+                            Site Run
+                        </div>
+                        <h3>Run the paperwork off the site.</h3>
+                        <p>A small monochrome side-scroller for the landing page. Jump stamped contracts, site forms, and variation docs. Stomp them cleanly and they flip into coins.</p>
+                    </div>
+                    <div class="game-hud">
+                        <div class="game-pill">Construction mode: monochrome</div>
+                        <div class="game-pill">Docs stomped: <span id="site-run-stomped">0</span></div>
+                        <div class="game-pill">Coins banked: <span id="site-run-score">0</span></div>
+                    </div>
+                </div>
                 <canvas id="site-runner-canvas" class="site-runner-canvas" width="960" height="420" aria-label="Construction side-scroller mini game"></canvas>
                 <div class="game-controls">
-                    <p>Press <strong>space</strong>, <strong>up</strong>, or tap jump.</p>
+                    <p>Press <strong>space</strong>, <strong>up</strong>, or tap jump. Side-hit a document and the run resets.</p>
                     <button type="button" class="game-jump" id="site-run-jump">Jump</button>
+                </div>
+                <div class="game-scoreboard">
+                    <h4>Top 5 site scores</h4>
+                    <ol id="site-run-highscores">
+                        <li>No scores yet</li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -1257,9 +1350,13 @@
         if (!canvas) return;
 
         const ctx = canvas.getContext('2d');
+        const scoreNode = document.getElementById('site-run-score');
+        const stompedNode = document.getElementById('site-run-stomped');
+        const highscoreNode = document.getElementById('site-run-highscores');
         const jumpButton = document.getElementById('site-run-jump');
         const builderSprite = new Image();
         let builderSpriteProcessed = null;
+        const highscoreKey = 'tpb-site-runner-highscores';
         builderSprite.src = 'images/site-runner-builder.jpg';
         builderSprite.onload = function() {
             const spriteCanvas = document.createElement('canvas');
@@ -1312,6 +1409,36 @@
             skyline: []
         };
 
+        function readHighscores() {
+            try {
+                const raw = localStorage.getItem(highscoreKey);
+                if (!raw) return [];
+                const parsed = JSON.parse(raw);
+                return Array.isArray(parsed) ? parsed.filter((n) => Number.isFinite(n)) : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function renderHighscores() {
+            const scores = readHighscores().slice(0, 5);
+            if (scores.length === 0) {
+                highscoreNode.innerHTML = '<li>No scores yet</li>';
+                return;
+            }
+            highscoreNode.innerHTML = scores.map((score) => `<li>${score} coin${score === 1 ? '' : 's'}</li>`).join('');
+        }
+
+        function saveHighscore(score) {
+            if (!score || score < 1) return;
+            const scores = readHighscores();
+            scores.push(score);
+            scores.sort((a, b) => b - a);
+            const topFive = scores.slice(0, 5);
+            localStorage.setItem(highscoreKey, JSON.stringify(topFive));
+            renderHighscores();
+        }
+
         function resetDocuments() {
             state.documents = [];
             state.coins = [];
@@ -1350,6 +1477,11 @@
             }));
         }
 
+        function updateHud() {
+            scoreNode.textContent = String(state.score);
+            stompedNode.textContent = String(state.stomped);
+        }
+
         function jump() {
             if (!state.player.onGround) return;
             state.player.vy = state.jumpPower;
@@ -1358,7 +1490,9 @@
 
         function failRun() {
             state.flash = 16;
+            saveHighscore(state.score);
             resetDocuments();
+            updateHud();
         }
 
         function spawnCoin(doc) {
@@ -1420,6 +1554,7 @@
                         state.player.onGround = false;
                         state.stomped += 1;
                         spawnCoin(screenDoc);
+                        updateHud();
                     } else {
                         failRun();
                     }
@@ -1436,6 +1571,7 @@
                 if (Math.abs(playerCenterX - coin.x) < 34 && Math.abs(playerCenterY - coin.y) < 40) {
                     coin.collected = true;
                     state.score += 1;
+                    updateHud();
                 }
             });
             state.coins = state.coins.filter((coin) => !coin.collected && coin.life > 0 && coin.y < canvas.height + 40);
@@ -1631,6 +1767,17 @@
             drawParticles();
             drawPlayer();
 
+            ctx.fillStyle = 'rgba(255,255,255,0.08)';
+            ctx.fillRect(18, 18, 184, 54);
+            ctx.strokeStyle = 'rgba(255,255,255,0.12)';
+            ctx.strokeRect(18, 18, 184, 54);
+            ctx.fillStyle = '#ffffff';
+            ctx.font = '700 14px Montserrat, sans-serif';
+            ctx.fillText('TPB SITE RUN', 32, 40);
+            ctx.font = '12px Open Sans, sans-serif';
+            ctx.fillStyle = 'rgba(255,255,255,0.78)';
+            ctx.fillText('Collect coins from cleared paperwork', 32, 60);
+
             if (state.flash > 0) {
                 ctx.fillStyle = `rgba(255,255,255,${state.flash / 30})`;
                 ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -1655,6 +1802,8 @@
 
         resetSkyline();
         resetDocuments();
+        updateHud();
+        renderHighscores();
         frame();
     })();
     const lbGalleries = {
