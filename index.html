@@ -1324,7 +1324,33 @@
         const stompedNode = document.getElementById('site-run-stomped');
         const jumpButton = document.getElementById('site-run-jump');
         const builderSprite = new Image();
+        let builderSpriteProcessed = null;
         builderSprite.src = 'images/site-runner-builder.jpg';
+        builderSprite.onload = function() {
+            const spriteCanvas = document.createElement('canvas');
+            spriteCanvas.width = builderSprite.width;
+            spriteCanvas.height = builderSprite.height;
+            const spriteCtx = spriteCanvas.getContext('2d');
+            spriteCtx.drawImage(builderSprite, 0, 0);
+
+            const imageData = spriteCtx.getImageData(0, 0, spriteCanvas.width, spriteCanvas.height);
+            const data = imageData.data;
+            for (let i = 0; i < data.length; i += 4) {
+                const r = data[i];
+                const g = data[i + 1];
+                const b = data[i + 2];
+                const avg = (r + g + b) / 3;
+                const spread = Math.max(r, g, b) - Math.min(r, g, b);
+
+                // Remove the light checker/white screenshot background while preserving the sprite colors.
+                if ((avg > 205 && spread < 28) || (avg > 235 && spread < 50)) {
+                    data[i + 3] = 0;
+                }
+            }
+
+            spriteCtx.putImageData(imageData, 0, 0);
+            builderSpriteProcessed = spriteCanvas;
+        };
 
         const state = {
             worldOffset: 0,
@@ -1639,10 +1665,10 @@
             const p = state.player;
             ctx.save();
             ctx.translate(p.x, p.y);
-            if (builderSprite.complete) {
+            if (builderSpriteProcessed) {
                 const bob = Math.sin(state.worldOffset * 0.16) * 1.6;
                 ctx.filter = 'grayscale(1) contrast(1.25) brightness(1.08)';
-                ctx.drawImage(builderSprite, -6, -4 + bob, 76, 96);
+                ctx.drawImage(builderSpriteProcessed, -6, -4 + bob, 76, 96);
                 ctx.filter = 'none';
             } else {
                 ctx.fillStyle = '#ffffff';
