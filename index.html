@@ -1682,34 +1682,50 @@
         const stompedNode = document.getElementById('site-run-stomped');
         const highscoreNode = document.getElementById('site-run-highscores');
         const jumpButton = document.getElementById('site-run-jump');
-        const builderSprite = new Image();
-        let builderSpriteProcessed = null;
+        const builderSpriteSheet = new Image();
+        const builderFrameCount = 7;
+        const builderFrames = [];
         const highscoreKey = 'tpb-site-runner-highscores';
-        builderSprite.src = 'images/site-runner-builder.jpg';
-        builderSprite.onload = function() {
-            const spriteCanvas = document.createElement('canvas');
-            spriteCanvas.width = builderSprite.width;
-            spriteCanvas.height = builderSprite.height;
-            const spriteCtx = spriteCanvas.getContext('2d');
-            spriteCtx.drawImage(builderSprite, 0, 0);
+        builderSpriteSheet.src = 'images/site-runner-builder-sheet.jpg';
+        builderSpriteSheet.onload = function() {
+            const frameSlices = Array.from({ length: builderFrameCount }, (_, index) => {
+                const startX = Math.round((index * builderSpriteSheet.width) / builderFrameCount);
+                const endX = Math.round(((index + 1) * builderSpriteSheet.width) / builderFrameCount);
+                return { x: startX, w: endX - startX };
+            });
 
-            const imageData = spriteCtx.getImageData(0, 0, spriteCanvas.width, spriteCanvas.height);
-            const data = imageData.data;
-            for (let i = 0; i < data.length; i += 4) {
-                const r = data[i];
-                const g = data[i + 1];
-                const b = data[i + 2];
-                const avg = (r + g + b) / 3;
-                const spread = Math.max(r, g, b) - Math.min(r, g, b);
+            frameSlices.forEach((slice) => {
+                const frameCanvas = document.createElement('canvas');
+                frameCanvas.width = slice.w;
+                frameCanvas.height = builderSpriteSheet.height;
+                const frameCtx = frameCanvas.getContext('2d');
+                frameCtx.drawImage(
+                    builderSpriteSheet,
+                    slice.x,
+                    0,
+                    slice.w,
+                    builderSpriteSheet.height,
+                    0,
+                    0,
+                    slice.w,
+                    builderSpriteSheet.height
+                );
 
-                // Remove the light checker/white screenshot background while preserving the sprite colors.
-                if ((avg > 205 && spread < 28) || (avg > 235 && spread < 50)) {
-                    data[i + 3] = 0;
+                const imageData = frameCtx.getImageData(0, 0, frameCanvas.width, frameCanvas.height);
+                const data = imageData.data;
+                for (let i = 0; i < data.length; i += 4) {
+                    const r = data[i];
+                    const g = data[i + 1];
+                    const b = data[i + 2];
+                    const avg = (r + g + b) / 3;
+                    const spread = Math.max(r, g, b) - Math.min(r, g, b);
+                    if ((avg > 205 && spread < 28) || (avg > 235 && spread < 50)) {
+                        data[i + 3] = 0;
+                    }
                 }
-            }
-
-            spriteCtx.putImageData(imageData, 0, 0);
-            builderSpriteProcessed = spriteCanvas;
+                frameCtx.putImageData(imageData, 0, 0);
+                builderFrames.push(frameCanvas);
+            });
         };
 
         const state = {
@@ -1729,7 +1745,9 @@
                 h: 90,
                 vy: 0,
                 onGround: true,
-                facing: 1
+                facing: 1,
+                animTick: 0,
+                actionTimer: 0
             },
             documents: [],
             coins: [],
@@ -1779,6 +1797,8 @@
             state.player.y = state.groundY - state.player.h;
             state.player.vy = 0;
             state.player.onGround = true;
+            state.player.animTick = 0;
+            state.player.actionTimer = 0;
 
             let cursor = 480;
             const types = ['contract', 'variation', 'invoice', 'consent'];
@@ -1814,6 +1834,7 @@
             if (!state.player.onGround) return;
             state.player.vy = state.jumpPower;
             state.player.onGround = false;
+            state.player.actionTimer = 4;
         }
 
         function failRun() {
@@ -1849,6 +1870,8 @@
         function update() {
             state.worldOffset += state.speed;
             state.speed += 0.00012;
+            state.player.animTick += 1;
+            state.player.actionTimer = Math.max(0, state.player.actionTimer - 1);
             state.player.vy += state.gravity;
             state.player.y += state.player.vy;
 
@@ -1880,6 +1903,7 @@
                         doc.cleared = true;
                         state.player.vy = -9.3;
                         state.player.onGround = false;
+                        state.player.actionTimer = 16;
                         state.stomped += 1;
                         spawnCoin(screenDoc);
                         updateHud();
@@ -2056,11 +2080,19 @@
             const p = state.player;
             ctx.save();
             ctx.translate(p.x, p.y);
-            if (builderSpriteProcessed) {
-                const bob = Math.sin(state.worldOffset * 0.16) * 1.6;
-                ctx.filter = 'grayscale(1) contrast(1.25) brightness(1.08)';
-                ctx.drawImage(builderSpriteProcessed, -6, -4 + bob, 76, 96);
-                ctx.filter = 'none';
+            if (builderFrames.length === builderFrameCount) {
+                let frameIndex = 0;
+                if (p.actionTimer > 8) {
+                    frameIndex = 6;
+                } else if (!p.onGround) {
+                    frameIndex = 5;
+                } else {
+                    const runFrames = [0, 1, 2, 3, 4];
+                    frameIndex = runFrames[Math.floor(p.animTick / 7) % runFrames.length];
+                }
+                const frame = builderFrames[frameIndex];
+                const bob = p.onGround ? Math.sin(p.animTick * 0.18) * 1.2 : -2;
+                ctx.drawImage(frame, -8, -6 + bob, 84, 106);
             } else {
                 ctx.fillStyle = '#ffffff';
                 ctx.fillRect(10, 18, 24, 34);
