@@ -1330,7 +1330,7 @@
             stomped: 0,
             speed: 1.85,
             gravity: 0.5,
-            jumpPower: -10.4,
+            jumpPower: -15.6,
             groundY: 330,
             running: true,
             flash: 0,
@@ -1459,7 +1459,7 @@
                     const docTop = screenDoc.y + 14;
                     if (state.player.vy > 2 && playerFeet - state.player.vy <= docTop) {
                         doc.cleared = true;
-                        state.player.vy = -6.2;
+                        state.player.vy = -9.3;
                         state.player.onGround = false;
                         state.stomped += 1;
                         spawnCoin(screenDoc);
