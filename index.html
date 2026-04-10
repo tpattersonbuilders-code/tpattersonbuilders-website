@@ -854,6 +854,30 @@
             cursor: pointer;
         }
 
+        .game-scoreboard {
+            margin-top: 18px;
+            border: 1px solid rgba(255,255,255,0.12);
+            background: rgba(255,255,255,0.04);
+            border-radius: 18px;
+            padding: 16px 18px;
+        }
+
+        .game-scoreboard h4 {
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .game-scoreboard ol {
+            margin: 0;
+            padding-left: 20px;
+            color: rgba(255,255,255,0.78);
+        }
+
+        .game-scoreboard li + li {
+            margin-top: 6px;
+        }
+
         .contact-card {
             background: #111111;
             color: white;
@@ -1066,6 +1090,12 @@
                 <div class="game-controls">
                     <p>Press <strong>space</strong>, <strong>up</strong>, or tap jump. Side-hit a document and the run resets.</p>
                     <button type="button" class="game-jump" id="site-run-jump">Jump</button>
+                </div>
+                <div class="game-scoreboard">
+                    <h4>Top 5 site scores</h4>
+                    <ol id="site-run-highscores">
+                        <li>No scores yet</li>
+                    </ol>
                 </div>
             </div>
         </div>
@@ -1322,9 +1352,11 @@
         const ctx = canvas.getContext('2d');
         const scoreNode = document.getElementById('site-run-score');
         const stompedNode = document.getElementById('site-run-stomped');
+        const highscoreNode = document.getElementById('site-run-highscores');
         const jumpButton = document.getElementById('site-run-jump');
         const builderSprite = new Image();
         let builderSpriteProcessed = null;
+        const highscoreKey = 'tpb-site-runner-highscores';
         builderSprite.src = 'images/site-runner-builder.jpg';
         builderSprite.onload = function() {
             const spriteCanvas = document.createElement('canvas');
@@ -1377,6 +1409,36 @@
             skyline: []
         };
 
+        function readHighscores() {
+            try {
+                const raw = localStorage.getItem(highscoreKey);
+                if (!raw) return [];
+                const parsed = JSON.parse(raw);
+                return Array.isArray(parsed) ? parsed.filter((n) => Number.isFinite(n)) : [];
+            } catch {
+                return [];
+            }
+        }
+
+        function renderHighscores() {
+            const scores = readHighscores().slice(0, 5);
+            if (scores.length === 0) {
+                highscoreNode.innerHTML = '<li>No scores yet</li>';
+                return;
+            }
+            highscoreNode.innerHTML = scores.map((score) => `<li>${score} coin${score === 1 ? '' : 's'}</li>`).join('');
+        }
+
+        function saveHighscore(score) {
+            if (!score || score < 1) return;
+            const scores = readHighscores();
+            scores.push(score);
+            scores.sort((a, b) => b - a);
+            const topFive = scores.slice(0, 5);
+            localStorage.setItem(highscoreKey, JSON.stringify(topFive));
+            renderHighscores();
+        }
+
         function resetDocuments() {
             state.documents = [];
             state.coins = [];
@@ -1428,6 +1490,7 @@
 
         function failRun() {
             state.flash = 16;
+            saveHighscore(state.score);
             resetDocuments();
             updateHud();
         }
@@ -1740,6 +1803,7 @@
         resetSkyline();
         resetDocuments();
         updateHud();
+        renderHighscores();
         frame();
     })();
     const lbGalleries = {
