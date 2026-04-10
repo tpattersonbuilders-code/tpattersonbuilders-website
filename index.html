@@ -563,16 +563,13 @@
         }
 
         .hero-actions,
-        .hero-trust,
-        .trust-grid,
         .credentials-row {
             display: flex;
             flex-wrap: wrap;
             gap: 14px;
         }
 
-        .hero-actions,
-        .hero-trust {
+        .hero-actions {
             justify-content: center;
         }
 
@@ -593,18 +590,20 @@
             color: var(--white);
         }
 
-        .hero-trust span,
-        .credential-pill {
-            border: 1px solid rgba(255,255,255,0.18);
-            background: rgba(255,255,255,0.08);
-            padding: 10px 14px;
-            border-radius: 999px;
+        .hero-trust {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            flex-wrap: wrap;
+            margin-top: 8px;
+            color: rgba(255,255,255,0.82);
             font-weight: 600;
+            font-size: 0.95rem;
         }
 
         .trust-strip {
             padding-top: 0;
-            margin-top: -60px;
+            margin-top: -32px;
             position: relative;
             z-index: 2;
         }
@@ -612,7 +611,12 @@
         .trust-grid {
             display: grid;
             grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 16px;
+            gap: 0;
+            background: #101010;
+            border-radius: 24px;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.06);
+            box-shadow: 0 24px 50px rgba(17,17,17,0.16);
         }
 
         .trust-card,
@@ -624,10 +628,10 @@
         }
 
         .trust-card {
-            background: var(--white);
-            border: 1px solid rgba(17,17,17,0.08);
+            background: transparent;
             padding: 24px;
-            box-shadow: 0 20px 50px rgba(17,17,17,0.08);
+            color: rgba(255,255,255,0.82);
+            border-right: 1px solid rgba(255,255,255,0.08);
         }
 
         .trust-card strong {
@@ -635,7 +639,11 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 1.6rem;
             margin-bottom: 8px;
-            color: var(--primary);
+            color: #ffffff;
+        }
+
+        .trust-card:last-child {
+            border-right: none;
         }
 
         .section-intro {
@@ -690,10 +698,12 @@
         }
 
         .credential-pill {
-            color: var(--primary);
-            border-color: rgba(17,17,17,0.12);
-            background: #faf9f6;
+            color: var(--dark-gray);
+            border: none;
+            background: transparent;
+            padding: 0;
             font-weight: 700;
+            border-radius: 0;
         }
 
         .lbp-badge img {
@@ -703,6 +713,12 @@
             margin-right: 12px;
             border-radius: 50%;
             background: white;
+        }
+
+        .lbp-badge a {
+            display: inline-flex;
+            align-items: center;
+            color: inherit;
         }
 
         .footer-brand {
@@ -830,7 +846,21 @@
             }
 
             .trust-strip {
-                margin-top: -44px;
+                margin-top: -18px;
+            }
+
+            .hero-trust {
+                gap: 10px 18px;
+                font-size: 0.88rem;
+            }
+
+            .trust-card {
+                border-right: none;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+            }
+
+            .trust-card:last-child {
+                border-bottom: none;
             }
         }
         </style>
@@ -885,7 +915,7 @@
             </div>
             <div class="hero-trust">
                 <span>Licensed Building Practitioner #111780</span>
-                <span>Based in Newlands, Wellington</span>
+                <span>Newlands, Wellington</span>
                 <span>Renovations, additions, and project management</span>
             </div>
         </div>
@@ -899,16 +929,16 @@
                     <p>Trade experience across residential building, additions, and detailed fit-outs.</p>
                 </div>
                 <div class="trust-card">
-                    <strong>Clear communication</strong>
-                    <p>Real updates, realistic expectations, and no fluff when it comes to scope or timing.</p>
+                    <strong>Wellington based</strong>
+                    <p>Local knowledge for weather, detailing, access issues, and working with existing homes.</p>
                 </div>
                 <div class="trust-card">
-                    <strong>Work done right</strong>
-                    <p>Quality-focused building backed by practical site knowledge and tidy delivery.</p>
+                    <strong>LBP licensed</strong>
+                    <p>Qualified and accountable building work backed by a public licence record.</p>
                 </div>
                 <div class="trust-card">
-                    <strong>Wellington focused</strong>
-                    <p>Local knowledge for weather, detailing, access challenges, and council coordination.</p>
+                    <strong>Clear process</strong>
+                    <p>Direct communication, tidy sites, and practical project management from start to finish.</p>
                 </div>
             </div>
         </div>
@@ -978,7 +1008,9 @@
                         <li><i class="fa-solid fa-check"></i> Good coordination with designers and trades</li>
                     </ul>
                     <div class="lbp-badge">
-                        <img src="images/lbp-logo.jpg" alt="Licensed Building Practitioner logo"> Licensed Building Practitioner (LBP #111780)
+                        <a href="https://www.lbp.govt.nz/for-homeowners/find-an-lbp/" target="_blank" rel="noopener">
+                            <img src="images/lbp-logo.png" alt="Licensed Building Practitioner logo"> Verify Licensed Building Practitioner #111780
+                        </a>
                     </div>
                     <div class="credentials-row">
                         <div class="credential-pill"><i class="fa-solid fa-location-dot"></i> Newlands, Wellington</div>
@@ -1121,7 +1153,7 @@
                 <img src="images/tpb-logo.svg" alt="Tristan Patterson Builders logo">
                 <div class="footer-logo">Tristan Patterson Builders</div>
             </div>
-            <p>Licensed Building Practitioner #111780</p>
+            <p><a href="https://www.lbp.govt.nz/for-homeowners/find-an-lbp/" target="_blank" rel="noopener">Licensed Building Practitioner #111780</a></p>
             <div class="copyright">
                 &copy; 2026 Tristan Patterson Builders. All rights reserved.
             </div>
