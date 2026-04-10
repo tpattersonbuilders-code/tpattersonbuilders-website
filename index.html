@@ -1342,6 +1342,13 @@
                         <li>No scores yet</li>
                     </ol>
                 </div>
+                <p style="margin-top:14px;font-size:0.8rem;color:rgba(255,255,255,0.62);text-align:center;">
+                    Game background photo:
+                    <a href="https://commons.wikimedia.org/wiki/File:Wellington_Panorama_View.jpg" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.82);">
+                        Wellington Panorama View
+                    </a>
+                    by Ulrich Lange via Wikimedia Commons, CC BY-SA 3.0.
+                </p>
             </div>
         </div>
     </section>
@@ -1683,9 +1690,11 @@
         const highscoreNode = document.getElementById('site-run-highscores');
         const jumpButton = document.getElementById('site-run-jump');
         const builderSpriteSheet = new Image();
+        const wellingtonPanorama = new Image();
         const builderFrameCount = 7;
         let builderFramePrimary = null;
         const highscoreKey = 'tpb-site-runner-highscores';
+        wellingtonPanorama.src = 'images/wellington-panorama-view.jpg';
         builderSpriteSheet.src = 'images/site-runner-builder-sheet.jpg';
         builderSpriteSheet.onload = function() {
             const frameSlices = Array.from({ length: builderFrameCount }, (_, index) => {
@@ -1954,6 +1963,37 @@
             sky.addColorStop(0.48, '#18222f');
             sky.addColorStop(1, '#111111');
             ctx.fillStyle = sky;
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            if (wellingtonPanorama.complete && wellingtonPanorama.naturalWidth > 0) {
+                const imageRatio = wellingtonPanorama.naturalWidth / wellingtonPanorama.naturalHeight;
+                const canvasRatio = canvas.width / canvas.height;
+                let drawWidth = canvas.width;
+                let drawHeight = canvas.height;
+                let offsetX = 0;
+                let offsetY = 0;
+
+                if (imageRatio > canvasRatio) {
+                    drawHeight = canvas.height;
+                    drawWidth = drawHeight * imageRatio;
+                    offsetX = (canvas.width - drawWidth) / 2;
+                } else {
+                    drawWidth = canvas.width;
+                    drawHeight = drawWidth / imageRatio;
+                    offsetY = (canvas.height - drawHeight) / 2;
+                }
+
+                ctx.save();
+                ctx.globalAlpha = 0.24;
+                ctx.drawImage(wellingtonPanorama, offsetX, offsetY, drawWidth, drawHeight);
+                ctx.restore();
+            }
+
+            const fade = ctx.createLinearGradient(0, 0, 0, canvas.height);
+            fade.addColorStop(0, 'rgba(11,16,22,0.30)');
+            fade.addColorStop(0.55, 'rgba(11,16,22,0.52)');
+            fade.addColorStop(1, 'rgba(11,16,22,0.82)');
+            ctx.fillStyle = fade;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
             ctx.fillStyle = 'rgba(255,255,255,0.05)';
