@@ -1323,6 +1323,8 @@
         const scoreNode = document.getElementById('site-run-score');
         const stompedNode = document.getElementById('site-run-stomped');
         const jumpButton = document.getElementById('site-run-jump');
+        const builderSprite = new Image();
+        builderSprite.src = 'images/site-runner-builder.jpg';
 
         const state = {
             worldOffset: 0,
@@ -1337,8 +1339,8 @@
             player: {
                 x: 140,
                 y: 0,
-                w: 44,
-                h: 70,
+                w: 60,
+                h: 90,
                 vy: 0,
                 onGround: true,
                 facing: 1
@@ -1637,48 +1639,25 @@
             const p = state.player;
             ctx.save();
             ctx.translate(p.x, p.y);
-
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(10, 18, 24, 34);
-            ctx.fillStyle = '#111111';
-            ctx.fillRect(14, 22, 6, 30);
-            ctx.fillRect(24, 22, 6, 30);
-            ctx.fillStyle = '#ffffff';
-            ctx.beginPath();
-            ctx.arc(22, 12, 12, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.strokeStyle = '#111111';
-            ctx.lineWidth = 3;
-            ctx.stroke();
-
-            ctx.fillStyle = '#111111';
-            ctx.fillRect(8, 6, 28, 6);
-            ctx.beginPath();
-            ctx.moveTo(8, 10);
-            ctx.quadraticCurveTo(22, -4, 36, 10);
-            ctx.closePath();
-            ctx.fill();
-
-            ctx.fillStyle = '#111111';
-            ctx.fillRect(6, 52, 32, 8);
-            ctx.fillStyle = '#ffffff';
-            ctx.fillRect(8, 54, 5, 4);
-            ctx.fillRect(16, 54, 5, 4);
-            ctx.fillRect(24, 54, 5, 4);
-
-            const armSwing = Math.sin(state.worldOffset * 0.14) * 5;
-            ctx.strokeStyle = '#111111';
-            ctx.lineWidth = 5;
-            ctx.beginPath();
-            ctx.moveTo(10, 24);
-            ctx.lineTo(2, 34 + armSwing);
-            ctx.moveTo(34, 24);
-            ctx.lineTo(42, 34 - armSwing);
-            ctx.moveTo(16, 60);
-            ctx.lineTo(12, 72 + armSwing);
-            ctx.moveTo(28, 60);
-            ctx.lineTo(32, 72 - armSwing);
-            ctx.stroke();
+            if (builderSprite.complete) {
+                const bob = Math.sin(state.worldOffset * 0.16) * 1.6;
+                ctx.filter = 'grayscale(1) contrast(1.25) brightness(1.08)';
+                ctx.drawImage(builderSprite, -6, -4 + bob, 76, 96);
+                ctx.filter = 'none';
+            } else {
+                ctx.fillStyle = '#ffffff';
+                ctx.fillRect(10, 18, 24, 34);
+                ctx.fillStyle = '#111111';
+                ctx.fillRect(14, 22, 6, 30);
+                ctx.fillRect(24, 22, 6, 30);
+                ctx.fillStyle = '#ffffff';
+                ctx.beginPath();
+                ctx.arc(22, 12, 12, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.strokeStyle = '#111111';
+                ctx.lineWidth = 3;
+                ctx.stroke();
+            }
             ctx.restore();
         }
 
