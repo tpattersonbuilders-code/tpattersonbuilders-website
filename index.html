@@ -1996,20 +1996,6 @@
             ctx.fillStyle = fade;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.fillStyle = 'rgba(255,255,255,0.05)';
-            state.skyline.forEach((building, index) => {
-                const x = (building.x - state.worldOffset * (0.18 + (index % 3) * 0.04)) % (canvas.width + 180);
-                const drawX = x < -180 ? x + canvas.width + 180 : x;
-                ctx.fillRect(drawX, state.groundY - building.h - 20, building.w, building.h);
-                ctx.fillStyle = 'rgba(255,255,255,0.09)';
-                for (let row = 0; row < 3; row++) {
-                    for (let col = 0; col < 3; col++) {
-                        ctx.fillRect(drawX + 12 + col * 20, state.groundY - building.h + 10 + row * 18 - 20, 8, 10);
-                    }
-                }
-                ctx.fillStyle = 'rgba(255,255,255,0.05)';
-            });
-
             ctx.strokeStyle = 'rgba(255,255,255,0.18)';
             ctx.lineWidth = 3;
             ctx.beginPath();
