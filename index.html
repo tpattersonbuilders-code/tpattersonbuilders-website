@@ -1684,7 +1684,7 @@
         const jumpButton = document.getElementById('site-run-jump');
         const builderSpriteSheet = new Image();
         const builderFrameCount = 7;
-        const builderFrames = [];
+        let builderFramePrimary = null;
         const highscoreKey = 'tpb-site-runner-highscores';
         builderSpriteSheet.src = 'images/site-runner-builder-sheet.jpg';
         builderSpriteSheet.onload = function() {
@@ -1694,7 +1694,7 @@
                 return { x: startX, w: endX - startX };
             });
 
-            frameSlices.forEach((slice) => {
+            frameSlices.forEach((slice, index) => {
                 const frameCanvas = document.createElement('canvas');
                 frameCanvas.width = slice.w;
                 frameCanvas.height = builderSpriteSheet.height;
@@ -1724,7 +1724,9 @@
                     }
                 }
                 frameCtx.putImageData(imageData, 0, 0);
-                builderFrames.push(frameCanvas);
+                if (index === 0) {
+                    builderFramePrimary = frameCanvas;
+                }
             });
         };
 
@@ -1745,9 +1747,7 @@
                 h: 90,
                 vy: 0,
                 onGround: true,
-                facing: 1,
-                animTick: 0,
-                actionTimer: 0
+                facing: 1
             },
             documents: [],
             coins: [],
@@ -1797,9 +1797,6 @@
             state.player.y = state.groundY - state.player.h;
             state.player.vy = 0;
             state.player.onGround = true;
-            state.player.animTick = 0;
-            state.player.actionTimer = 0;
-
             let cursor = 480;
             const types = ['contract', 'variation', 'invoice', 'consent'];
             for (let i = 0; i < 18; i++) {
@@ -1834,7 +1831,6 @@
             if (!state.player.onGround) return;
             state.player.vy = state.jumpPower;
             state.player.onGround = false;
-            state.player.actionTimer = 4;
         }
 
         function failRun() {
@@ -1870,8 +1866,6 @@
         function update() {
             state.worldOffset += state.speed;
             state.speed += 0.00012;
-            state.player.animTick += 1;
-            state.player.actionTimer = Math.max(0, state.player.actionTimer - 1);
             state.player.vy += state.gravity;
             state.player.y += state.player.vy;
 
@@ -1903,7 +1897,6 @@
                         doc.cleared = true;
                         state.player.vy = -9.3;
                         state.player.onGround = false;
-                        state.player.actionTimer = 16;
                         state.stomped += 1;
                         spawnCoin(screenDoc);
                         updateHud();
@@ -2080,19 +2073,9 @@
             const p = state.player;
             ctx.save();
             ctx.translate(p.x, p.y);
-            if (builderFrames.length === builderFrameCount) {
-                let frameIndex = 0;
-                if (p.actionTimer > 8) {
-                    frameIndex = 6;
-                } else if (!p.onGround) {
-                    frameIndex = 5;
-                } else {
-                    const runFrames = [0, 1, 2, 3, 4];
-                    frameIndex = runFrames[Math.floor(p.animTick / 7) % runFrames.length];
-                }
-                const frame = builderFrames[frameIndex];
-                const bob = p.onGround ? Math.sin(p.animTick * 0.18) * 1.2 : -2;
-                ctx.drawImage(frame, -8, -6 + bob, 84, 106);
+            if (builderFramePrimary) {
+                const verticalOffset = p.onGround ? 0 : Math.max(-10, p.vy * 0.65);
+                ctx.drawImage(builderFramePrimary, -8, -4 + verticalOffset, 84, 106);
             } else {
                 ctx.fillStyle = '#ffffff';
                 ctx.fillRect(10, 18, 24, 34);
