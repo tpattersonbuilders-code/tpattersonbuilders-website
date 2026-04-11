@@ -573,6 +573,37 @@
             margin: 0 auto 2rem;
         }
 
+        .hero-proof {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin: 28px auto 0;
+            max-width: 880px;
+        }
+
+        .proof-card {
+            text-align: left;
+            padding: 18px 18px 16px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.14);
+            background: rgba(10,10,10,0.34);
+            backdrop-filter: blur(10px);
+        }
+
+        .proof-card strong {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+            color: #ffffff;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .proof-card p {
+            margin: 0;
+            color: rgba(255,255,255,0.72);
+            font-size: 0.95rem;
+        }
+
         .hero-actions,
         .credentials-row {
             display: flex;
@@ -676,6 +707,112 @@
             margin-top: -32px;
             position: relative;
             z-index: 2;
+        }
+
+        .featured-section {
+            padding-top: 34px;
+        }
+
+        .featured-project {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
+            gap: 30px;
+            align-items: stretch;
+            padding: 26px;
+            border-radius: 30px;
+            background: linear-gradient(135deg, #ffffff 0%, #f7f4ee 100%);
+            border: 1px solid rgba(17,17,17,0.08);
+            box-shadow: 0 28px 60px rgba(17,17,17,0.08);
+        }
+
+        .featured-media {
+            position: relative;
+            min-height: 420px;
+            overflow: hidden;
+            border-radius: 24px;
+        }
+
+        .featured-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .featured-media-badge {
+            position: absolute;
+            left: 18px;
+            bottom: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(17,17,17,0.88);
+            color: #ffffff;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .featured-copy {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-copy h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.05;
+            margin-bottom: 16px;
+        }
+
+        .featured-copy p {
+            color: #4c4c4c;
+            margin-bottom: 18px;
+        }
+
+        .featured-points {
+            list-style: none;
+            display: grid;
+            gap: 12px;
+            margin: 10px 0 26px;
+        }
+
+        .featured-points li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: #2f2f2f;
+        }
+
+        .featured-points i {
+            margin-top: 5px;
+            color: var(--accent-strong);
+        }
+
+        .featured-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .secondary-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 18px;
+            border-radius: 999px;
+            border: 1px solid rgba(17,17,17,0.14);
+            font-weight: 700;
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .secondary-link:hover {
+            background: rgba(17,17,17,0.04);
+            border-color: rgba(17,17,17,0.24);
+            transform: translateY(-1px);
         }
 
         .trust-grid {
@@ -993,6 +1130,20 @@
             font-size: 1rem;
         }
 
+        .service-card li::before {
+            content: "";
+            display: inline-block;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background: var(--accent-strong);
+        }
+
+        .game-topbar h3 {
+            font-size: 1.55rem;
+        }
+
         section[id] {
             scroll-margin-top: 88px;
         }
@@ -1002,7 +1153,9 @@
             .process-grid,
             .about-grid,
             .contact-wrapper,
-            .game-topbar {
+            .game-topbar,
+            .hero-proof,
+            .featured-project {
                 grid-template-columns: 1fr 1fr;
             }
         }
@@ -1081,6 +1234,11 @@
                 gap: 12px;
             }
 
+            .hero-proof {
+                grid-template-columns: 1fr;
+                margin-top: 22px;
+            }
+
             .hero-btn {
                 width: 100%;
                 max-width: 320px;
@@ -1106,7 +1264,8 @@
             .process-grid,
             .about-grid,
             .contact-wrapper,
-            .values-list {
+            .values-list,
+            .featured-project {
                 grid-template-columns: 1fr;
             }
 
@@ -1126,6 +1285,34 @@
             .trust-strip {
                 margin-top: 0;
                 padding-top: 0;
+            }
+
+            .featured-section {
+                padding-top: 18px;
+            }
+
+            .featured-project {
+                padding: 18px;
+                border-radius: 22px;
+            }
+
+            .featured-media {
+                min-height: 260px;
+                border-radius: 18px;
+            }
+
+            .featured-copy h2 {
+                font-size: 2rem;
+            }
+
+            .featured-actions {
+                flex-direction: column;
+            }
+
+            .featured-actions .hero-btn,
+            .featured-actions .secondary-link {
+                width: 100%;
+                max-width: none;
             }
 
             .hero-trust {
@@ -1272,15 +1459,19 @@
                 <a href="#contact" class="hero-btn">Request a Quote</a>
                 <a href="tel:+64211041289" class="hero-btn secondary">Call 021 104 1289</a>
             </div>
-            <div class="share-cluster" aria-label="Share Tristan Patterson Builders">
-                <div class="share-button-row-label">Share This Site</div>
-                <button type="button" class="share-button" onclick="nativeSharePage()"><i class="fa-solid fa-share-nodes"></i><span>Share</span></button>
-                <a class="share-button icon-only" data-share-target="facebook" data-share-scope="page" href="#" target="_blank" rel="noopener" aria-label="Share on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a class="share-button icon-only" data-share-target="x" data-share-scope="page" href="#" target="_blank" rel="noopener" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-                <a class="share-button icon-only" data-share-target="linkedin" data-share-scope="page" href="#" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a class="share-button icon-only" data-share-target="whatsapp" data-share-scope="page" href="#" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                <a class="share-button icon-only" data-share-target="pinterest" data-share-scope="page" href="#" target="_blank" rel="noopener" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
-                <a class="share-button icon-only" data-share-target="email" data-share-scope="page" href="#" aria-label="Share by email"><i class="fa-solid fa-envelope"></i></a>
+            <div class="hero-proof">
+                <div class="proof-card">
+                    <strong>30+ years on the tools</strong>
+                    <p>Experienced residential building and detailed fit-out work across Wellington homes.</p>
+                </div>
+                <div class="proof-card">
+                    <strong>LBP licensed</strong>
+                    <p>Qualified, accountable building work with a public licence clients can verify.</p>
+                </div>
+                <div class="proof-card">
+                    <strong>Straight communication</strong>
+                    <p>Clear scope, tidy sites, and realistic advice instead of vague promises.</p>
+                </div>
             </div>
             <div class="hero-trust">
                 <span>Licensed Building Practitioner #111780</span>
@@ -1313,6 +1504,37 @@
         </div>
     </section>
 
+    <section class="section featured-section">
+        <div class="container">
+            <div class="featured-project">
+                <div class="featured-media">
+                    <img src="images/brougham-st-addition-exterior.jpg" alt="Mt Vic Wellington addition by Tristan Patterson Builders">
+                    <div class="featured-media-badge">
+                        <i class="fa-solid fa-house-chimney-window"></i>
+                        Featured project
+                    </div>
+                </div>
+                <div class="featured-copy">
+                    <div class="eyebrow" style="background:rgba(17,17,17,0.04);border-color:rgba(17,17,17,0.08);color:#111111;">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                        Built for Wellington homes
+                    </div>
+                    <h2>Real renovation work, detailed properly.</h2>
+                    <p>A good builder should be able to show real work, not just make claims. This featured project gives a clearer first look at the standard of finish, coordination, and care Tristan Patterson Builders brings to Wellington homes.</p>
+                    <ul class="featured-points">
+                        <li><i class="fa-solid fa-check"></i><span>Architect-led addition work delivered with practical site coordination.</span></li>
+                        <li><i class="fa-solid fa-check"></i><span>Careful detailing for existing homes, access constraints, and Wellington conditions.</span></li>
+                        <li><i class="fa-solid fa-check"></i><span>Communication and workmanship that feel professional from first conversation to handover.</span></li>
+                    </ul>
+                    <div class="featured-actions">
+                        <a href="#projects" class="hero-btn">See Recent Work</a>
+                        <a href="#contact" class="secondary-link">Talk About Your Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="site-run" class="section game-section">
         <div class="container">
             <div class="game-shell">
@@ -1320,10 +1542,10 @@
                     <div>
                         <div class="eyebrow" style="margin-bottom:14px;">
                             <i class="fa-solid fa-gamepad"></i>
-                            Site Run
+                            Optional extra
                         </div>
-                        <h3>Paperwork! How much can you turn into coins?</h3>
-                        <p>Stay on top of the paperwork and the rewards will follow. Register your high score for bragging rights. (Prizes are more than likely no more than a pat on the back.)</p>
+                        <h3>A quick bit of fun while you are here.</h3>
+                        <p>If you feel like a break after looking through the projects, have a quick run at the paperwork game. Jump the documents, collect the coins, and see how long you last.</p>
                     </div>
                     <div class="game-hud">
                         <div class="game-pill">Monochrome mode</div>
@@ -1510,7 +1732,7 @@
             <div class="contact-wrapper">
                 <div class="contact-card">
                     <h3 style="margin-bottom:14px;color:#fff;">Talk to a local builder</h3>
-                    <p style="margin-bottom:28px;color:rgba(255,255,255,0.82);">The easiest way to get started is to call, email, or send a quick message with a few details about your job.</p>
+                    <p style="margin-bottom:28px;color:rgba(255,255,255,0.82);">The easiest way to get started is to call, email, or send a quick message with a few details about your job. If you already have plans, sketches, or rough dimensions, mention that too.</p>
                     <div class="contact-info-item">
                         <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
                         <div>
