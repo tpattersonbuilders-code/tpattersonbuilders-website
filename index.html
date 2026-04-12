@@ -480,6 +480,33 @@
         .nav-container {
             gap: 24px;
             padding: 14px 24px;
+            justify-content: space-between;
+        }
+
+        .topbar-title {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            color: #ffffff;
+            min-width: 0;
+        }
+
+        .topbar-name {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+
+        .topbar-tag {
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(255,255,255,0.54);
+            white-space: nowrap;
         }
 
         .nav-actions {
@@ -489,10 +516,6 @@
             margin-left: auto;
         }
 
-        .logo-link {
-            padding: 0;
-        }
-
         .phone-link {
             color: rgba(255,255,255,0.86);
             font-weight: 700;
@@ -500,18 +523,6 @@
             letter-spacing: 0.04em;
             padding: 10px 0;
             white-space: nowrap;
-        }
-
-        .logo-mark {
-            display: block;
-            height: 58px;
-            width: auto;
-            object-fit: contain;
-            object-position: center;
-            background: transparent;
-            padding: 0;
-            border-radius: 0;
-            filter: drop-shadow(0 10px 20px rgba(0,0,0,0.28));
         }
 
         .mobile-menu-button {
@@ -1245,12 +1256,22 @@
                 gap: 10px;
             }
 
-            .nav-actions {
-                gap: 10px;
+            .topbar-title {
+                min-width: 0;
+                gap: 0;
             }
 
-            .logo-mark {
-                height: 46px;
+            .topbar-tag {
+                display: none;
+            }
+
+            .topbar-name {
+                font-size: 0.86rem;
+                letter-spacing: 0.12em;
+            }
+
+            .nav-actions {
+                gap: 10px;
             }
 
             .mobile-menu-button {
@@ -1486,10 +1507,9 @@
     <!-- Nav -->
     <header>
         <div class="nav-container">
-            <div class="logo">
-                <a href="#home" class="logo-link" aria-label="Tristan Patterson Builders home">
-                    <img src="images/tpb-logo-full.png" alt="Tristan Patterson Builders" class="logo-mark">
-                </a>
+            <div class="topbar-title">
+                <a href="#home" class="topbar-name" aria-label="Tristan Patterson Builders home">Tristan Patterson Builders</a>
+                <span class="topbar-tag">Wellington Builder</span>
             </div>
             <div class="nav-actions">
                 <a class="phone-link" href="tel:+64211041289">021 104 1289</a>
