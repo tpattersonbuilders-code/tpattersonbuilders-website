@@ -11,6 +11,8 @@
     font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
     min-height: 100vh;
     overflow-x: hidden;
+    overscroll-behavior: none;
+    touch-action: manipulation;
   }
   header { text-align: center; padding: 14px 10px 4px; }
   header h1 { margin: 0; font-size: 22px; letter-spacing: 1px; }
@@ -35,6 +37,7 @@
     border: 2px solid #333;
     box-shadow: 0 4px 20px rgba(0,0,0,0.4);
     max-width: 100%;
+    touch-action: manipulation;
   }
   /* Touch control overlay — only visible on small screens */
   #touch {
@@ -211,6 +214,9 @@ function wireTouchControls() {
     el.addEventListener('touchstart', on, { passive: false });
     el.addEventListener('touchend',   off, { passive: false });
     el.addEventListener('touchcancel', off, { passive: false });
+    el.addEventListener('pointerdown', on);
+    el.addEventListener('pointerup', off);
+    el.addEventListener('pointercancel', off);
     // also support mouse for testing on desktop
     el.addEventListener('mousedown', on);
     el.addEventListener('mouseup',   off);

@@ -1102,6 +1102,20 @@
             background: #131313;
         }
 
+        .game-mobile-fallback {
+            display: none;
+            padding: 28px 22px;
+            text-align: center;
+            border-radius: 22px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.05);
+        }
+
+        .game-mobile-fallback p {
+            color: rgba(255,255,255,0.78);
+            margin-bottom: 16px;
+        }
+
         .game-note {
             margin-top: 16px;
             color: rgba(255,255,255,0.72);
@@ -1421,6 +1435,14 @@
                 aspect-ratio: 4 / 3;
             }
 
+            .game-frame-wrap {
+                display: none;
+            }
+
+            .game-mobile-fallback {
+                display: block;
+            }
+
             .about-image {
                 order: -1;
             }
@@ -1581,6 +1603,10 @@
                         loading="lazy"
                         allow="fullscreen; autoplay"
                         referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <div class="game-mobile-fallback">
+                    <p>The game works better full-screen on mobile.</p>
+                    <a href="tpb_builder_game.html" class="cta-button">Open Mobile Game</a>
                 </div>
                 <p class="game-note">
                     <strong>Controls:</strong> use left and right arrows or A and D to move, space or up to jump, and X or left mouse click to hammer. Touch controls appear on smaller screens.
