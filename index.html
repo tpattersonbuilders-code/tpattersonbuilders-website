@@ -1083,78 +1083,36 @@
             max-width: 620px;
         }
 
-        .game-hud {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: flex-end;
+        .game-frame-wrap {
+            overflow: hidden;
+            border-radius: 22px;
+            border: 1px solid rgba(255,255,255,0.1);
+            background: linear-gradient(180deg, #27364a 0%, #131313 100%);
         }
 
-        .game-pill {
-            border: 1px solid rgba(255,255,255,0.14);
-            padding: 10px 14px;
-            border-radius: 999px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            color: rgba(255,255,255,0.84);
-            background: rgba(255,255,255,0.06);
-        }
-
-        .site-runner-canvas {
+        .site-runner-frame {
             display: block;
             width: 100%;
             aspect-ratio: 16 / 7;
-            border-radius: 22px;
-            background: linear-gradient(180deg, #27364a 0%, #131313 100%);
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 0;
+            background: #131313;
         }
 
-        .game-controls {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-            margin-top: 18px;
-            flex-wrap: wrap;
-        }
-
-        .game-controls p {
+        .game-note {
+            margin-top: 16px;
             color: rgba(255,255,255,0.72);
             font-size: 0.95rem;
         }
 
-        .game-jump {
-            border: none;
-            border-radius: 999px;
-            padding: 12px 18px;
-            font-weight: 800;
-            background: #ffffff;
-            color: #111111;
-            cursor: pointer;
-        }
-
-        .game-scoreboard {
-            margin-top: 18px;
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.04);
-            border-radius: 18px;
-            padding: 16px 18px;
-        }
-
-        .game-scoreboard h4 {
+        .game-note strong {
             color: #ffffff;
-            margin-bottom: 10px;
-            font-size: 1rem;
         }
 
-        .game-scoreboard ol {
-            margin: 0;
-            padding-left: 20px;
-            color: rgba(255,255,255,0.78);
-        }
-
-        .game-scoreboard li + li {
-            margin-top: 6px;
+        .game-actions {
+            margin-top: 18px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
         }
 
         .contact-card {
@@ -1451,27 +1409,12 @@
             }
 
             .game-topbar p,
-            .game-controls p {
+            .game-note {
                 font-size: 0.9rem;
             }
 
-            .site-runner-canvas {
+            .site-runner-frame {
                 aspect-ratio: 4 / 3;
-                border-radius: 18px;
-            }
-
-            .game-controls {
-                gap: 14px;
-                justify-content: center;
-                text-align: center;
-            }
-
-            .game-jump {
-                width: 100%;
-            }
-
-            .game-scoreboard {
-                padding: 14px 16px;
             }
 
             .about-image {
@@ -1623,32 +1566,24 @@
                             Optional extra
                         </div>
                         <h3>A quick bit of fun while you are here.</h3>
-                        <p>If you feel like a break after looking through the projects, have a quick run at the paperwork game. Jump the documents, collect the coins, and see how long you last.</p>
-                    </div>
-                    <div class="game-hud">
-                        <div class="game-pill">Monochrome mode</div>
-                        <div class="game-pill">Documents cleared: <span id="site-run-stomped">0</span></div>
-                        <div class="game-pill">Coins collected: <span id="site-run-score">0</span></div>
+                        <p>If you feel like a break after looking through the projects, have a run on the TPB Builder game. It is embedded here in the same spot as the old mini-game.</p>
                     </div>
                 </div>
-                <canvas id="site-runner-canvas" class="site-runner-canvas" width="960" height="420" aria-label="Construction side-scroller mini game"></canvas>
-                <div class="game-controls">
-                    <p>Press <strong>space</strong>, <strong>up</strong>, or tap jump. Hit a document side-on and the run resets.</p>
-                    <button type="button" class="game-jump" id="site-run-jump">Jump</button>
+                <div class="game-frame-wrap">
+                    <iframe
+                        src="tpb_builder_game.html"
+                        class="site-runner-frame"
+                        title="TPB Builder game"
+                        loading="lazy"
+                        allow="fullscreen; autoplay"
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
                 </div>
-                <div class="game-scoreboard">
-                    <h4>Top 5 site scores</h4>
-                    <ol id="site-run-highscores">
-                        <li>No scores yet</li>
-                    </ol>
-                </div>
-                <p style="margin-top:14px;font-size:0.8rem;color:rgba(255,255,255,0.62);text-align:center;">
-                    Game background photo:
-                    <a href="https://commons.wikimedia.org/wiki/File:Wellington_Panorama_View.jpg" target="_blank" rel="noopener" style="color:rgba(255,255,255,0.82);">
-                        Wellington Panorama View
-                    </a>
-                    by Ulrich Lange via Wikimedia Commons, CC BY-SA 3.0.
+                <p class="game-note">
+                    <strong>Controls:</strong> use left and right arrows or A and D to move, space or up to jump, and X to hammer. Touch controls appear on smaller screens.
                 </p>
+                <div class="game-actions">
+                    <a href="tpb_builder_game.html" class="cta-button">Open Full Game</a>
+                </div>
             </div>
         </div>
     </section>
@@ -1988,525 +1923,6 @@
         return nativeShare(getLightboxShareData());
     }
 
-    (function setupSiteRunner() {
-        const canvas = document.getElementById('site-runner-canvas');
-        if (!canvas) return;
-
-        const ctx = canvas.getContext('2d');
-        const scoreNode = document.getElementById('site-run-score');
-        const stompedNode = document.getElementById('site-run-stomped');
-        const highscoreNode = document.getElementById('site-run-highscores');
-        const jumpButton = document.getElementById('site-run-jump');
-        const builderSpriteSheet = new Image();
-        const wellingtonPanorama = new Image();
-        const builderFrameCount = 7;
-        let builderFramePrimary = null;
-        const highscoreKey = 'tpb-site-runner-highscores';
-        wellingtonPanorama.src = 'images/wellington-panorama-view.jpg';
-        builderSpriteSheet.src = 'images/site-runner-builder-sheet.jpg';
-        builderSpriteSheet.onload = function() {
-            const frameSlices = Array.from({ length: builderFrameCount }, (_, index) => {
-                const startX = Math.round((index * builderSpriteSheet.width) / builderFrameCount);
-                const endX = Math.round(((index + 1) * builderSpriteSheet.width) / builderFrameCount);
-                return { x: startX, w: endX - startX };
-            });
-
-            frameSlices.forEach((slice, index) => {
-                const frameCanvas = document.createElement('canvas');
-                frameCanvas.width = slice.w;
-                frameCanvas.height = builderSpriteSheet.height;
-                const frameCtx = frameCanvas.getContext('2d');
-                frameCtx.drawImage(
-                    builderSpriteSheet,
-                    slice.x,
-                    0,
-                    slice.w,
-                    builderSpriteSheet.height,
-                    0,
-                    0,
-                    slice.w,
-                    builderSpriteSheet.height
-                );
-
-                const imageData = frameCtx.getImageData(0, 0, frameCanvas.width, frameCanvas.height);
-                const data = imageData.data;
-                for (let i = 0; i < data.length; i += 4) {
-                    const r = data[i];
-                    const g = data[i + 1];
-                    const b = data[i + 2];
-                    const avg = (r + g + b) / 3;
-                    const spread = Math.max(r, g, b) - Math.min(r, g, b);
-                    if ((avg > 205 && spread < 28) || (avg > 235 && spread < 50)) {
-                        data[i + 3] = 0;
-                    }
-                }
-                frameCtx.putImageData(imageData, 0, 0);
-                if (index === 0) {
-                    builderFramePrimary = frameCanvas;
-                }
-            });
-        };
-
-        const state = {
-            worldOffset: 0,
-            score: 0,
-            stomped: 0,
-            speed: 1.85,
-            gravity: 0.5,
-            jumpPower: -15.6,
-            groundY: 330,
-            running: true,
-            flash: 0,
-            player: {
-                x: 140,
-                y: 0,
-                w: 60,
-                h: 90,
-                vy: 0,
-                onGround: true,
-                facing: 1
-            },
-            documents: [],
-            coins: [],
-            particles: [],
-            skyline: []
-        };
-
-        function readHighscores() {
-            try {
-                const raw = localStorage.getItem(highscoreKey);
-                if (!raw) return [];
-                const parsed = JSON.parse(raw);
-                return Array.isArray(parsed) ? parsed.filter((n) => Number.isFinite(n)) : [];
-            } catch {
-                return [];
-            }
-        }
-
-        function renderHighscores() {
-            const scores = readHighscores().slice(0, 5);
-            if (scores.length === 0) {
-                highscoreNode.innerHTML = '<li>No scores yet</li>';
-                return;
-            }
-            highscoreNode.innerHTML = scores.map((score) => `<li>${score} coin${score === 1 ? '' : 's'}</li>`).join('');
-        }
-
-        function saveHighscore(score) {
-            if (!score || score < 1) return;
-            const scores = readHighscores();
-            scores.push(score);
-            scores.sort((a, b) => b - a);
-            const topFive = scores.slice(0, 5);
-            localStorage.setItem(highscoreKey, JSON.stringify(topFive));
-            renderHighscores();
-        }
-
-        function createDocumentObstacle(index, x) {
-            const types = ['contract', 'variation', 'invoice', 'consent'];
-            const paperStyles = [
-                { fill: '#f4e27c', stroke: '#8a6f1d', line: '#5a4b14', accent: '#d9b92f' },
-                { fill: '#9cc7ff', stroke: '#2f5f9f', line: '#244777', accent: '#6da3f3' },
-                { fill: '#f4b3d7', stroke: '#9f4c78', line: '#7d355b', accent: '#e78abf' },
-                { fill: '#ffe9a8', stroke: '#8f6d22', line: '#624d1c', accent: '#f4cf66' }
-            ];
-            const width = 40 + (index % 4) * 7 + ((index * 3) % 5);
-            const height = 46 + (index % 3) * 11 + ((index + 2) % 4) * 3;
-            const style = paperStyles[index % paperStyles.length];
-            const tilt = ((index % 5) - 2) * 0.045;
-            return {
-                x,
-                y: state.groundY - height,
-                w: width,
-                h: height,
-                type: types[index % types.length],
-                cleared: false,
-                style,
-                tilt
-            };
-        }
-
-        function resetDocuments() {
-            state.documents = [];
-            state.coins = [];
-            state.particles = [];
-            state.worldOffset = 0;
-            state.score = 0;
-            state.stomped = 0;
-            state.speed = 1.85;
-            state.flash = 0;
-            state.player.y = state.groundY - state.player.h;
-            state.player.vy = 0;
-            state.player.onGround = true;
-            let cursor = 480;
-            for (let i = 0; i < 18; i++) {
-                state.documents.push(createDocumentObstacle(i, cursor));
-                cursor += 430 + (i % 4) * 120;
-            }
-        }
-
-        function resetSkyline() {
-            state.skyline = Array.from({ length: 12 }, (_, index) => ({
-                x: index * 140,
-                w: 90 + (index % 3) * 30,
-                h: 90 + (index % 4) * 28
-            }));
-        }
-
-        function updateHud() {
-            scoreNode.textContent = String(state.score);
-            stompedNode.textContent = String(state.stomped);
-        }
-
-        function jump() {
-            if (!state.player.onGround) return;
-            state.player.vy = state.jumpPower;
-            state.player.onGround = false;
-        }
-
-        function failRun() {
-            state.flash = 16;
-            saveHighscore(state.score);
-            resetDocuments();
-            updateHud();
-        }
-
-        function spawnCoin(doc) {
-            state.coins.push({
-                x: doc.x + doc.w / 2,
-                y: doc.y + 8,
-                vy: -4.2,
-                life: 90,
-                collected: false
-            });
-            for (let i = 0; i < 8; i++) {
-                state.particles.push({
-                    x: doc.x + doc.w / 2,
-                    y: doc.y + doc.h / 2,
-                    vx: (Math.random() - 0.5) * 4,
-                    vy: -Math.random() * 3,
-                    life: 22 + Math.random() * 18
-                });
-            }
-        }
-
-        function overlaps(a, b) {
-            return a.x < b.x + b.w && a.x + a.w > b.x && a.y < b.y + b.h && a.y + a.h > b.y;
-        }
-
-        function update() {
-            state.worldOffset += state.speed;
-            state.speed += 0.00012;
-            state.player.vy += state.gravity;
-            state.player.y += state.player.vy;
-
-            if (state.player.y >= state.groundY - state.player.h) {
-                state.player.y = state.groundY - state.player.h;
-                state.player.vy = 0;
-                state.player.onGround = true;
-            }
-
-            state.documents.forEach((doc) => {
-                if (doc.cleared) return;
-                const screenDoc = {
-                    x: doc.x - state.worldOffset,
-                    y: doc.y,
-                    w: doc.w,
-                    h: doc.h
-                };
-                const playerBox = {
-                    x: state.player.x,
-                    y: state.player.y,
-                    w: state.player.w,
-                    h: state.player.h
-                };
-
-                if (overlaps(playerBox, screenDoc)) {
-                    const playerFeet = state.player.y + state.player.h;
-                    const docTop = screenDoc.y + 14;
-                    if (state.player.vy > 2 && playerFeet - state.player.vy <= docTop) {
-                        doc.cleared = true;
-                        state.player.vy = -9.3;
-                        state.player.onGround = false;
-                        state.stomped += 1;
-                        spawnCoin(screenDoc);
-                        updateHud();
-                    } else {
-                        failRun();
-                    }
-                }
-            });
-
-            state.coins.forEach((coin) => {
-                if (coin.collected) return;
-                coin.y += coin.vy;
-                coin.vy += 0.18;
-                coin.life -= 1;
-                const playerCenterX = state.player.x + state.player.w / 2;
-                const playerCenterY = state.player.y + state.player.h / 2;
-                if (Math.abs(playerCenterX - coin.x) < 34 && Math.abs(playerCenterY - coin.y) < 40) {
-                    coin.collected = true;
-                    state.score += 1;
-                    updateHud();
-                }
-            });
-            state.coins = state.coins.filter((coin) => !coin.collected && coin.life > 0 && coin.y < canvas.height + 40);
-
-            state.particles.forEach((particle) => {
-                particle.x += particle.vx;
-                particle.y += particle.vy;
-                particle.vy += 0.14;
-                particle.life -= 1;
-            });
-            state.particles = state.particles.filter((particle) => particle.life > 0);
-
-            const lastDoc = state.documents[state.documents.length - 1];
-            if (lastDoc && lastDoc.x - state.worldOffset < canvas.width + 300) {
-                const nextIndex = state.documents.length;
-                state.documents.push(createDocumentObstacle(nextIndex, lastDoc.x + 430 + (nextIndex % 4) * 120));
-            }
-
-            state.flash = Math.max(0, state.flash - 1);
-        }
-
-        function drawSky() {
-            const sky = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            sky.addColorStop(0, '#26384d');
-            sky.addColorStop(0.48, '#18222f');
-            sky.addColorStop(1, '#111111');
-            ctx.fillStyle = sky;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            if (wellingtonPanorama.complete && wellingtonPanorama.naturalWidth > 0) {
-                const imageRatio = wellingtonPanorama.naturalWidth / wellingtonPanorama.naturalHeight;
-                const canvasRatio = canvas.width / canvas.height;
-                let drawWidth = canvas.width;
-                let drawHeight = canvas.height;
-                let offsetX = 0;
-                let offsetY = 0;
-
-                if (imageRatio > canvasRatio) {
-                    drawHeight = canvas.height;
-                    drawWidth = drawHeight * imageRatio;
-                    offsetX = (canvas.width - drawWidth) / 2;
-                } else {
-                    drawWidth = canvas.width;
-                    drawHeight = drawWidth / imageRatio;
-                    offsetY = (canvas.height - drawHeight) / 2;
-                }
-
-                ctx.save();
-                ctx.globalAlpha = 0.24;
-                ctx.drawImage(wellingtonPanorama, offsetX, offsetY, drawWidth, drawHeight);
-                ctx.restore();
-            }
-
-            const fade = ctx.createLinearGradient(0, 0, 0, canvas.height);
-            fade.addColorStop(0, 'rgba(11,16,22,0.30)');
-            fade.addColorStop(0.55, 'rgba(11,16,22,0.52)');
-            fade.addColorStop(1, 'rgba(11,16,22,0.82)');
-            ctx.fillStyle = fade;
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        }
-
-        function drawGround() {
-            ctx.fillStyle = '#171717';
-            ctx.fillRect(0, state.groundY, canvas.width, canvas.height - state.groundY);
-            ctx.fillStyle = '#c7c7c7';
-            for (let x = -40; x < canvas.width + 80; x += 56) {
-                const offset = (state.worldOffset * 0.9) % 56;
-                ctx.fillRect(x - offset, state.groundY + 34, 28, 6);
-            }
-            ctx.fillStyle = '#0f0f0f';
-            ctx.fillRect(0, state.groundY - 12, canvas.width, 12);
-        }
-
-        function drawDocument(doc) {
-            const x = doc.x - state.worldOffset;
-            if (x < -80 || x > canvas.width + 40 || doc.cleared) return;
-
-            ctx.save();
-            ctx.translate(x + doc.w / 2, doc.y + doc.h / 2);
-            ctx.rotate(doc.tilt || 0);
-            ctx.translate(-doc.w / 2, -doc.h / 2);
-            ctx.shadowColor = 'rgba(0,0,0,0.18)';
-            ctx.shadowBlur = 10;
-            ctx.shadowOffsetY = 4;
-            ctx.fillStyle = doc.style.fill;
-            ctx.strokeStyle = doc.style.stroke;
-            ctx.lineWidth = 2.5;
-            ctx.beginPath();
-            ctx.moveTo(0, 0);
-            ctx.lineTo(doc.w - 12, 0);
-            ctx.lineTo(doc.w, 12);
-            ctx.lineTo(doc.w, doc.h);
-            ctx.lineTo(0, doc.h);
-            ctx.closePath();
-            ctx.fill();
-            ctx.stroke();
-
-            ctx.beginPath();
-            ctx.moveTo(doc.w - 12, 0);
-            ctx.lineTo(doc.w - 12, 12);
-            ctx.lineTo(doc.w, 12);
-            ctx.stroke();
-
-            ctx.shadowColor = 'transparent';
-            ctx.fillStyle = doc.style.line;
-            if (doc.type === 'contract') {
-                ctx.fillRect(9, 10, doc.w - 18, 5);
-                ctx.fillRect(9, 21, doc.w - 16, 3);
-                ctx.fillRect(9, 30, doc.w - 20, 3);
-                ctx.fillStyle = doc.style.accent;
-                ctx.fillRect(9, doc.h - 12, doc.w - 18, 5);
-            } else if (doc.type === 'variation') {
-                ctx.fillRect(9, 10, doc.w - 18, 4);
-                ctx.strokeRect(10, 22, 10, 10);
-                ctx.beginPath();
-                ctx.moveTo(12, 27);
-                ctx.lineTo(15, 30);
-                ctx.lineTo(21, 22);
-                ctx.stroke();
-                ctx.fillRect(26, 24, doc.w - 36, 3);
-                ctx.fillRect(26, 33, doc.w - 42, 3);
-                ctx.fillStyle = doc.style.accent;
-                ctx.fillRect(doc.w - 16, 8, 8, 8);
-            } else if (doc.type === 'invoice') {
-                for (let i = 0; i < 4; i++) ctx.fillRect(9, 10 + i * 9, doc.w - 18 - i * 4, 3);
-                ctx.fillStyle = doc.style.accent;
-                ctx.fillRect(9, doc.h - 12, doc.w - 18, 5);
-            } else {
-                ctx.fillRect(9, 10, doc.w - 18, 4);
-                ctx.fillRect(9, 21, doc.w - 24, 3);
-                ctx.strokeRect(9, 30, doc.w - 18, doc.h - 40);
-                ctx.fillStyle = doc.style.accent;
-                ctx.fillRect(13, 34, doc.w - 26, 6);
-            }
-            ctx.restore();
-        }
-
-        function drawCoin(coin) {
-            ctx.save();
-            ctx.translate(coin.x, coin.y);
-            const scale = 0.8 + Math.sin((90 - coin.life) * 0.18) * 0.15;
-            ctx.scale(scale, 1);
-            ctx.fillStyle = '#d4b483';
-            ctx.strokeStyle = '#ffffff';
-            ctx.lineWidth = 2;
-            ctx.beginPath();
-            ctx.arc(0, 0, 12, 0, Math.PI * 2);
-            ctx.fill();
-            ctx.stroke();
-            ctx.fillStyle = '#111111';
-            ctx.font = 'bold 11px Montserrat, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.fillText('$', 0, 4);
-            ctx.restore();
-        }
-
-        function drawPlayer() {
-            const p = state.player;
-            ctx.save();
-            ctx.translate(p.x, p.y);
-            if (builderFramePrimary) {
-                const verticalOffset = p.onGround ? 0 : Math.max(-10, p.vy * 0.65);
-                ctx.drawImage(builderFramePrimary, -8, -4 + verticalOffset, 84, 106);
-            } else {
-                ctx.fillStyle = '#ffffff';
-                ctx.fillRect(10, 18, 24, 34);
-                ctx.fillStyle = '#111111';
-                ctx.fillRect(14, 22, 6, 30);
-                ctx.fillRect(24, 22, 6, 30);
-                ctx.fillStyle = '#ffffff';
-                ctx.beginPath();
-                ctx.arc(22, 12, 12, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.strokeStyle = '#111111';
-                ctx.lineWidth = 3;
-                ctx.stroke();
-            }
-            ctx.restore();
-        }
-
-        function drawParticles() {
-            ctx.fillStyle = '#ffffff';
-            state.particles.forEach((particle) => {
-                ctx.globalAlpha = Math.max(0, particle.life / 40);
-                ctx.fillRect(particle.x, particle.y, 3, 3);
-            });
-            ctx.globalAlpha = 1;
-        }
-
-        function draw() {
-            drawSky();
-            drawGround();
-            state.documents.forEach(drawDocument);
-            state.coins.forEach(drawCoin);
-            drawParticles();
-            drawPlayer();
-
-            ctx.save();
-            const hudX = 24;
-            const hudY = 20;
-            const hudW = 270;
-            const hudH = 78;
-            const hudRadius = 16;
-            ctx.fillStyle = 'rgba(9,16,24,0.52)';
-            ctx.beginPath();
-            ctx.moveTo(hudX + hudRadius, hudY);
-            ctx.lineTo(hudX + hudW - hudRadius, hudY);
-            ctx.quadraticCurveTo(hudX + hudW, hudY, hudX + hudW, hudY + hudRadius);
-            ctx.lineTo(hudX + hudW, hudY + hudH - hudRadius);
-            ctx.quadraticCurveTo(hudX + hudW, hudY + hudH, hudX + hudW - hudRadius, hudY + hudH);
-            ctx.lineTo(hudX + hudRadius, hudY + hudH);
-            ctx.quadraticCurveTo(hudX, hudY + hudH, hudX, hudY + hudH - hudRadius);
-            ctx.lineTo(hudX, hudY + hudRadius);
-            ctx.quadraticCurveTo(hudX, hudY, hudX + hudRadius, hudY);
-            ctx.closePath();
-            ctx.fill();
-            ctx.strokeStyle = 'rgba(255,255,255,0.10)';
-            ctx.lineWidth = 1;
-            ctx.stroke();
-
-            ctx.fillStyle = '#ffffff';
-            ctx.font = '700 13px Montserrat, sans-serif';
-            ctx.fillText('TPB SITE RUN', hudX + 18, hudY + 24);
-
-            ctx.font = '12px Open Sans, sans-serif';
-            ctx.fillStyle = 'rgba(255,255,255,0.82)';
-            ctx.fillText('Collect coins from cleared', hudX + 18, hudY + 46);
-            ctx.fillText('paperwork', hudX + 18, hudY + 63);
-            ctx.restore();
-
-            if (state.flash > 0) {
-                ctx.fillStyle = `rgba(255,255,255,${state.flash / 30})`;
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-            }
-        }
-
-        function frame() {
-            update();
-            draw();
-            requestAnimationFrame(frame);
-        }
-
-        window.addEventListener('keydown', function(e) {
-            if (e.code === 'Space' || e.code === 'ArrowUp' || e.code === 'KeyW') {
-                e.preventDefault();
-                jump();
-            }
-        });
-
-        jumpButton.addEventListener('click', jump);
-        canvas.addEventListener('pointerdown', jump);
-
-        resetSkyline();
-        resetDocuments();
-        updateHud();
-        renderHighscores();
-        frame();
-    })();
     const lbGalleries = {
         'brougham-st': { title: 'Mt Vic Wellington Addition — Novak+Middleton Architects', photos: ['images/brougham-st-addition-exterior.jpg','images/brougham-st-addition-01.jpg','images/brougham-st-addition-02.jpg','images/brougham-st-addition-03.jpg','images/brougham-st-addition-04.jpg','images/brougham-st-addition-05.jpg','images/brougham-st-addition-06.jpg','images/brougham-st-addition-07.jpg','images/brougham-st-addition-08.jpg','images/brougham-st-addition-09.jpg','images/brougham-st-addition-10.jpg','images/brougham-st-addition-11.jpg','images/brougham-st-addition-12.jpg','images/brougham-st-addition-13.jpg','images/brougham-st-addition-14.jpg','images/brougham-st-addition-15.jpg','images/brougham-st-addition-16.jpg','images/brougham-st-addition-17.jpg','images/brougham-st-addition-18.jpg','images/brougham-st-addition-19.jpg','images/brougham-st-addition-20.jpg','images/brougham-st-addition-21.jpg','images/brougham-st-addition-22.jpg','images/brougham-st-addition-23.jpg','images/brougham-st-addition-24.jpg','images/brougham-st-addition-25.jpg','images/brougham-st-addition-26.jpg','images/brougham-st-addition-27.jpg','images/brougham-st-addition-28.jpg','images/brougham-st-addition-29.jpg','images/brougham-st-addition-30.jpg','images/brougham-st-addition-31.jpg','images/brougham-st-addition-32.jpg','images/brougham-st-addition-33.jpg','images/brougham-st-addition-34.jpg','images/brougham-st-addition-35.jpg','images/brougham-st-addition-36.jpg','images/brougham-st-addition-37.jpg','images/brougham-st-addition-38.jpg','images/brougham-st-addition-39.jpg','images/brougham-st-addition-40.jpg','images/brougham-st-addition-41.jpg','images/brougham-st-addition-42.jpg','images/brougham-st-addition-43.jpg','images/brougham-st-addition-44.jpg','images/brougham-st-addition-45.jpg','images/brougham-st-addition-46.jpg','images/brougham-st-addition-47.jpg','images/brougham-st-addition-48.jpg','images/brougham-st-addition-49.jpg','images/brougham-st-addition-50.jpg','images/brougham-st-addition-51.jpg','images/brougham-st-addition-52.jpg','images/brougham-st-addition-53.jpg'] },
         'potocki-gallery': { title: 'Potocki Patterson Art Gallery - Design and Build', photos: ['images/potocki-gallery-hero.jpg','images/potocki-gallery-01.jpg','images/potocki-gallery-02.jpg','images/potocki-gallery-03.jpg','images/potocki-gallery-04.jpg','images/potocki-gallery-05.jpg','images/potocki-gallery-06.jpg','images/potocki-gallery-07.jpg','images/potocki-gallery-08.jpg','images/potocki-gallery-09.jpg','images/potocki-gallery-10.jpg','images/potocki-gallery-11.jpg'] },
@@ -2561,5 +1977,4 @@
     </script>
 </body>
 </html>
-
 
