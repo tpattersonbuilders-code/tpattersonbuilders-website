@@ -18,12 +18,14 @@
     <meta property="og:title" content="Tristan Patterson Builders | Quality Construction Wellington">
     <meta property="og:description" content="Trusted Wellington builders for renovations, additions, decks, fences, bathrooms, and project management. Honest communication and quality workmanship.">
     <meta property="og:url" content="https://tpattersonbuilders.co.nz/">
-    <meta property="og:image" content="https://tpattersonbuilders.co.nz/images/brougham-st-addition-exterior.jpg">
+    <meta property="og:image" content="https://tpattersonbuilders.co.nz/images/tpb-social-share.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
     <meta property="og:site_name" content="Tristan Patterson Builders">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tristan Patterson Builders | Quality Construction Wellington">
     <meta name="twitter:description" content="Trusted Wellington builders for renovations, additions, decks, fences, bathrooms, and project management.">
-    <meta name="twitter:image" content="https://tpattersonbuilders.co.nz/images/brougham-st-addition-exterior.jpg">
+    <meta name="twitter:image" content="https://tpattersonbuilders.co.nz/images/tpb-social-share.png">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -342,12 +344,21 @@
             overflow: hidden;
             border-radius: 8px;
             cursor: pointer;
+            width: 100%;
+            display: block;
+            border: none;
+            padding: 0;
+            background: none;
+            text-align: left;
+            color: inherit;
+            font: inherit;
         }
 
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
             transition: transform 0.5s;
         }
 
@@ -369,6 +380,11 @@
 
         .gallery-item:hover .gallery-overlay {
             opacity: 1;
+        }
+
+        .gallery-item:focus-visible {
+            outline: 3px solid #111111;
+            outline-offset: 4px;
         }
 
         /* --- Contact --- */
@@ -398,7 +414,15 @@
             flex-shrink: 0;
         }
 
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+            color: #1d1d1d;
+        }
+
         .contact-form input,
+        .contact-form select,
         .contact-form textarea {
             width: 100%;
             padding: 15px;
@@ -406,6 +430,49 @@
             border: 1px solid #ddd;
             border-radius: 4px;
             font-family: inherit;
+            background: #ffffff;
+            color: #111111;
+        }
+
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 180px;
+        }
+
+        .contact-form .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .contact-form .form-grid > div {
+            min-width: 0;
+        }
+
+        .contact-form .form-grid input,
+        .contact-form .form-grid select {
+            margin-bottom: 0;
+        }
+
+        .form-success {
+            display: none;
+            margin-bottom: 22px;
+            padding: 16px 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(17,17,17,0.12);
+            background: #f5f5f5;
+            color: #111111;
+            font-weight: 600;
+        }
+
+        .form-success.is-visible {
+            display: block;
+        }
+
+        .form-helper {
+            margin-top: 14px;
+            color: #4f4f4f;
+            font-size: 0.95rem;
         }
 
         .contact-form button {
@@ -1403,6 +1470,11 @@
                 min-height: 240px;
             }
 
+            .contact-form .form-grid {
+                grid-template-columns: 1fr;
+                gap: 18px;
+            }
+
             .gallery-overlay {
                 padding: 18px;
             }
@@ -1560,38 +1632,6 @@
         </div>
     </section>
 
-    <section id="site-run" class="section game-section">
-        <div class="container">
-            <div class="game-shell">
-                <div class="game-topbar">
-                    <div>
-                        <div class="eyebrow" style="margin-bottom:14px;">
-                            <i class="fa-solid fa-gamepad"></i>
-                            Optional extra
-                        </div>
-                        <h3>A quick bit of fun while you are here.</h3>
-                        <p>If you feel like a break after looking through the projects, have a run on the TPB Builder game.</p>
-                    </div>
-                </div>
-                <div class="game-frame-wrap">
-                    <iframe
-                        src="tpb_builder_game.html"
-                        class="site-runner-frame"
-                        title="TPB Builder game"
-                        loading="lazy"
-                        allow="fullscreen; autoplay"
-                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                </div>
-                <p class="game-note">
-                    <strong>Controls:</strong> use left and right arrows or A and D to move, space or up to jump, and X or left mouse click to hammer. Touch controls appear on smaller screens.
-                </p>
-                <div class="game-actions">
-                    <a href="tpb_builder_game.html" class="cta-button">Open Full Game</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Services -->
     <section id="services" class="section bg-light">
         <div class="container">
@@ -1708,40 +1748,72 @@
                 <p class="section-intro">A snapshot of recent residential and fit-out work across Wellington. Click through each project gallery to see more detail.</p>
             </div>
             <div class="gallery-grid">
-                <div class="gallery-item" onclick="openLightbox('brougham-st',0)" style="cursor:pointer;">
-                <img src="images/brougham-st-addition-exterior.jpg" alt="Mt Vic Wellington Addition Novak Middleton Architects">
+                <button class="gallery-item" type="button" onclick="openLightbox('brougham-st',0)" aria-label="Open project gallery for Mt Vic Wellington Addition">
+                <img src="images/brougham-st-addition-exterior.jpg" alt="Mt Vic Wellington Addition Novak Middleton Architects" loading="lazy" decoding="async">
                 <div class="gallery-overlay"><h4>Mt Vic Wellington Addition</h4><p>Novak+Middleton Architects</p></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('potocki-gallery',0)" style="cursor:pointer;">
-                <img src="images/potocki-gallery-hero.jpg" alt="Potocki Patterson Art Gallery Wellington">
+            </button>
+            <button class="gallery-item" type="button" onclick="openLightbox('potocki-gallery',0)" aria-label="Open project gallery for Potocki Patterson Art Gallery">
+                <img src="images/potocki-gallery-hero.jpg" alt="Potocki Patterson Art Gallery Wellington" loading="lazy" decoding="async">
                 <div class="gallery-overlay"><h4>Potocki Patterson Art Gallery</h4><p>Design and Build</p></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('south-wellington',0)" style="cursor:pointer;">
-                <img src="images/south-wellington-addition-hero.jpg" alt="South Wellington Addition Pelorus Architecture">
+            </button>
+            <button class="gallery-item" type="button" onclick="openLightbox('south-wellington',0)" aria-label="Open project gallery for South Wellington Addition">
+                <img src="images/south-wellington-addition-hero.jpg" alt="South Wellington Addition Pelorus Architecture" loading="lazy" decoding="async">
                 <div class="gallery-overlay"><h4>South Wellington Addition</h4><p>Pelorus Architecture</p></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('newtown-addition',0)" style="cursor:pointer;">
-                <img src="images/newtown-addition-hero.jpg" alt="Newtown Wellington Addition Spacecraft Architects">
+            </button>
+            <button class="gallery-item" type="button" onclick="openLightbox('newtown-addition',0)" aria-label="Open project gallery for Newtown Wellington Addition">
+                <img src="images/newtown-addition-hero.jpg" alt="Newtown Wellington Addition Spacecraft Architects" loading="lazy" decoding="async">
                 <div class="gallery-overlay"><h4>Newtown Wellington Addition</h4><p>Spacecraft Architects</p></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('custom-joinery',0)" style="cursor:pointer;">
-                <img src="images/custom-joinery-10.jpg" alt="Custom Furniture and Joinery Wellington">
+            </button>
+            <button class="gallery-item" type="button" onclick="openLightbox('custom-joinery',0)" aria-label="Open project gallery for Custom Furniture and Joinery">
+                <img src="images/custom-joinery-10.jpg" alt="Custom Furniture and Joinery Wellington" loading="lazy" decoding="async">
                 <div class="gallery-overlay"><h4>Custom Furniture and Joinery</h4><p>Wellington</p></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('roofing-cladding',0)" style="cursor:pointer;">
-                <img src="images/roofing-showcase-hero.jpg" alt="Roofing and cladding showcase Wellington">
+            </button>
+            <button class="gallery-item" type="button" onclick="openLightbox('roofing-cladding',0)" aria-label="Open project gallery for Roofing and Cladding showcase">
+                <img src="images/roofing-showcase-hero.jpg" alt="Roofing and cladding showcase Wellington" loading="lazy" decoding="async">
                 <div class="gallery-overlay"><h4>Roofing &amp; Cladding</h4><p>Wellington showcase</p></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('aotea-new-build',0)" style="cursor:pointer;">
-                <img src="images/aotea-new-build-hero.jpg" alt="New build project in Aotea Wellington">
+            </button>
+            <button class="gallery-item" type="button" onclick="openLightbox('aotea-new-build',0)" aria-label="Open project gallery for New Build Aotea">
+                <img src="images/aotea-new-build-hero.jpg" alt="New build project in Aotea Wellington" loading="lazy" decoding="async">
                 <div class="gallery-overlay"><h4>New Build Aotea</h4><p>280m2 residential build</p></div>
-            </div>
-            <div class="gallery-item" onclick="openLightbox('high-end-bathroom',0)" style="cursor:pointer;">
-                    <img src="images/high-end-bathroom.jpg" alt="High-End Bathroom Build">
+            </button>
+            <button class="gallery-item" type="button" onclick="openLightbox('high-end-bathroom',0)" aria-label="Open project gallery for High-End Bathroom">
+                    <img src="images/high-end-bathroom.jpg" alt="High-End Bathroom Build" loading="lazy" decoding="async">
                     <div class="gallery-overlay">
                         <h4>High-End Bathroom</h4>
                         <p>Wellington</p>
                     </div>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="site-run" class="section game-section">
+        <div class="container">
+            <div class="game-shell">
+                <div class="game-topbar">
+                    <div>
+                        <div class="eyebrow" style="margin-bottom:14px;">
+                            <i class="fa-solid fa-gamepad"></i>
+                            Optional extra
+                        </div>
+                        <h3>A quick bit of fun while you are here.</h3>
+                        <p>If you feel like a break after looking through the projects, have a run on the TPB Builder game.</p>
+                    </div>
+                </div>
+                <div class="game-frame-wrap">
+                    <iframe
+                        src="tpb_builder_game.html"
+                        class="site-runner-frame"
+                        title="TPB Builder game"
+                        loading="lazy"
+                        allow="fullscreen; autoplay"
+                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
+                </div>
+                <p class="game-note">
+                    <strong>Controls:</strong> use left and right arrows or A and D to move, space or up to jump, and X or left mouse click to hammer. Touch controls appear on smaller screens.
+                </p>
+                <div class="game-actions">
+                    <a href="tpb_builder_game.html" class="cta-button">Open Full Game</a>
                 </div>
             </div>
         </div>
@@ -1789,14 +1861,64 @@
                 </div>
                 
                 <form class="contact-form" action="https://formspree.io/f/xbjvqglq" method="POST">
+                    <div id="contact-success" class="form-success" role="status" aria-live="polite">
+                        Thanks. Your message has been sent. We will get back to you as soon as we can, usually within two working days.
+                    </div>
+                    <input type="hidden" name="_subject" value="New TPB website enquiry">
+                    <input type="hidden" name="_next" value="https://tpattersonbuilders.co.nz/?enquiry=sent#contact">
+                    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
                     <label for="name">Your Name</label>
                     <input id="name" type="text" name="name" placeholder="Your Name" required>
-                    <label for="email">Your Email</label>
-                    <input id="email" type="email" name="email" placeholder="Your Email" required>
+                    <div class="form-grid">
+                        <div>
+                            <label for="phone">Phone</label>
+                            <input id="phone" type="tel" name="phone" placeholder="Best number to reach you">
+                        </div>
+                        <div>
+                            <label for="email">Your Email</label>
+                            <input id="email" type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div>
+                            <label for="suburb">Suburb or site address</label>
+                            <input id="suburb" type="text" name="suburb" placeholder="Where is the job?">
+                        </div>
+                        <div>
+                            <label for="project-type">Type of work</label>
+                            <select id="project-type" name="project_type" required>
+                                <option value="">Select a project type</option>
+                                <option value="Renovation or addition">Renovation or addition</option>
+                                <option value="Bathroom or kitchen">Bathroom or kitchen</option>
+                                <option value="Deck, fence, or exterior work">Deck, fence, or exterior work</option>
+                                <option value="New build or major project">New build or major project</option>
+                                <option value="Other residential work">Other residential work</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="timeframe">Preferred timing</label>
+                            <select id="timeframe" name="timeframe">
+                                <option value="">When would you like to start?</option>
+                                <option value="As soon as possible">As soon as possible</option>
+                                <option value="Within 1 to 3 months">Within 1 to 3 months</option>
+                                <option value="Within 3 to 6 months">Within 3 to 6 months</option>
+                                <option value="Planning ahead for later this year">Planning ahead for later this year</option>
+                                <option value="Just pricing and early planning">Just pricing and early planning</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="plans">Plans or sketches</label>
+                            <select id="plans" name="plans_status">
+                                <option value="">Do you have plans yet?</option>
+                                <option value="No plans yet">No plans yet</option>
+                                <option value="Rough sketches only">Rough sketches only</option>
+                                <option value="Working drawings or plans ready">Working drawings or plans ready</option>
+                                <option value="Consent underway">Consent underway</option>
+                            </select>
+                        </div>
+                    </div>
                     <label for="message">Project Details</label>
                     <textarea id="message" name="message" rows="6" placeholder="Tell us about the job, where it is, and when you would like to get started..." required></textarea>
                     <button type="submit">Send Message</button>
-                    <p style="margin-top:14px;color:#666;">Prefer to talk directly? Call <a href="tel:+64211041289">021 104 1289</a>.</p>
+                    <p class="form-helper">Prefer to talk directly? Call <a href="tel:+64211041289">021 104 1289</a>. If you already have plans, dimensions, or inspiration photos, mention that in the message and we can take it from there.</p>
                 </form>
             </div>
         </div>
@@ -1864,7 +1986,7 @@
     const shareDefaults = {
         title: 'Tristan Patterson Builders',
         text: 'Trusted Wellington builder for renovations, additions, fit-outs, and quality residential work.',
-        image: 'https://tpattersonbuilders.co.nz/images/brougham-st-addition-exterior.jpg'
+        image: 'https://tpattersonbuilders.co.nz/images/tpb-social-share.png'
     };
     function encodeShare(value) {
         return encodeURIComponent(value || '');
@@ -1978,6 +2100,22 @@
             }
         });
     });
+    (function() {
+        const params = new URLSearchParams(window.location.search);
+        if (params.get('enquiry') !== 'sent') {
+            return;
+        }
+        const success = document.getElementById('contact-success');
+        if (success) {
+            success.classList.add('is-visible');
+        }
+        params.delete('enquiry');
+        const query = params.toString();
+        const cleanUrl = window.location.pathname + (query ? '?' + query : '') + window.location.hash;
+        if (window.history && window.history.replaceState) {
+            window.history.replaceState({}, document.title, cleanUrl);
+        }
+    })();
     </script>
 </body>
 </html>
