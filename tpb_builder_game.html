@@ -293,6 +293,20 @@ function drawFence(g, x, sign) {
   g.strokeStyle = '#aeb9c4'; g.lineWidth = 2.4; g.strokeRect(x, -46, 70, 41); g.fillStyle = '#7b848d'; rr(g, x - 8, -5, 16, 5, 1.4); g.fill(); rr(g, x + 62, -5, 16, 5, 1.4); g.fill();
   if (sign) { g.fillStyle = INK; g.fillRect(x + 12, -40, 46, 27); g.fillStyle = YEL; g.fillRect(x + 12, -17, 46, 4); drawLogo(g, x + 20, -38.5, 30, '#fff'); }
 }
+function drawVan(g, x) {
+  // big white high-roof transit van, nose to the right, small TPB mark on the rear quarter
+  const wheel = (wx) => { g.fillStyle = '#16181c'; g.beginPath(); g.arc(wx, -11, 11, 0, TAU); g.fill(); g.fillStyle = '#c3ccd5'; g.beginPath(); g.arc(wx, -11, 5.6, 0, TAU); g.fill(); g.fillStyle = '#6d7782'; g.beginPath(); g.arc(wx, -11, 2, 0, TAU); g.fill(); };
+  g.fillStyle = 'rgba(0,0,0,.22)'; g.beginPath(); g.ellipse(x + 82, 0, 84, 4, 0, 0, TAU); g.fill();
+  g.fillStyle = '#9aa5b0'; g.fillRect(x + 8, -98, 96, 2); for (const lx of [x + 14, x + 56, x + 98]) g.fillRect(lx, -98, 2, 6);
+  g.fillStyle = '#c9a15f'; g.fillRect(x + 4, -103, 104, 2.2); g.fillRect(x + 4, -108, 104, 2.2); g.fillStyle = '#a8813f'; for (let i = 0; i < 9; i++) g.fillRect(x + 10 + i * 11.4, -108, 1.6, 7);
+  g.fillStyle = '#ffffff'; g.beginPath(); g.moveTo(x, -16); g.lineTo(x, -86); g.quadraticCurveTo(x, -92, x + 6, -92); g.lineTo(x + 112, -92); g.quadraticCurveTo(x + 120, -92, x + 125, -84); g.lineTo(x + 142, -54); g.lineTo(x + 160, -48); g.quadraticCurveTo(x + 166, -46, x + 166, -40); g.lineTo(x + 166, -16); g.closePath(); g.fill();
+  g.fillStyle = '#e3e8ed'; g.fillRect(x, -30, 166, 14); g.fillStyle = '#20242b'; g.fillRect(x - 2, -19, 170, 5); g.fillStyle = '#39485a'; g.beginPath(); g.moveTo(x + 112, -84); g.lineTo(x + 121, -84); g.lineTo(x + 138, -55); g.lineTo(x + 112, -55); g.closePath(); g.fill();
+  g.fillStyle = 'rgba(255,255,255,.3)'; g.beginPath(); g.moveTo(x + 115, -82); g.lineTo(x + 119, -82); g.lineTo(x + 128, -66); g.lineTo(x + 122, -66); g.closePath(); g.fill();
+  g.fillStyle = '#cfd6dd'; g.fillRect(x + 108, -88, 1.4, 70); g.fillRect(x + 62, -88, 1.4, 70); g.fillRect(x + 62, -52, 46, 1.2); g.fillStyle = '#20242b'; g.fillRect(x + 100, -50, 6, 2); g.fillRect(x + 114, -50, 6, 2); g.fillRect(x + 132, -60, 5, 7);
+  g.fillStyle = '#e03a2d'; g.fillRect(x, -62, 3, 16); g.fillStyle = '#f58a3c'; g.fillRect(x, -44, 3, 6); g.fillStyle = '#ffe9a0'; g.fillRect(x + 162, -42, 4, 7); g.fillStyle = '#20242b'; g.fillRect(x + 158, -30, 8, 6);
+  drawLogo(g, x + 12, -50, 18, INK);
+  wheel(x + 32); wheel(x + 134);
+}
 function drawUte(g, x) {
   g.fillStyle = '#16181c'; g.beginPath(); g.arc(x + 22, -9, 9, 0, TAU); g.arc(x + 92, -9, 9, 0, TAU); g.fill(); g.fillStyle = '#9aa5b0'; g.beginPath(); g.arc(x + 22, -9, 4, 0, TAU); g.arc(x + 92, -9, 4, 0, TAU); g.fill();
   g.fillStyle = '#f4f6f8'; g.beginPath(); g.moveTo(x, -12); g.lineTo(x, -30); g.lineTo(x + 52, -30); g.lineTo(x + 56, -46); g.lineTo(x + 86, -46); g.lineTo(x + 98, -30); g.lineTo(x + 114, -27); g.lineTo(x + 116, -12); g.closePath(); g.fill();
@@ -510,7 +524,7 @@ const JOBS = [
     scaf: [[560, 70, 130], [1300, 74, 120], [1440, 140, 120], [2140, 72, 130], [2640, 76, 110], [2770, 148, 120], [3480, 70, 120], [3900, 76, 130], [4050, 148, 120]],
     movers: [], rats: [[640, 800], [960, 1150], [1480, 1620], [1950, 2030], [2500, 2620], [2990, 3240], [3400, 3680], [4130, 4430]], gulls: [], spikes: [[1890, 42], [3130, 42]],
     barrels: [{ x: 4620, min: 3800, every: 3.4 }], tools: [[300, 34], [868, 96], [1500, 172], [2830, 180], [3540, 104], [4110, 180]], pies: [[2205, 104]], guns: [[3965, 108]], checks: [1770, 3385],
-    props: [['ute', 60], ['fence', 190, 1], ['cone', 395], ['cone', 880], ['digger', 1010], ['fence', 1260], ['loo', 1660], ['cone', 1745], ['fence', 1900, 1], ['cone', 2395], ['digger', 3010], ['fence', 3420], ['cone', 3355], ['fence', 4200, 1], ['cone', 4480], ['crane', 2300]] },
+    props: [['van', 24], ['fence', 214, 1], ['cone', 395], ['cone', 880], ['digger', 1010], ['fence', 1260], ['loo', 1660], ['cone', 1745], ['fence', 1900, 1], ['cone', 2395], ['digger', 3010], ['fence', 3420], ['cone', 3355], ['fence', 4200, 1], ['cone', 4480], ['crane', 2300]] },
   { name: 'THE FRAME', place: 'Mt Victoria', tip: 'Watch for the southerly. It pushes you back.', pal: 1, ground: 'slab', horizon: 112, waterH: 34, villaDrop: 10, par: 95, wind: { every: 8.5, dur: 2.3, air: 62, ground: 26 }, house: 1,
     len: 5450, goal: 5200, ground_: [[-300, 700], [785, 1290], [1375, 1480], [1565, 2300], [2550, 3380], [3465, 3560], [3645, 4200], [4440, 5900]],
     blocks: [[380, 70, 34, 'timber'], [1000, 60, 40, 'blocks'], [1760, 70, 34, 'timber'], [2760, 60, 40, 'blocks'], [3020, 70, 34, 'timber'], [3840, 60, 40, 'blocks'], [4720, 70, 34, 'timber']],
@@ -718,7 +732,7 @@ function drawWorld() {
   else { ctx.fillStyle = L.ground === 'dirt' ? '#2c1d12' : '#33271c'; ctx.fillRect(x0, 0, x1 - x0, PAD + 400); ctx.fillStyle = 'rgba(0,0,0,.3)'; ctx.fillRect(x0, 60, x1 - x0, PAD + 400); }
   // props behind
   for (const p of L.props) { const x = p[1]; if (x < x0 - 320 || x > x1 + 80) continue;
-    if (p[0] === 'crane') drawCrane(ctx, x, 0, t); else if (p[0] === 'frame') drawFrameWall(ctx, x, p[2], p[3]); else if (p[0] === 'fence') drawFence(ctx, x, p[2]); else if (p[0] === 'ute') drawUte(ctx, x); else if (p[0] === 'digger') drawDigger(ctx, x, t); else if (p[0] === 'loo') drawLoo(ctx, x);
+    if (p[0] === 'crane') drawCrane(ctx, x, 0, t); else if (p[0] === 'frame') drawFrameWall(ctx, x, p[2], p[3]); else if (p[0] === 'fence') drawFence(ctx, x, p[2]); else if (p[0] === 'ute') drawUte(ctx, x); else if (p[0] === 'van') drawVan(ctx, x); else if (p[0] === 'digger') drawDigger(ctx, x, t); else if (p[0] === 'loo') drawLoo(ctx, x);
     else if (p[0] === 'aerial') { line(ctx, x, 0, x, -46, 1.4, '#20242b', 'butt'); for (let i = 0; i < 4; i++) line(ctx, x - 9 + i, -44 + i * 6, x + 9 - i, -44 + i * 6, 1.2, '#20242b', 'butt'); }
     else if (p[0] === 'sky') { ctx.fillStyle = '#20242b'; ctx.fillRect(x, -3, 46, 4); ctx.fillStyle = '#ffd98a'; ctx.fillRect(x + 3, -2, 40, 2.4); } }
   drawHouse(ctx, L.goal + 60, L.house, L.pal === 2);
