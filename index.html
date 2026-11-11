@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tristan Patterson Builders | Quality Construction Wellington</title>
     <meta name="description" content="Trusted Wellington builders for renovations, additions, decks, fences, bathrooms, and project management. Honest communication and quality workmanship.">
-    <meta name="theme-color" content="#111111">
+    <meta name="theme-color" content="#0a0a0a">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://tpattersonbuilders.co.nz/">
     <link rel="icon" href="/favicon.ico" sizes="any">
@@ -30,10 +30,7 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Big+Shoulders+Display:wght@900&display=swap" rel="stylesheet">
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -55,1915 +52,610 @@
       ]
     }
     </script>
-
     <style>
+        /* Black and white with hi-vis yellow. Photos move with scroll via --p (0 to 1), set in the script at the bottom. */
         :root {
-            --primary: #111111; /* Black */
-            --accent: #7ecfcf;  /* Teal - matches report branding */
+            --black: #0a0a0a;
+            --ink: #0a0a0a;
             --white: #ffffff;
-            --light-gray: #f4f4f4;
-            --dark-gray: #333333;
-            --text-color: #222222;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Open Sans', sans-serif;
-            color: var(--text-color);
-            line-height: 1.6;
-            background-color: var(--white);
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 700;
-            color: var(--primary);
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        /* --- Header & Nav --- */
-        header {
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 20px;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-link {
-            display: inline-flex;
-            align-items: center;
-        }
-        
-        .logo i {
-            color: var(--accent);
-        }
-
-        .logo-mark {
-            display: block;
-            height: 42px;
-            width: auto;
-            object-fit: contain;
-            background: white;
-            padding: 5px 8px 7px;
-            border-radius: 12px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-        }
-
-        .nav-links a {
-            font-weight: 600;
-            transition: color 0.3s;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
-
-        .nav-links a:hover {
-            color: var(--accent);
-        }
-
-        .cta-button {
-            background-color: var(--accent);
-            color: var(--primary);
-            padding: 10px 25px;
-            border-radius: 4px;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-        }
-
-        .cta-button:hover {
-            background-color: #5fb8b8;
-            transform: translateY(-2px);
-        }
-
-        /* --- Hero Section --- */
-        .hero {
-            min-height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0.70)), url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            margin-top: 0; /* Override margin */
-            padding: 120px 20px 48px;
-        }
-
-        .hero-content {
-            max-width: 800px;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            color: var(--white);
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            opacity: 0.9;
-        }
-
-        .hero-btn {
-            display: inline-block;
-            background-color: var(--accent);
-            color: var(--primary);
-            padding: 15px 40px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            border-radius: 4px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s;
-        }
-
-        .hero-btn:hover {
-            background-color: #fff;
-            color: var(--primary);
-        }
-
-        /* --- Features/Services --- */
-        .section {
-            padding: 80px 20px;
-        }
-
-        .bg-light {
-            background-color: var(--light-gray);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--accent);
-            margin: 10px auto 0;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-            transition: transform 0.3s;
-            text-align: center;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .service-icon {
-            font-size: 3rem;
-            color: var(--accent);
-            margin-bottom: 20px;
-        }
-
-        .service-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.4rem;
-        }
-
-        /* --- About Section --- */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            color: var(--dark-gray);
-        }
-
-        .lbp-badge {
-            display: inline-flex;
-            align-items: center;
-            background: #f8f9fa;
-            padding: 10px 20px;
-            border-left: 5px solid var(--accent);
-            border-radius: 4px;
-            font-weight: 700;
-            color: var(--primary);
-            margin-top: 10px;
-        }
-
-        .about-image {
-            position: relative;
-        }
-
-        .about-image img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
-
-        /* --- Gallery --- */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            position: relative;
-            height: 300px;
-            overflow: hidden;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            display: block;
-            border: none;
-            padding: 0;
-            background: none;
-            text-align: left;
-            color: inherit;
-            font: inherit;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.5s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        .gallery-overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-            padding: 20px;
-            color: white;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        .gallery-item:focus-visible {
-            outline: 3px solid #111111;
-            outline-offset: 4px;
-        }
-
-        /* --- Contact --- */
-        .contact-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-
-        .contact-info-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 30px;
-        }
-
-        .contact-icon {
-            background: var(--accent);
-            color: var(--primary);
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            margin-right: 20px;
-            flex-shrink: 0;
-        }
-
-        .contact-form label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 700;
-            color: #1d1d1d;
-        }
-
-        .contact-form input,
-        .contact-form select,
-        .contact-form textarea {
-            width: 100%;
-            padding: 15px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-family: inherit;
-            background: #ffffff;
-            color: #111111;
-        }
-
-        .contact-form textarea {
-            resize: vertical;
-            min-height: 180px;
-        }
-
-        .contact-form .form-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 18px;
-        }
-
-        .contact-form .form-grid > div {
-            min-width: 0;
-        }
-
-        .contact-form .form-grid input,
-        .contact-form .form-grid select {
-            margin-bottom: 0;
-        }
-
-        .form-success {
-            display: none;
-            margin-bottom: 22px;
-            padding: 16px 18px;
-            border-radius: 14px;
-            border: 1px solid rgba(17,17,17,0.12);
-            background: #f5f5f5;
-            color: #111111;
-            font-weight: 600;
-        }
-
-        .form-success.is-visible {
-            display: block;
-        }
-
-        .form-helper {
-            margin-top: 14px;
-            color: #4f4f4f;
-            font-size: 0.95rem;
-        }
-
-        .contact-form button {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 4px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: background 0.3s;
-        }
-
-        .contact-form button:hover {
-            background: #2c4a6b;
-        }
-
-        /* --- Footer --- */
-        footer {
-            background: var(--primary);
-            color: white;
-            padding: 50px 20px;
-            text-align: center;
-        }
-
-        .footer-logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: var(--accent);
-            text-transform: uppercase;
-        }
-
-        .copyright {
-            margin-top: 30px;
-            opacity: 0.7;
-            font-size: 0.9rem;
-        }
-
-        /* --- Responsive --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.5rem; }
-            .about-grid, .contact-wrapper { grid-template-columns: 1fr; }
-            .nav-links { display: none; } /* Simplified for mobile example */
-            .logo { font-size: 1.2rem; }
-        }
-    
-        /* === B&W Rebrand === */
-        header { background: #111111; box-shadow: 0 2px 10px rgba(0,0,0,0.6); }
-        .logo { color: #ffffff; font-size: 1rem; letter-spacing: 1px; }
-        .logo-svg { flex-shrink: 0; }
-        .nav-links a { color: rgba(255,255,255,0.80); }
-        .nav-links a:hover { color: #ffffff; }
-        .cta-button { background-color: #ffffff !important; color: #111111 !important; border: 2px solid #111111 !important; font-weight: 700; }
-        .cta-button:hover { background-color: #dddddd; transform: translateY(-2px); }
-        .hero-btn { background-color: #ffffff; color: #111111; }
-        .hero-btn:hover { background-color: #e0e0e0; color: #111111; }
-        .contact-icon { background: #111111; color: #ffffff; }
-        .contact-form button:hover { background: #333333; }
-        .footer-logo { color: #ffffff; }
-        .lbp-badge { border-left-color: #111111; color: #111111; background: #f8f9fa; }
-        
-        .gallery-overlay h4, .gallery-overlay p { color: #ffffff !important; }
-        .gallery-overlay { background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%); }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        :root {
-            --accent: #111111;
-            --accent-strong: #111111;
-            --light-gray: #f4f4f4;
-        }
-
-        .nav-container {
-            gap: 24px;
-            padding: 14px 24px;
-            justify-content: space-between;
-        }
-
-        .topbar-title {
-            display: flex;
-            align-items: center;
-            color: #ffffff;
-            min-width: 0;
-        }
-
-        .topbar-name {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            white-space: nowrap;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 18px;
-            margin-left: auto;
-        }
-
-        .phone-link {
-            color: rgba(255,255,255,0.86);
-            font-weight: 700;
-            font-size: 0.94rem;
-            letter-spacing: 0.04em;
-            padding: 10px 0;
-            white-space: nowrap;
-        }
-
-        .mobile-menu-button {
-            display: none;
-            background: transparent;
-            border: 1px solid rgba(255,255,255,0.18);
-            color: var(--white);
-            width: 44px;
-            height: 44px;
-            border-radius: 10px;
-            cursor: pointer;
-        }
-
-        .mobile-menu {
-            display: none;
-            background: #111111;
-            border-top: 1px solid rgba(255,255,255,0.08);
-            padding: 12px 20px 20px;
-        }
-
-        .mobile-menu.open {
-            display: block;
-        }
-
-        .mobile-menu a {
-            display: block;
-            color: rgba(255,255,255,0.9);
-            padding: 12px 0;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.92rem;
-            letter-spacing: 0.06em;
-        }
-
-        .mobile-menu a + a {
-            border-top: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .nav-links {
-            gap: 24px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            position: relative;
-            font-size: 0.82rem;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-        }
-
-        .nav-links a:not(.cta-button)::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -8px;
-            width: 100%;
-            height: 2px;
-            transform: scaleX(0);
-            transform-origin: left center;
-            background: #ffffff;
-            transition: transform 0.2s ease;
-        }
-
-        .nav-links a:not(.cta-button):hover::after {
-            transform: scaleX(1);
-        }
-
-        .cta-button {
-            border-radius: 999px;
-            padding: 12px 20px;
-            border: 1px solid rgba(255,255,255,0.12) !important;
-            box-shadow: 0 10px 24px rgba(0,0,0,0.22);
-        }
-
-        .cta-button:hover {
-            transform: translateY(-1px);
-        }
-
-        .hero {
-            min-height: 780px;
-            background:
-                radial-gradient(circle at top, rgba(17,17,17,0.16), transparent 35%),
-                linear-gradient(rgba(0, 0, 0, 0.72), rgba(0, 0, 0, 0.76)),
-                url('images/brougham-st-addition-exterior.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-
-        .hero-content {
-            max-width: 900px;
-        }
-
-        .hero-logo {
-            display: block;
-            width: min(760px, 96%);
-            margin: 0 auto 20px;
-            filter: drop-shadow(0 10px 30px rgba(0,0,0,0.35));
-            background: rgba(255,255,255,0.98);
-            padding: 14px 16px;
-            border-radius: 24px;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid rgba(255,255,255,0.18);
-            background: rgba(255,255,255,0.08);
-            border-radius: 999px;
-            padding: 10px 16px;
-            margin-bottom: 22px;
-            font-size: 0.82rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            font-weight: 700;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.9rem, 7vw, 5rem);
-            line-height: 1.05;
-        }
-
-        .hero p {
-            max-width: 720px;
-            margin: 0 auto 2rem;
-        }
-
-        .hero-proof {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 14px;
-            margin: 28px auto 0;
-            max-width: 880px;
-        }
-
-        .proof-card {
-            text-align: left;
-            padding: 18px 18px 16px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.14);
-            background: rgba(10,10,10,0.34);
-            backdrop-filter: blur(10px);
-        }
-
-        .proof-card strong {
-            display: block;
-            font-family: 'Montserrat', sans-serif;
-            color: #ffffff;
-            font-size: 1.1rem;
-            margin-bottom: 8px;
-        }
-
-        .proof-card p {
-            margin: 0;
-            color: rgba(255,255,255,0.72);
-            font-size: 0.95rem;
-        }
-
-        .hero-actions,
-        .credentials-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 14px;
-        }
-
-        .hero-actions {
-            justify-content: center;
-        }
-
-        .share-cluster {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 18px;
-        }
-
-        .share-button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            min-width: 44px;
-            min-height: 44px;
-            padding: 11px 14px;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.18);
-            background: rgba(255,255,255,0.08);
-            color: #ffffff;
-            font-weight: 700;
-            font-size: 0.92rem;
-            cursor: pointer;
-            transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
-        }
-
-        .share-button:hover {
-            background: rgba(255,255,255,0.16);
-            border-color: rgba(255,255,255,0.28);
-            transform: translateY(-1px);
-        }
-
-        .share-button.light {
-            color: #111111;
-            background: #ffffff;
-            border-color: rgba(17,17,17,0.12);
-        }
-
-        .share-button.light:hover {
-            background: #f1f1f1;
-            border-color: rgba(17,17,17,0.18);
-        }
-
-        .share-button.icon-only {
-            width: 44px;
-            padding-left: 0;
-            padding-right: 0;
-        }
-
-        .share-button-row-label {
-            width: 100%;
-            text-align: center;
-            font-size: 0.82rem;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.72);
-            font-weight: 700;
-        }
-
-        .hero-btn,
-        .cta-button,
-        .contact-form button {
-            border-radius: 999px;
-        }
-
-        .hero-btn.secondary {
-            background: transparent;
-            color: var(--white);
-            border: 1px solid rgba(255,255,255,0.32);
-        }
-
-        .hero-btn.secondary:hover {
-            background: rgba(255,255,255,0.12);
-            color: var(--white);
-        }
-
-        .hero-trust {
-            display: flex;
-            justify-content: center;
-            gap: 18px;
-            flex-wrap: wrap;
-            margin-top: 8px;
-            color: rgba(255,255,255,0.82);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-
-        .trust-strip {
-            padding-top: 0;
-            margin-top: -32px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .featured-section {
-            padding-top: 34px;
-        }
-
-        .featured-project {
-            display: grid;
-            grid-template-columns: minmax(0, 1.2fr) minmax(0, 0.8fr);
-            gap: 30px;
-            align-items: stretch;
-            padding: 26px;
-            border-radius: 30px;
-            background: linear-gradient(135deg, #ffffff 0%, #f7f4ee 100%);
-            border: 1px solid rgba(17,17,17,0.08);
-            box-shadow: 0 28px 60px rgba(17,17,17,0.08);
-        }
-
-        .featured-media {
-            position: relative;
-            min-height: 420px;
-            overflow: hidden;
-            border-radius: 24px;
-        }
-
-        .featured-media img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        .featured-media-badge {
-            position: absolute;
-            left: 18px;
-            bottom: 18px;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 14px;
-            border-radius: 999px;
-            background: rgba(17,17,17,0.88);
-            color: #ffffff;
-            font-size: 0.82rem;
-            font-weight: 700;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-        }
-
-        .featured-copy {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .featured-copy h2 {
-            font-size: clamp(2rem, 4vw, 3rem);
-            line-height: 1.05;
-            margin-bottom: 16px;
-        }
-
-        .featured-copy p {
-            color: #4c4c4c;
-            margin-bottom: 18px;
-        }
-
-        .featured-points {
-            list-style: none;
-            display: grid;
-            gap: 12px;
-            margin: 10px 0 26px;
-        }
-
-        .featured-points li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            color: #2f2f2f;
-        }
-
-        .featured-points i {
-            margin-top: 5px;
-            color: var(--accent-strong);
-        }
-
-        .featured-actions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .secondary-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 12px 18px;
-            border-radius: 999px;
-            border: 1px solid rgba(17,17,17,0.14);
-            font-weight: 700;
-            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-        }
-
-        .secondary-link:hover {
-            background: rgba(17,17,17,0.04);
-            border-color: rgba(17,17,17,0.24);
-            transform: translateY(-1px);
-        }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 0;
-            background: #101010;
-            border-radius: 24px;
-            overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.06);
-            box-shadow: 0 24px 50px rgba(17,17,17,0.16);
-        }
-
-        .trust-card,
-        .service-card,
-        .process-card,
-        .gallery-item,
-        .contact-card {
-            border-radius: 20px;
-        }
-
-        .trust-card {
-            background: transparent;
-            padding: 24px;
-            color: rgba(255,255,255,0.82);
-            border-right: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .trust-card strong {
-            display: block;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.6rem;
-            margin-bottom: 8px;
-            color: #ffffff;
-        }
-
-        .trust-card:last-child {
-            border-right: none;
-        }
-
-        .section-intro {
-            max-width: 760px;
-            margin: 0 auto;
-            color: #5b5b5b;
-        }
-
-        .service-card {
-            text-align: left;
-            border: 1px solid rgba(17,17,17,0.06);
-        }
-
-        .service-card ul,
-        .values-list {
-            list-style: none;
-        }
-
-        .service-card ul {
-            margin-top: 16px;
-            color: var(--dark-gray);
-        }
-
-        .service-card li + li,
-        .values-list li + li {
-            margin-top: 8px;
-        }
-
-        .service-card li::before {
-            content: "•";
-            color: var(--accent-strong);
-            margin-right: 10px;
-        }
-
-        .values-list {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 12px 18px;
-            margin: 28px 0;
-        }
-
-        .values-list li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-        }
-
-        .values-list i,
-        .credential-pill i {
-            color: var(--accent-strong);
-        }
-
-        .credential-pill {
-            color: var(--dark-gray);
-            border: none;
-            background: transparent;
-            padding: 0;
-            font-weight: 700;
-            border-radius: 0;
-        }
-
-        .lbp-badge img {
-            width: 54px;
-            height: 54px;
-            object-fit: contain;
-            margin-right: 12px;
-            border-radius: 50%;
-            background: white;
-        }
-
-        .lbp-badge a {
-            display: inline-flex;
-            align-items: center;
-            color: inherit;
-        }
-
-        .footer-brand {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
-
-        .footer-share {
-            margin-top: 18px;
-        }
-
-        .footer-brand img {
-            height: 44px;
-            width: auto;
-            display: block;
-            background: white;
-            padding: 4px 8px;
-            border-radius: 12px;
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 22px;
-        }
-
-        .process-card {
-            background: #101010;
-            color: white;
-            padding: 28px;
-        }
-
-        .process-step {
-            color: #ffffff;
-            font-weight: 800;
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            font-size: 0.78rem;
-            margin-bottom: 10px;
-        }
-
-        .gallery-item {
-            min-height: 320px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-        }
-
-        .contact-section {
-            background: linear-gradient(180deg, #faf9f6 0%, #ffffff 100%);
-        }
-
-        .game-section {
-            background:
-                radial-gradient(circle at top, rgba(17,17,17,0.14), transparent 28%),
-                linear-gradient(180deg, #161616 0%, #0d0d0d 100%);
-            color: #ffffff;
-            overflow: hidden;
-        }
-
-        .game-shell {
-            border: 1px solid rgba(255,255,255,0.12);
-            background: rgba(255,255,255,0.04);
-            border-radius: 28px;
-            padding: 24px;
-            box-shadow: 0 28px 60px rgba(0,0,0,0.24);
-        }
-
-        .game-topbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 24px;
-            margin-bottom: 18px;
-        }
-
-        .game-topbar h3 {
-            color: #ffffff;
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .game-topbar p {
-            color: rgba(255,255,255,0.74);
-            max-width: 620px;
-        }
-
-        .game-frame-wrap {
-            overflow: hidden;
-            border-radius: 22px;
-            border: 1px solid rgba(255,255,255,0.1);
-            background: linear-gradient(180deg, #27364a 0%, #131313 100%);
-        }
-
-        .site-runner-frame {
-            display: block;
-            width: 100%;
-            aspect-ratio: 16 / 7;
-            border: 0;
-            background: #131313;
-        }
-
-        .game-note {
-            margin-top: 16px;
-            color: rgba(255,255,255,0.72);
-            font-size: 0.95rem;
-        }
-
-        .game-note strong {
-            color: #ffffff;
-        }
-
-        .game-actions {
-            margin-top: 18px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .contact-card {
-            background: #111111;
-            color: white;
-            padding: 34px;
-            box-shadow: 0 24px 48px rgba(17,17,17,0.14);
-        }
-
-        .contact-card a {
-            color: white;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-        }
-
-        .lightbox-share {
-            position: absolute;
-            top: 18px;
-            right: 90px;
-            display: flex;
-            gap: 10px;
-            z-index: 10001;
-        }
-
-        .lightbox-share .share-button {
-            min-height: 40px;
-            min-width: 40px;
-            padding: 10px 12px;
-            background: rgba(255,255,255,0.12);
-            border-color: rgba(255,255,255,0.18);
-        }
-
-        .contact-form label {
-            display: block;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .contact-form input,
-        .contact-form textarea {
-            border-radius: 14px;
-            font-size: 1rem;
-        }
-
-        .service-card li::before {
-            content: "";
-            display: inline-block;
-            width: 7px;
-            height: 7px;
-            border-radius: 50%;
-            margin-right: 10px;
-            background: var(--accent-strong);
-        }
-
-        .game-topbar h3 {
-            font-size: 1.55rem;
-        }
-
-        section[id] {
-            scroll-margin-top: 88px;
-        }
-
-        @media (max-width: 980px) {
-            .trust-grid,
-            .process-grid,
-            .about-grid,
-            .contact-wrapper,
-            .game-topbar,
-            .hero-proof,
-            .featured-project {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links,
-            .phone-link {
-                display: none;
-            }
-
-            .section {
-                padding: 56px 16px;
-            }
-
-            header {
-                position: sticky;
-            }
-
-            .nav-container {
-                padding: 12px 16px;
-                gap: 10px;
-            }
-
-            .topbar-title {
-                min-width: 0;
-            }
-
-            .topbar-name {
-                font-size: 0.86rem;
-                letter-spacing: 0.12em;
-            }
-
-            .nav-actions {
-                gap: 10px;
-            }
-
-            .mobile-menu-button {
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .mobile-menu {
-                padding: 8px 16px 16px;
-            }
-
-            .hero {
-                min-height: auto;
-                padding: 112px 16px 48px;
-                background-position: 58% center;
-            }
-
-            .logo-mark {
-                height: 34px;
-            }
-
-            .hero-logo {
-                width: min(100%, 420px);
-                padding: 10px 12px;
-                border-radius: 18px;
-                margin-bottom: 18px;
-            }
-
-            .eyebrow {
-                padding: 8px 12px;
-                margin-bottom: 18px;
-                font-size: 0.72rem;
-                letter-spacing: 0.08em;
-            }
-
-            .hero h1 {
-                font-size: clamp(2.2rem, 9vw, 3.2rem);
-                line-height: 1.04;
-                margin-bottom: 14px;
-            }
-
-            .hero p {
-                font-size: 1rem;
-                margin-bottom: 24px;
-            }
-
-            .hero-actions {
-                flex-direction: column;
-                align-items: center;
-                gap: 12px;
-            }
-
-            .hero-proof {
-                grid-template-columns: 1fr;
-                margin-top: 22px;
-            }
-
-            .hero-btn {
-                width: 100%;
-                max-width: 320px;
-                padding: 14px 18px;
-            }
-
-            .share-cluster {
-                gap: 8px;
-            }
-
-            .share-button {
-                padding: 10px 12px;
-                font-size: 0.88rem;
-            }
-
-            .share-button.icon-only {
-                width: 42px;
-                min-width: 42px;
-                min-height: 42px;
-            }
-
-            .trust-grid,
-            .process-grid,
-            .about-grid,
-            .contact-wrapper,
-            .values-list,
-            .featured-project {
-                grid-template-columns: 1fr;
-            }
-
-            .game-topbar {
-                display: block;
-            }
-
-            .game-hud {
-                display: none;
-            }
-
-            .game-shell {
-                padding: 14px;
-                border-radius: 20px;
-            }
-
-            .trust-strip {
-                margin-top: 0;
-                padding-top: 0;
-            }
-
-            .featured-section {
-                padding-top: 18px;
-            }
-
-            .featured-project {
-                padding: 18px;
-                border-radius: 22px;
-            }
-
-            .featured-media {
-                min-height: 260px;
-                border-radius: 18px;
-            }
-
-            .featured-copy h2 {
-                font-size: 2rem;
-            }
-
-            .featured-actions {
-                flex-direction: column;
-            }
-
-            .featured-actions .hero-btn,
-            .featured-actions .secondary-link {
-                width: 100%;
-                max-width: none;
-            }
-
-            .hero-trust {
-                display: grid;
-                grid-template-columns: 1fr;
-                gap: 8px;
-                font-size: 0.9rem;
-                text-align: center;
-            }
-
-            .trust-card {
-                border-right: none;
-                border-bottom: 1px solid rgba(255,255,255,0.08);
-                padding: 20px;
-            }
-
-            .trust-card strong {
-                font-size: 1.35rem;
-            }
-
-            .trust-card:last-child {
-                border-bottom: none;
-            }
-
-            .section-title {
-                margin-bottom: 36px;
-            }
-
-            .section-title h2 {
-                font-size: 2rem;
-            }
-
-            .section-intro {
-                font-size: 0.98rem;
-            }
-
-            .service-card,
-            .process-card,
-            .contact-card {
-                padding: 24px;
-            }
-
-            .gallery-grid {
-                gap: 18px;
-            }
-
-            .gallery-item {
-                min-height: 240px;
-            }
-
-            .contact-form .form-grid {
-                grid-template-columns: 1fr;
-                gap: 18px;
-            }
-
-            .gallery-overlay {
-                padding: 18px;
-            }
-
-            .game-topbar h3 {
-                font-size: 1.45rem;
-                margin-bottom: 8px;
-            }
-
-            .game-topbar p,
-            .game-note {
-                font-size: 0.9rem;
-            }
-
-            .site-runner-frame {
-                aspect-ratio: 4 / 3;
-            }
-
-            .about-image {
-                order: -1;
-            }
-
-            .lightbox-share {
-                top: auto;
-                right: 16px;
-                bottom: 76px;
-                flex-wrap: wrap;
-                justify-content: flex-end;
-                max-width: min(280px, calc(100vw - 32px));
-            }
-        }
-        </style>
+            --accent: #ffd60a;
+            --line: #2a2a2a;
+            --dim: #b9b9b9;
+            --nav: 68px;
+            --gut: clamp(20px, 4vw, 48px);
+            --disp: "Big Shoulders Display", "Arial Narrow", Impact, sans-serif;
+            --body: "Archivo", system-ui, -apple-system, "Segoe UI", sans-serif;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; scroll-padding-top: var(--nav); }
+        body { background: var(--black); color: var(--white); font-family: var(--body); font-size: 17px; line-height: 1.6; overflow-x: clip; -webkit-font-smoothing: antialiased; }
+        img { display: block; max-width: 100%; }
+        a { color: inherit; text-decoration: none; }
+        ul { list-style: none; }
+        button { font: inherit; color: inherit; cursor: pointer; background: none; border: 0; }
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+        .wrap { max-width: 1320px; margin-inline: auto; padding-inline: var(--gut); }
+        .disp { font-family: var(--disp); font-weight: 900; text-transform: uppercase; line-height: .88; letter-spacing: .005em; text-wrap: balance; }
+        .label { font-size: .78rem; font-weight: 600; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+        .h2 { font-size: clamp(2.8rem, 8vw, 6.4rem); margin-top: 10px; }
+        .lede { color: var(--dim); max-width: 56ch; margin-top: 18px; }
+        .btn { display: inline-block; padding: 15px 26px; background: var(--accent); color: var(--ink); font-weight: 600; font-size: .88rem; letter-spacing: .07em; text-transform: uppercase; white-space: nowrap; transition: transform .2s, background .2s; }
+        .btn:hover { transform: translateY(-2px); background: #fff; }
+        .btn.ghost { background: none; color: #fff; box-shadow: inset 0 0 0 1.5px #fff; }
+        .btn.ghost:hover { background: #fff; color: var(--ink); }
+        .ph { position: relative; overflow: hidden; background: #1a1a1a; }
+        .ph img { width: 100%; height: 100%; object-fit: cover; }
+        section { position: relative; }
+        .pad { padding-block: clamp(70px, 10vw, 140px); }
+        .js .rv { opacity: 0; transform: translateY(28px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+        .js .rv.in { opacity: 1; transform: none; }
+
+        /* Nav */
+        header { position: fixed; inset: 0 0 auto; z-index: 100; transition: background .3s, box-shadow .3s; }
+        header.solid, header.open { background: rgba(10,10,10,.94); box-shadow: 0 1px 0 var(--line); backdrop-filter: blur(8px); }
+        .nav { display: flex; align-items: center; gap: 28px; height: var(--nav); }
+        .nav .logo img { height: 42px; width: auto; }
+        .nav-links { display: flex; gap: 28px; margin-left: auto; font-size: .9rem; font-weight: 500; }
+        .nav-links a { position: relative; padding-block: 6px; }
+        .nav-links a::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 2px; background: var(--accent); transform: scaleX(0); transform-origin: left; transition: transform .25s; }
+        .nav-links a:hover::after { transform: scaleX(1); }
+        .phone-link { font-weight: 600; white-space: nowrap; }
+        .nav .btn { padding: 11px 18px; font-size: .8rem; }
+        .mobile-menu-button { display: none; width: 44px; height: 44px; position: relative; margin-left: 4px; }
+        .mobile-menu-button span { position: absolute; left: 10px; right: 10px; height: 2px; background: #fff; transition: transform .25s, top .25s; }
+        .mobile-menu-button span:first-child { top: 17px; } .mobile-menu-button span:last-child { top: 26px; }
+        .mobile-menu-button[aria-expanded="true"] span:first-child { top: 21px; transform: rotate(45deg); }
+        .mobile-menu-button[aria-expanded="true"] span:last-child { top: 21px; transform: rotate(-45deg); }
+        .mobile-menu { display: none; flex-direction: column; padding: 8px var(--gut) 28px; background: rgba(10,10,10,.97); height: calc(100vh - var(--nav)); height: calc(100dvh - var(--nav)); overflow-y: auto; }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font: 900 2.6rem/1 var(--disp); text-transform: uppercase; padding-block: 14px; border-bottom: 1px solid var(--line); }
+        .mobile-menu a:last-child { color: var(--accent); border: 0; }
+        @media (max-width: 960px) {
+            .nav-links, .nav .btn { display: none; }
+            .phone-link { margin-left: auto; }
+            .mobile-menu-button { display: block; }
+        }
+
+        /* Hero */
+        .hero { min-height: 100vh; min-height: 100svh; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; --p: .5; }
+        .hero .bg { position: absolute; inset: -100px 0; transform: translateY(calc((var(--p) - .5) * 220px)); will-change: transform; }
+        .hero .bg img { width: 100%; height: 100%; object-fit: cover; filter: grayscale(1) contrast(1.15) brightness(.6); }
+        .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,.6), rgba(10,10,10,0) 32%, rgba(10,10,10,.92)); }
+        .hero .wrap { position: relative; z-index: 1; width: 100%; padding-block: calc(var(--nav) + 30px) 34px; }
+        .hero h1 { font-size: clamp(3.5rem, 13.4vw, 12rem); }
+        .hero h1 span { display: block; }
+        .hero h1 .o { color: transparent; -webkit-text-stroke: 2px var(--accent); }
+        .js .hero h1 span { animation: rise .9s cubic-bezier(.2,.7,.2,1) both; }
+        .js .hero h1 .o { animation-delay: .12s; }
+        @keyframes rise { from { opacity: 0; transform: translateY(.35em); } }
+        .hero .sub { display: flex; flex-wrap: wrap; gap: 24px 56px; align-items: flex-end; margin-top: 28px; }
+        .hero .sub p { flex: 1 1 320px; min-width: 0; max-width: 50ch; color: #dcdcdc; }
+        .hero .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+        .facts { display: flex; flex-wrap: wrap; gap: 8px 30px; border-top: 1px solid #3c3c3c; margin-top: 32px; padding-top: 16px; font-size: .78rem; letter-spacing: .13em; text-transform: uppercase; color: #c4c4c4; }
+        .facts b { color: var(--accent); font-weight: 600; }
+
+        /* Ticker */
+        .ticker { padding-block: 28px; border-block: 1px solid var(--line); overflow: hidden; --p: .5; }
+        .ticker div { white-space: nowrap; font-size: clamp(2.6rem, 8vw, 6.6rem); will-change: transform; }
+        .ticker .r1 { transform: translateX(calc(var(--p) * -30%)); }
+        .ticker .r2 { transform: translateX(calc(-32% + var(--p) * 30%)); color: transparent; -webkit-text-stroke: 1.5px #7a7a7a; }
+        .ticker i { font-style: normal; color: var(--accent); padding-inline: .25em; -webkit-text-stroke: 0; }
+
+        /* Pinned sections */
+        .pin > .stick { position: sticky; top: 0; height: 100vh; height: 100svh; padding-top: var(--nav); overflow: hidden; display: flex; flex-direction: column; justify-content: center; gap: clamp(14px, 2.4vh, 26px); }
+        .pin > .stick > .wrap { width: 100%; }
+        .pin .h2 { font-size: clamp(2.4rem, 6.4vw, 5rem); }
+        .head-row { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px 30px; flex-wrap: wrap; }
+        .hint { font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); white-space: nowrap; padding-bottom: 8px; }
+
+        /* Frame to finish */
+        .build { height: 260vh; --p: 0; }
+        .ba { position: relative; aspect-ratio: 2.14; max-height: 58vh; width: 100%; overflow: hidden; background: #1a1a1a; }
+        .ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+        .ba .before { clip-path: inset(0 0 0 calc(var(--p) * 100%)); filter: grayscale(1) contrast(1.08); }
+        .ba .bar { position: absolute; top: 0; bottom: 0; left: calc(var(--p) * 100%); width: 4px; margin-left: -2px; background: var(--accent); }
+        .ba .tag { position: absolute; bottom: 14px; padding: 7px 13px; background: var(--accent); color: var(--ink); font-size: .74rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; }
+        .ba .tag.a { left: 14px; opacity: calc(var(--p) * 5); } .ba .tag.b { right: 14px; opacity: calc((1 - var(--p)) * 5); }
+        .build .meta { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 24px; font-size: .95rem; }
+        .build .meta span { color: var(--dim); }
+        .textlink { font-weight: 600; font-size: .85rem; letter-spacing: .08em; text-transform: uppercase; border-bottom: 2px solid var(--accent); padding-bottom: 3px; }
+        .textlink:hover { color: var(--accent); }
+        @media (max-width: 700px) { .ba { aspect-ratio: 4 / 3; } }
+
+        /* Recent work */
+        .work { height: 460vh; }
+        .track { display: flex; gap: 22px; padding-inline: var(--gut); width: max-content; transform: translateX(calc(var(--shift, 0) * -1px)); will-change: transform; }
+        .hcard { flex: none; text-align: left; --f: 0; display: block; }
+        .hcard .ph { height: min(52vh, 500px, 62vw); aspect-ratio: 4 / 3; max-width: none; }
+        .hcard img { filter: grayscale(calc(1 - var(--f))); transform: scale(calc(1.12 - var(--f) * .12)); }
+        .hcard:hover img, .hcard:focus-visible img { filter: none; }
+        .hcard .cap { display: flex; justify-content: space-between; gap: 16px; margin-top: 12px; padding-top: 10px; font-size: .92rem; border-top: 2px solid color-mix(in srgb, var(--accent) calc(var(--f) * 100%), #333); }
+        .hcard .cap b { font-weight: 600; }
+        .hcard .cap span { color: #a8a8a8; text-align: right; }
+        .hcard .count { position: absolute; top: 12px; left: 12px; padding: 6px 11px; background: rgba(10,10,10,.82); font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+
+        /* Services (white band) */
+        .services { background: #fff; color: var(--ink); }
+        .services .label { color: var(--ink); }
+        .services .label::before { content: ""; display: inline-block; width: 28px; height: 8px; background: var(--accent); margin-right: 10px; }
+        .services .lede { color: #444; }
+        .svc { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 16px 60px; padding-block: clamp(26px, 4vw, 44px); border-top: 2px solid var(--ink); align-items: start; }
+        .svc-list { margin-top: clamp(36px, 6vw, 70px); border-bottom: 2px solid var(--ink); }
+        .svc h3 { font-size: clamp(2.2rem, 5.4vw, 4.4rem); transition: transform .3s; }
+        .svc:hover h3 { transform: translateX(14px); }
+        .svc h3 em { font-style: normal; background: linear-gradient(transparent 62%, var(--accent) 62%); }
+        .svc p { color: #333; max-width: 52ch; }
+        .svc li { padding: 9px 0 9px 22px; border-top: 1px solid #ddd; margin-top: 0; position: relative; font-size: .95rem; }
+        .svc ul { margin-top: 14px; }
+        .svc li::before { content: ""; position: absolute; left: 0; top: 18px; width: 10px; height: 4px; background: var(--ink); }
+        @media (max-width: 760px) { .svc { grid-template-columns: 1fr; } }
+
+        /* About */
+        .about-grid { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1fr); gap: clamp(30px, 6vw, 90px); align-items: center; }
+        .about .ph { aspect-ratio: 4 / 5; --p: .5; }
+        .about .ph img { height: 124%; filter: grayscale(1) contrast(1.05); transform: translateY(calc(var(--p) * -19%)); }
+        .about h2 { font-size: clamp(2.4rem, 5.6vw, 4.6rem); margin-top: 10px; }
+        .about p { color: #d0d0d0; margin-top: 16px; max-width: 58ch; }
+        .values { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 0 28px; margin-top: 24px; }
+        .values li { padding: 11px 0 11px 24px; border-top: 1px solid var(--line); position: relative; font-size: .95rem; }
+        .values li::before { content: ""; position: absolute; left: 0; top: 21px; width: 12px; height: 4px; background: var(--accent); }
+        .lbp { display: inline-flex; align-items: center; gap: 14px; margin-top: 28px; padding: 12px 18px 12px 12px; background: #fff; color: var(--ink); font-weight: 600; font-size: .9rem; }
+        .lbp img { width: 46px; height: 46px; }
+        .lbp:hover { background: var(--accent); }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); gap: 30px 40px; margin-top: clamp(50px, 8vw, 100px); padding-top: clamp(30px, 5vw, 50px); border-top: 1px solid var(--line); }
+        .stats .n { font-size: clamp(2.8rem, 5vw, 4.4rem); color: var(--accent); }
+        .stats p { color: #c9c9c9; max-width: 30ch; margin-top: 6px; font-size: .95rem; }
+        @media (max-width: 820px) { .about-grid { grid-template-columns: 1fr; } .about .ph { aspect-ratio: 4 / 3.4; } }
+
+        /* Process (yellow band) */
+        .process { background: var(--accent); color: var(--ink); }
+        .process .label { color: var(--ink); }
+        .process .lede { color: #1c1c1c; }
+        .steps { --p: .5; margin-top: clamp(36px, 6vw, 64px); }
+        .steps .rail { height: 6px; background: rgba(10,10,10,.16); }
+        .steps .rail i { display: block; height: 100%; background: var(--ink); transform-origin: left; transform: scaleX(clamp(0, (var(--p) - .12) * 1.9, 1)); }
+        .steps ol { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 30px 34px; margin-top: 26px; list-style: none; }
+        .steps .num { font: 900 clamp(3.4rem, 6vw, 5rem)/.9 var(--disp); }
+        .steps h3 { font: 900 1.9rem/1 var(--disp); text-transform: uppercase; margin-top: 8px; }
+        .steps p { margin-top: 10px; font-size: .96rem; color: #1c1c1c; }
+
+        /* Contact */
+        .contact-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(36px, 6vw, 90px); align-items: start; }
+        .contact h2 { font-size: clamp(3.4rem, 10vw, 8rem); }
+        .big-phone { display: inline-block; font: 900 clamp(2.8rem, 7vw, 5.4rem)/1 var(--disp); color: var(--accent); margin-top: 26px; }
+        .big-phone:hover { color: #fff; }
+        .contact dl { margin-top: 26px; }
+        .contact dl div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; padding-block: 13px; border-top: 1px solid var(--line); }
+        .contact dt { font-size: .76rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); padding-top: 4px; }
+        .contact dd a { border-bottom: 1px solid #555; overflow-wrap: anywhere; }
+        .contact dd a:hover { color: var(--accent); border-color: var(--accent); }
+        .contact-form { background: #141414; padding: clamp(22px, 4vw, 40px); border-top: 4px solid var(--accent); }
+        .form-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0 18px; }
+        @media (max-width: 560px) { .form-grid { grid-template-columns: 1fr; } }
+        .contact-form label { display: block; font-size: .74rem; font-weight: 600; letter-spacing: .13em; text-transform: uppercase; color: var(--dim); margin: 16px 0 6px; }
+        .contact-form input, .contact-form select, .contact-form textarea { width: 100%; background: #0a0a0a; color: #fff; border: 1px solid #333; padding: 13px 14px; font: inherit; font-size: 1rem; border-radius: 0; }
+        .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { outline: none; border-color: var(--accent); }
+        .contact-form ::placeholder { color: #777; }
+        .contact-form button { margin-top: 22px; width: 100%; border: 0; cursor: pointer; }
+        .form-helper { margin-top: 14px; color: var(--dim); font-size: .9rem; }
+        .form-helper a { color: #fff; border-bottom: 1px solid #555; }
+        .form-success { display: none; margin-bottom: 8px; padding: 16px 18px; background: var(--accent); color: var(--ink); font-weight: 600; }
+        .form-success.is-visible { display: block; }
+        @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+
+        /* Game */
+        .game { border-top: 1px solid var(--line); }
+        .game .head-row h2 { font-size: clamp(2rem, 4.6vw, 3.4rem); }
+        .game-frame-wrap { margin-top: 26px; overflow: hidden; border: 1px solid var(--line); background: #131313; }
+        .site-runner-frame { display: block; width: 100%; aspect-ratio: 16 / 7; border: 0; background: #131313; }
+        .game-note { margin-top: 14px; color: var(--dim); font-size: .92rem; }
+        @media (max-width: 760px) { .site-runner-frame { aspect-ratio: 4 / 3; } }
+
+        /* Footer */
+        footer { border-top: 1px solid var(--line); padding-block: 50px 40px; font-size: .92rem; color: var(--dim); }
+        .foot { display: flex; flex-wrap: wrap; gap: 30px 60px; justify-content: space-between; align-items: flex-start; }
+        .foot img { height: 64px; width: auto; }
+        .foot .name { font: 900 1.7rem/1 var(--disp); text-transform: uppercase; color: #fff; margin-top: 14px; }
+        .foot a:hover { color: var(--accent); }
+        .share-cluster { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 8px; }
+        .share-cluster a, .lightbox-share a, .lightbox-share button { font-size: .8rem; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: #fff; }
+        .foot h4 { font-size: .74rem; letter-spacing: .14em; text-transform: uppercase; color: var(--dim); font-weight: 600; }
+        .copyright { margin-top: 36px; padding-top: 18px; border-top: 1px solid var(--line); font-size: .82rem; }
+
+        /* Mobile call bar */
+        .callbar { display: none; }
+        @media (max-width: 760px) {
+            .callbar { display: grid; grid-template-columns: 1fr 1fr; position: fixed; inset: auto 0 0; z-index: 90; transform: translateY(110%); transition: transform .3s; padding-bottom: env(safe-area-inset-bottom, 0px); background: var(--black); }
+            .callbar.show { transform: none; }
+            .callbar a { padding: 16px 8px; text-align: center; font-weight: 600; font-size: .86rem; letter-spacing: .07em; text-transform: uppercase; }
+            .callbar a:first-child { background: var(--accent); color: var(--ink); }
+            .callbar a:last-child { background: #fff; color: var(--ink); }
+            footer { padding-bottom: 96px; }
+        }
+
+        /* Lightbox */
+        #lightbox { display: none; position: fixed; inset: 0; z-index: 9999; background: rgba(5,5,5,.97); align-items: center; justify-content: center; flex-direction: column; }
+        #lb-img { max-width: 92vw; max-height: 78vh; object-fit: contain; margin: auto; }
+        #lb-counter { position: absolute; top: 22px; left: 24px; font-size: .8rem; letter-spacing: .12em; color: var(--accent); font-weight: 600; }
+        #lb-title { position: absolute; bottom: 22px; left: 16px; right: 16px; text-align: center; font-weight: 600; font-size: .98rem; }
+        .lb-close { position: absolute; top: 8px; right: 14px; font-size: 44px; line-height: 1; padding: 6px 12px; z-index: 2; color: #fff; }
+        .lb-arrow { position: absolute; top: 50%; transform: translateY(-50%); font-size: 44px; line-height: 1; padding: 10px 18px; background: rgba(255,255,255,.08); z-index: 2; color: #fff; }
+        .lb-arrow:hover, .lb-close:hover { color: var(--accent); }
+        #lb-prev { left: 10px; } #lb-next { right: 10px; }
+        .lightbox-share { position: absolute; bottom: 58px; left: 0; right: 0; display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 18px; }
+        .lightbox-share a, .lightbox-share button { font-size: .7rem; color: #aaa; }
+        .lightbox-share a:hover, .lightbox-share button:hover { color: var(--accent); }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            .js .rv { opacity: 1; transform: none; transition: none; }
+            .js .hero h1 span { animation: none; }
+            .build, .work { height: auto; padding-block: 70px; }
+            .pin > .stick { position: static; height: auto; padding-top: 0; }
+            .track { transform: none; width: auto; overflow-x: auto; padding-bottom: 12px; }
+            .hcard { --f: 1; }
+            .build { --p: .5; }
+        }
+    </style>
 </head>
 <body>
-
-    <!-- Nav -->
-    <header>
-        <div class="nav-container">
-            <div class="topbar-title">
-                <a href="#home" class="topbar-name" aria-label="Tristan Patterson Builders home">Tristan Patterson Builders</a>
-            </div>
-            <div class="nav-actions">
-                <a class="phone-link" href="tel:+64211041289">021 104 1289</a>
-                <nav class="nav-links">
-                    <a href="#home">Home</a>
-                    <a href="#services">Services</a>
-                    <a href="#about">About</a>
-                    <a href="#process">How We Work</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact" class="cta-button">Get a Quote</a>
-                </nav>
-                <button class="mobile-menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMenu()">
-                    <i class="fa-solid fa-bars"></i>
-                </button>
-            </div>
+    <header id="top">
+        <div class="wrap nav">
+            <a href="#home" class="logo" aria-label="Tristan Patterson Builders home"><img src="images/web/logo-white.png" alt="TPB logo" width="480" height="274"></a>
+            <nav class="nav-links" aria-label="Main">
+                <a href="#projects">Projects</a>
+                <a href="#services">Services</a>
+                <a href="#about">About</a>
+                <a href="#process">How We Work</a>
+            </nav>
+            <a class="phone-link" href="tel:+64211041289">021 104 1289</a>
+            <a href="#contact" class="btn">Get a Quote</a>
+            <button class="mobile-menu-button" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu" onclick="toggleMenu()"><span></span><span></span></button>
         </div>
         <div id="mobile-menu" class="mobile-menu">
-            <a href="#home" onclick="closeMenu()">Home</a>
-            <a href="#services" onclick="closeMenu()">Services</a>
-            <a href="#about" onclick="closeMenu()">About</a>
-            <a href="#process" onclick="closeMenu()">How We Work</a>
-            <a href="#projects" onclick="closeMenu()">Projects</a>
-            <a href="#contact" onclick="closeMenu()">Get a Quote</a>
-            <a href="tel:+64211041289" onclick="closeMenu()">Call 021 104 1289</a>
+            <a href="#home">Home</a>
+            <a href="#projects">Projects</a>
+            <a href="#services">Services</a>
+            <a href="#about">About</a>
+            <a href="#process">How We Work</a>
+            <a href="#contact">Get a Quote</a>
+            <a href="tel:+64211041289">Call 021 104 1289</a>
         </div>
     </header>
 
+    <main>
     <!-- Hero -->
-    <section id="home" class="hero">
-        <div class="hero-content">
-            <div class="eyebrow">
-                <i class="fa-solid fa-hammer"></i>
-                Wellington Builder
-            </div>
-            <img src="images/tpb-logo-full.png" alt="Tristan Patterson Builders logo" class="hero-logo">
-            <h1>Quality building work without the runaround.</h1>
-            <p>Tristan Patterson Builders helps Wellington homeowners and architects deliver renovations, additions, bathrooms, decks, fences, and new build work with straight communication, tidy sites, and workmanship you can stand behind.</p>
-            <div class="hero-actions">
-                <a href="#contact" class="hero-btn">Request a Quote</a>
-                <a href="tel:+64211041289" class="hero-btn secondary">Call 021 104 1289</a>
-            </div>
-            <div class="hero-proof">
-                <div class="proof-card">
-                    <strong>30+ years on the tools</strong>
-                    <p>Experienced residential building and detailed fit-out work across Wellington homes.</p>
-                </div>
-                <div class="proof-card">
-                    <strong>LBP licensed</strong>
-                    <p>Qualified, accountable building work with a public licence clients can verify.</p>
-                </div>
-                <div class="proof-card">
-                    <strong>Straight communication</strong>
-                    <p>Clear scope, tidy sites, and realistic advice instead of vague promises.</p>
+    <section id="home" class="hero" data-fx>
+        <div class="bg"><img src="images/web/hero.jpg" alt="" fetchpriority="high"></div>
+        <div class="wrap">
+            <h1 class="disp"><span>Quality building.</span><span class="o">No runaround.</span></h1>
+            <div class="sub">
+                <p>Tristan Patterson Builders helps Wellington homeowners and architects deliver renovations, additions, bathrooms, decks, fences, and new build work with straight communication, tidy sites, and workmanship you can stand behind.</p>
+                <div class="cta">
+                    <a href="#contact" class="btn">Request a Quote</a>
+                    <a href="#projects" class="btn ghost">See the Work</a>
                 </div>
             </div>
-            <div class="hero-trust">
-                <span>Licensed Building Practitioner #111780</span>
+            <div class="facts">
+                <span><b>LBP</b> #111780</span>
+                <span><b>30+</b> years on the tools</span>
+                <span>BCITO qualified</span>
                 <span>Newlands, Wellington</span>
-                <span>Renovations, additions, and project management</span>
             </div>
         </div>
     </section>
 
-    <section class="section trust-strip">
-        <div class="container">
-            <div class="trust-grid">
-                <div class="trust-card">
-                    <strong>30+ years</strong>
-                    <p>Trade experience across residential building, additions, and detailed fit-outs.</p>
+    <div class="ticker disp" data-fx aria-hidden="true">
+        <div class="r1">Renovations<i>/</i>Additions<i>/</i>Roofing<i>/</i>Decks<i>/</i>New builds<i>/</i>Joinery<i>/</i>Renovations<i>/</i>Additions<i>/</i>Roofing<i>/</i>Decks</div>
+        <div class="r2">Project management<i>/</i>Bathrooms<i>/</i>Cladding<i>/</i>Fences<i>/</i>Earthworks<i>/</i>Project management<i>/</i>Bathrooms<i>/</i>Cladding</div>
+    </div>
+
+    <!-- Frame to finish -->
+    <section id="build" class="pin build" data-fx="pin" aria-label="Frame to finish">
+        <div class="stick">
+            <div class="wrap head-row">
+                <div>
+                    <div class="label">Frame to finish</div>
+                    <h2 class="disp h2">Watch it get built</h2>
                 </div>
-                <div class="trust-card">
-                    <strong>Wellington based</strong>
-                    <p>Local knowledge for weather, detailing, access issues, and working with existing homes.</p>
+                <span class="hint">Keep scrolling</span>
+            </div>
+            <div class="wrap">
+                <div class="ba">
+                    <img src="images/web/build-finish.jpg" alt="South Wellington addition, finished exterior with dark cladding" loading="lazy">
+                    <img class="before" src="images/web/build-frame.jpg" alt="South Wellington addition at framing stage" loading="lazy">
+                    <div class="bar"></div>
+                    <span class="tag a">Finished</span><span class="tag b">Framing</span>
                 </div>
-                <div class="trust-card">
-                    <strong>LBP licensed</strong>
-                    <p>Qualified and accountable building work backed by a public licence record.</p>
-                </div>
-                <div class="trust-card">
-                    <strong>BCITO qualified</strong>
-                    <p>Trade background backed by formal qualification and a practical, buildable approach on site.</p>
-                </div>
+            </div>
+            <div class="wrap meta">
+                <div><b>South Wellington Addition</b> <span>· Pelorus Architecture</span></div>
+                <button type="button" class="textlink" onclick="openLightbox('south-wellington',0)">See every stage of this build</button>
             </div>
         </div>
     </section>
 
-    <section class="section featured-section">
-        <div class="container">
-            <div class="featured-project">
-                <div class="featured-media">
-                    <img src="images/brougham-st-addition-exterior.jpg" alt="Mt Vic Wellington addition by Tristan Patterson Builders">
-                    <div class="featured-media-badge">
-                        <i class="fa-solid fa-house-chimney-window"></i>
-                        Featured project
-                    </div>
+    <!-- Projects -->
+    <section id="projects" class="pin work" data-fx="pin" data-track>
+        <div class="stick">
+            <div class="wrap head-row">
+                <div>
+                    <div class="label">Tap a project for the full gallery</div>
+                    <h2 class="disp h2">Recent work</h2>
                 </div>
-                <div class="featured-copy">
-                    <div class="eyebrow" style="background:rgba(17,17,17,0.04);border-color:rgba(17,17,17,0.08);color:#111111;">
-                        <i class="fa-solid fa-compass-drafting"></i>
-                        Built for Wellington homes
-                    </div>
-                    <h2>Real renovation work, detailed properly.</h2>
-                    <p>A good builder should be able to show real work, not just make claims. This featured project gives a clearer first look at the standard of finish, coordination, and care Tristan Patterson Builders brings to Wellington homes.</p>
-                    <ul class="featured-points">
-                        <li><i class="fa-solid fa-check"></i><span>Architect-led addition work delivered with practical site coordination.</span></li>
-                        <li><i class="fa-solid fa-check"></i><span>Careful detailing for existing homes, access constraints, and Wellington conditions.</span></li>
-                        <li><i class="fa-solid fa-check"></i><span>Communication and workmanship that feel professional from first conversation to handover.</span></li>
-                    </ul>
-                    <div class="featured-actions">
-                        <a href="#projects" class="hero-btn">See Recent Work</a>
-                        <a href="#contact" class="secondary-link">Talk About Your Project</a>
-                    </div>
-                </div>
+                <span class="hint">Keep scrolling →</span>
+            </div>
+            <div class="track">
+                <button class="hcard" type="button" data-g="brougham-st" onclick="openLightbox('brougham-st',0)" aria-label="Open project gallery for Mt Vic Wellington Addition">
+                    <div class="ph"><img src="images/web/card-mtvic.jpg" alt="Mt Vic Wellington Addition Novak Middleton Architects" loading="lazy"><span class="count"></span></div>
+                    <div class="cap"><b>Mt Vic Addition</b><span>Novak+Middleton Architects</span></div>
+                </button>
+                <button class="hcard" type="button" data-g="potocki-gallery" onclick="openLightbox('potocki-gallery',0)" aria-label="Open project gallery for Potocki Patterson Art Gallery">
+                    <div class="ph"><img src="images/web/card-potocki.jpg" alt="Potocki Patterson Art Gallery Wellington" loading="lazy"><span class="count"></span></div>
+                    <div class="cap"><b>Potocki Patterson Art Gallery</b><span>Design and Build</span></div>
+                </button>
+                <button class="hcard" type="button" data-g="south-wellington" onclick="openLightbox('south-wellington',0)" aria-label="Open project gallery for South Wellington Addition">
+                    <div class="ph"><img src="images/web/card-southwgtn.jpg" alt="South Wellington Addition Pelorus Architecture" loading="lazy"><span class="count"></span></div>
+                    <div class="cap"><b>South Wellington Addition</b><span>Pelorus Architecture</span></div>
+                </button>
+                <button class="hcard" type="button" data-g="newtown-addition" onclick="openLightbox('newtown-addition',0)" aria-label="Open project gallery for Newtown Wellington Addition">
+                    <div class="ph"><img src="images/web/card-newtown.jpg" alt="Newtown Wellington Addition Spacecraft Architects" loading="lazy"><span class="count"></span></div>
+                    <div class="cap"><b>Newtown Addition</b><span>Spacecraft Architects</span></div>
+                </button>
+                <button class="hcard" type="button" data-g="custom-joinery" onclick="openLightbox('custom-joinery',0)" aria-label="Open project gallery for Custom Furniture and Joinery">
+                    <div class="ph"><img src="images/web/card-joinery.jpg" alt="Custom Furniture and Joinery Wellington" loading="lazy"><span class="count"></span></div>
+                    <div class="cap"><b>Custom Furniture and Joinery</b><span>Wellington</span></div>
+                </button>
+                <button class="hcard" type="button" data-g="roofing-cladding" onclick="openLightbox('roofing-cladding',0)" aria-label="Open project gallery for Roofing and Cladding showcase">
+                    <div class="ph"><img src="images/web/card-roofing.jpg" alt="Roofing and cladding showcase Wellington" loading="lazy"><span class="count"></span></div>
+                    <div class="cap"><b>Roofing &amp; Cladding</b><span>Wellington showcase</span></div>
+                </button>
+                <button class="hcard" type="button" data-g="earthworks-drain-trenching" onclick="openLightbox('earthworks-drain-trenching',0)" aria-label="Open project gallery for Earthworks and Drain Trenching">
+                    <div class="ph"><img src="images/web/card-earthworks.jpg" alt="Earthworks and drain trenching project in Wellington" loading="lazy"><span class="count"></span></div>
+                    <div class="cap"><b>Earthworks &amp; Drain Trenching</b><span>Wellington site works</span></div>
+                </button>
+                <button class="hcard" type="button" data-g="aotea-new-build" onclick="openLightbox('aotea-new-build',0)" aria-label="Open project gallery for New Build Aotea">
+                    <div class="ph"><img src="images/web/card-aotea.jpg" alt="New build project in Aotea Wellington" loading="lazy"><span class="count"></span></div>
+                    <div class="cap"><b>New Build Aotea</b><span>280m² residential build</span></div>
+                </button>
             </div>
         </div>
     </section>
 
     <!-- Services -->
-    <section id="services" class="section bg-light">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Services</h2>
-                <p class="section-intro">From one-room upgrades to complex additions, we take on the work that needs practical planning, reliable site management, and quality finishing.</p>
-            </div>
-            <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fa-solid fa-house-chimney"></i></div>
-                    <h3>Renovations & Additions</h3>
-                    <p>Careful upgrades that improve how your home looks, works, and holds value.</p>
-                    <ul>
-                        <li>Bathrooms, kitchens, and interior upgrades</li>
-                        <li>Architectural additions and reconfigurations</li>
-                        <li>Practical solutions for older Wellington homes</li>
-                    </ul>
+    <section id="services" class="services pad">
+        <div class="wrap">
+            <div class="label rv">Our services</div>
+            <h2 class="disp h2 rv">What we build</h2>
+            <p class="lede rv">From one-room upgrades to complex additions, we take on the work that needs practical planning, reliable site management, and quality finishing.</p>
+            <div class="svc-list">
+                <div class="svc rv">
+                    <h3 class="disp"><em>Renovations</em> &amp; Additions</h3>
+                    <div>
+                        <p>Careful upgrades that improve how your home looks, works, and holds value.</p>
+                        <ul>
+                            <li>Bathrooms, kitchens, and interior upgrades</li>
+                            <li>Architectural additions and reconfigurations</li>
+                            <li>Practical solutions for older Wellington homes</li>
+                        </ul>
+                    </div>
                 </div>
-                <!-- Service 2 -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fa-solid fa-ruler-combined"></i></div>
-                    <h3>Decks, Fences & Exterior Work</h3>
-                    <p>Outdoor spaces and external works built for durability, clean detailing, and Wellington conditions.</p>
-                    <ul>
-                        <li>Decking and outdoor living spaces</li>
-                        <li>Fencing, cladding details, and exterior timberwork</li>
-                        <li>Finishes that look good and last</li>
-                    </ul>
+                <div class="svc rv">
+                    <h3 class="disp"><em>Decks, Fences</em> &amp; Exterior Work</h3>
+                    <div>
+                        <p>Outdoor spaces and external works built for durability, clean detailing, and Wellington conditions.</p>
+                        <ul>
+                            <li>Decking and outdoor living spaces</li>
+                            <li>Fencing, cladding details, and exterior timberwork</li>
+                            <li>Finishes that look good and last</li>
+                        </ul>
+                    </div>
                 </div>
-                <!-- Service 3 -->
-                <div class="service-card">
-                    <div class="service-icon"><i class="fa-solid fa-clipboard-check"></i></div>
-                    <h3>Project Management</h3>
-                    <p>We keep the work moving and the communication clear from planning through completion.</p>
-                    <ul>
-                        <li>Coordination with architects and other trades</li>
-                        <li>Council consent and sequencing support</li>
-                        <li>A straightforward point of contact throughout the job</li>
-                    </ul>
+                <div class="svc rv">
+                    <h3 class="disp"><em>Project</em> Management</h3>
+                    <div>
+                        <p>We keep the work moving and the communication clear from planning through completion.</p>
+                        <ul>
+                            <li>Coordination with architects and other trades</li>
+                            <li>Council consent and sequencing support</li>
+                            <li>A straightforward point of contact throughout the job</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- About -->
-    <section id="about" class="section">
-        <div class="container">
+    <section id="about" class="about pad">
+        <div class="wrap">
             <div class="about-grid">
-                <div class="about-image">
-                    <!-- Placeholder: Replace with photo of Tristan/Site -->
-                    <img src="images/WP_000318.jpg" alt="Tristan Patterson Builder">
-                </div>
-                <div class="about-text">
-                    <h3>Built on trust, good workmanship, and doing what we say we will.</h3>
-                    <p>Tristan Patterson Builders is a locally owned and operated construction company based in Newlands, Wellington.</p>
-                    <p>We believe in clear communication, tidy sites, practical problem-solving, and doing the job properly. No corporate fluff, just solid building practices backed by over 30 years of experience in the trade.</p>
-                    <ul class="values-list">
-                        <li><i class="fa-solid fa-check"></i> Honest advice on scope and approach</li>
-                        <li><i class="fa-solid fa-check"></i> Respectful, tidy site management</li>
-                        <li><i class="fa-solid fa-check"></i> Detail-focused finishing</li>
-                        <li><i class="fa-solid fa-check"></i> Good coordination with designers and trades</li>
+                <div class="ph" data-fx><img src="images/web/about.jpg" alt="Tristan Patterson, builder" loading="lazy"></div>
+                <div>
+                    <div class="label rv">About</div>
+                    <h2 class="disp rv">Built on trust, good workmanship, and doing what we say we will.</h2>
+                    <p class="rv">Tristan Patterson Builders is a locally owned and operated construction company based in Newlands, Wellington.</p>
+                    <p class="rv">We believe in clear communication, tidy sites, practical problem-solving, and doing the job properly. No corporate fluff, just solid building practices backed by over 30 years of experience in the trade.</p>
+                    <ul class="values rv">
+                        <li>Honest advice on scope and approach</li>
+                        <li>Respectful, tidy site management</li>
+                        <li>Detail-focused finishing</li>
+                        <li>Good coordination with designers and trades</li>
                     </ul>
-                    <div class="lbp-badge">
-                        <a href="https://www.lbp.govt.nz/for-homeowners/find-an-lbp/" target="_blank" rel="noopener">
-                            <img src="images/lbp-logo.png" alt="Licensed Building Practitioner logo"> Verify Licensed Building Practitioner #111780
-                        </a>
-                    </div>
-                    <div class="credentials-row">
-                        <div class="credential-pill"><i class="fa-solid fa-location-dot"></i> Newlands, Wellington</div>
-                        <div class="credential-pill"><i class="fa-solid fa-phone"></i> 021 104 1289</div>
-                    </div>
+                    <a class="lbp rv" href="https://www.lbp.govt.nz/for-homeowners/find-an-lbp/" target="_blank" rel="noopener">
+                        <img src="images/lbp-logo.png" alt="Licensed Building Practitioner logo" width="46" height="46"> Verify Licensed Building Practitioner #111780
+                    </a>
                 </div>
+            </div>
+            <div class="stats">
+                <div class="rv"><div class="disp n">30+ years</div><p>Trade experience across residential building, additions, and detailed fit-outs.</p></div>
+                <div class="rv"><div class="disp n">LBP licensed</div><p>Qualified and accountable building work backed by a public licence record.</p></div>
+                <div class="rv"><div class="disp n">Wellington</div><p>Local knowledge for weather, detailing, access issues, and working with existing homes.</p></div>
             </div>
         </div>
     </section>
 
-    <section id="process" class="section">
-        <div class="container">
-            <div class="section-title">
-                <h2>How We Work</h2>
-                <p class="section-intro">A building job runs better when expectations are clear from the start. We keep the process straightforward and transparent.</p>
-            </div>
-            <div class="process-grid">
-                <div class="process-card">
-                    <div class="process-step">Step 1</div>
-                    <h3>Talk through the job</h3>
-                    <p>We start with your goals, site conditions, timeframe, and whether plans or consents are involved.</p>
-                </div>
-                <div class="process-card">
-                    <div class="process-step">Step 2</div>
-                    <h3>Scope it properly</h3>
-                    <p>We help clarify the work, identify constraints early, and line up the right next steps before the build begins.</p>
-                </div>
-                <div class="process-card">
-                    <div class="process-step">Step 3</div>
-                    <h3>Build with care</h3>
-                    <p>We keep the site moving, coordinate what needs coordinating, and maintain a high standard of workmanship.</p>
-                </div>
-                <div class="process-card">
-                    <div class="process-step">Step 4</div>
-                    <h3>Finish strong</h3>
-                    <p>We focus on the details, tidy handover, and making sure the end result feels worth the investment.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Gallery -->
-    <section id="projects" class="section bg-light">
-        <div class="container">
-            <div class="section-title">
-                <h2>Recent Work</h2>
-                <p class="section-intro">A snapshot of recent residential and fit-out work across Wellington. Click through each project gallery to see more detail.</p>
-            </div>
-            <div class="gallery-grid">
-                <button class="gallery-item" type="button" onclick="openLightbox('brougham-st',0)" aria-label="Open project gallery for Mt Vic Wellington Addition">
-                <img src="images/brougham-st-addition-exterior.jpg" alt="Mt Vic Wellington Addition Novak Middleton Architects" loading="lazy" decoding="async">
-                <div class="gallery-overlay"><h4>Mt Vic Wellington Addition</h4><p>Novak+Middleton Architects</p></div>
-            </button>
-            <button class="gallery-item" type="button" onclick="openLightbox('potocki-gallery',0)" aria-label="Open project gallery for Potocki Patterson Art Gallery">
-                <img src="images/potocki-gallery-hero.jpg" alt="Potocki Patterson Art Gallery Wellington" loading="lazy" decoding="async">
-                <div class="gallery-overlay"><h4>Potocki Patterson Art Gallery</h4><p>Design and Build</p></div>
-            </button>
-            <button class="gallery-item" type="button" onclick="openLightbox('south-wellington',0)" aria-label="Open project gallery for South Wellington Addition">
-                <img src="images/south-wellington-addition-hero.jpg" alt="South Wellington Addition Pelorus Architecture" loading="lazy" decoding="async">
-                <div class="gallery-overlay"><h4>South Wellington Addition</h4><p>Pelorus Architecture</p></div>
-            </button>
-            <button class="gallery-item" type="button" onclick="openLightbox('newtown-addition',0)" aria-label="Open project gallery for Newtown Wellington Addition">
-                <img src="images/newtown-addition-hero.jpg" alt="Newtown Wellington Addition Spacecraft Architects" loading="lazy" decoding="async">
-                <div class="gallery-overlay"><h4>Newtown Wellington Addition</h4><p>Spacecraft Architects</p></div>
-            </button>
-            <button class="gallery-item" type="button" onclick="openLightbox('custom-joinery',0)" aria-label="Open project gallery for Custom Furniture and Joinery">
-                <img src="images/custom-joinery-10.jpg" alt="Custom Furniture and Joinery Wellington" loading="lazy" decoding="async">
-                <div class="gallery-overlay"><h4>Custom Furniture and Joinery</h4><p>Wellington</p></div>
-            </button>
-            <button class="gallery-item" type="button" onclick="openLightbox('roofing-cladding',0)" aria-label="Open project gallery for Roofing and Cladding showcase">
-                <img src="images/roofing-showcase-hero.jpg" alt="Roofing and cladding showcase Wellington" loading="lazy" decoding="async">
-                <div class="gallery-overlay"><h4>Roofing &amp; Cladding</h4><p>Wellington showcase</p></div>
-            </button>
-            <button class="gallery-item" type="button" onclick="openLightbox('earthworks-drain-trenching',0)" aria-label="Open project gallery for Earthworks and Drain Trenching">
-                <img src="images/earthworks-drain-trenching-hero.jpg" alt="Earthworks and drain trenching project in Wellington" loading="lazy" decoding="async">
-                <div class="gallery-overlay"><h4>Earthworks &amp; Drain Trenching</h4><p>Wellington site works</p></div>
-            </button>
-            <button class="gallery-item" type="button" onclick="openLightbox('aotea-new-build',0)" aria-label="Open project gallery for New Build Aotea">
-                <img src="images/aotea-new-build-hero.jpg" alt="New build project in Aotea Wellington" loading="lazy" decoding="async">
-                <div class="gallery-overlay"><h4>New Build Aotea</h4><p>280m2 residential build</p></div>
-            </button>
-            </div>
-        </div>
-    </section>
-
-    <section id="site-run" class="section game-section">
-        <div class="container">
-            <div class="game-shell">
-                <div class="game-topbar">
-                    <div>
-                        <div class="eyebrow" style="margin-bottom:14px;">
-                            <i class="fa-solid fa-gamepad"></i>
-                            Optional extra
-                        </div>
-                        <h3>A quick bit of fun while you are here.</h3>
-                        <p>If you feel like a break after looking through the projects, have a run on the TPB Builder game.</p>
-                    </div>
-                </div>
-                <div class="game-frame-wrap">
-                    <iframe
-                        src="tpb_builder_game.html"
-                        class="site-runner-frame"
-                        title="TPB Builder game"
-                        loading="lazy"
-                        allow="fullscreen; autoplay"
-                        referrerpolicy="strict-origin-when-cross-origin"></iframe>
-                </div>
-                <p class="game-note">
-                    <strong>Controls:</strong> use left and right arrows or A and D to move, space or up to jump, and X or left mouse click to hammer. Touch controls appear on smaller screens.
-                </p>
-                <div class="game-actions">
-                    <a href="tpb_builder_game.html" class="cta-button">Open Full Game</a>
-                </div>
+    <!-- Process -->
+    <section id="process" class="process pad">
+        <div class="wrap">
+            <div class="label">How we work</div>
+            <h2 class="disp h2">Four steps. No surprises.</h2>
+            <p class="lede">A building job runs better when expectations are clear from the start. We keep the process straightforward and transparent.</p>
+            <div class="steps" data-fx>
+                <div class="rail"><i></i></div>
+                <ol>
+                    <li><div class="num">1</div><h3>Talk through the job</h3><p>We start with your goals, site conditions, timeframe, and whether plans or consents are involved.</p></li>
+                    <li><div class="num">2</div><h3>Scope it properly</h3><p>We help clarify the work, identify constraints early, and line up the right next steps before the build begins.</p></li>
+                    <li><div class="num">3</div><h3>Build with care</h3><p>We keep the site moving, coordinate what needs coordinating, and maintain a high standard of workmanship.</p></li>
+                    <li><div class="num">4</div><h3>Finish strong</h3><p>We focus on the details, tidy handover, and making sure the end result feels worth the investment.</p></li>
+                </ol>
             </div>
         </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="section contact-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-                <p class="section-intro">If you are planning a renovation, addition, bathroom, deck, fence, or other residential building work in Wellington, get in touch and tell us what you have in mind.</p>
+    <section id="contact" class="contact pad">
+        <div class="wrap contact-grid">
+            <div>
+                <div class="label">Get in touch</div>
+                <h2 class="disp">Let's talk about your job.</h2>
+                <p class="lede">If you are planning a renovation, addition, bathroom, deck, fence, or other residential building work in Wellington, call, email, or send a quick message. If you already have plans, sketches, or rough dimensions, mention that too.</p>
+                <a class="big-phone" href="tel:+64211041289">021 104 1289</a>
+                <dl>
+                    <div><dt>Email</dt><dd><a href="mailto:tpattersonbuilders@gmail.com">tpattersonbuilders@gmail.com</a></dd></div>
+                    <div><dt>Location</dt><dd>Newlands, Wellington 6037</dd></div>
+                    <div><dt>Facebook</dt><dd><a href="https://www.facebook.com/tpattersonbuilderswellington" target="_blank" rel="noopener">Follow recent work and updates</a></dd></div>
+                </dl>
             </div>
-            <div class="contact-wrapper">
-                <div class="contact-card">
-                    <h3 style="margin-bottom:14px;color:#fff;">Talk to a local builder</h3>
-                    <p style="margin-bottom:28px;color:rgba(255,255,255,0.82);">The easiest way to get started is to call, email, or send a quick message with a few details about your job. If you already have plans, sketches, or rough dimensions, mention that too.</p>
-                    <div class="contact-info-item">
-                        <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
-                        <div>
-                            <h4>Phone</h4>
-                            <p><a href="tel:+64211041289">021 104 1289</a></p>
-                        </div>
+            <form class="contact-form" action="https://formspree.io/f/xbjvqglq" method="POST">
+                <div id="contact-success" class="form-success" role="status" aria-live="polite">
+                    Thanks. Your message has been sent. We will get back to you as soon as we can, usually within two working days.
+                </div>
+                <input type="hidden" name="_subject" value="New TPB website enquiry">
+                <input type="hidden" name="_next" value="https://tpattersonbuilders.co.nz/?enquiry=sent#contact">
+                <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
+                <label for="name" style="margin-top:0">Your Name</label>
+                <input id="name" type="text" name="name" placeholder="Your Name" autocomplete="name" required>
+                <div class="form-grid">
+                    <div>
+                        <label for="phone">Phone</label>
+                        <input id="phone" type="tel" name="phone" placeholder="Best number to reach you" autocomplete="tel">
                     </div>
-                    <div class="contact-info-item">
-                        <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
-                        <div>
-                            <h4>Email</h4>
-                            <p><a href="mailto:tpattersonbuilders@gmail.com">tpattersonbuilders@gmail.com</a></p>
-                        </div>
+                    <div>
+                        <label for="email">Your Email</label>
+                        <input id="email" type="email" name="email" placeholder="Your Email" autocomplete="email" required>
                     </div>
-                    <div class="contact-info-item">
-                        <div class="contact-icon"><i class="fa-solid fa-location-dot"></i></div>
-                        <div>
-                            <h4>Location</h4>
-                            <p>Newlands, Wellington 6037</p>
-                        </div>
+                    <div>
+                        <label for="suburb">Suburb or site address</label>
+                        <input id="suburb" type="text" name="suburb" placeholder="Where is the job?">
                     </div>
-                    <div class="contact-info-item" style="margin-bottom:0;">
-                        <div class="contact-icon"><i class="fa-brands fa-facebook-f"></i></div>
-                        <div>
-                            <h4>Facebook</h4>
-                            <p><a href="https://www.facebook.com/tpattersonbuilderswellington" target="_blank" rel="noopener">Follow recent work and updates</a></p>
-                        </div>
+                    <div>
+                        <label for="project-type">Type of work</label>
+                        <select id="project-type" name="project_type" required>
+                            <option value="">Select a project type</option>
+                            <option value="Renovation or addition">Renovation or addition</option>
+                            <option value="Bathroom or kitchen">Bathroom or kitchen</option>
+                            <option value="Deck, fence, or exterior work">Deck, fence, or exterior work</option>
+                            <option value="New build or major project">New build or major project</option>
+                            <option value="Other residential work">Other residential work</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="timeframe">Preferred timing</label>
+                        <select id="timeframe" name="timeframe">
+                            <option value="">When would you like to start?</option>
+                            <option value="As soon as possible">As soon as possible</option>
+                            <option value="Within 1 to 3 months">Within 1 to 3 months</option>
+                            <option value="Within 3 to 6 months">Within 3 to 6 months</option>
+                            <option value="Planning ahead for later this year">Planning ahead for later this year</option>
+                            <option value="Just pricing and early planning">Just pricing and early planning</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="plans">Plans or sketches</label>
+                        <select id="plans" name="plans_status">
+                            <option value="">Do you have plans yet?</option>
+                            <option value="No plans yet">No plans yet</option>
+                            <option value="Rough sketches only">Rough sketches only</option>
+                            <option value="Working drawings or plans ready">Working drawings or plans ready</option>
+                            <option value="Consent underway">Consent underway</option>
+                        </select>
                     </div>
                 </div>
-                
-                <form class="contact-form" action="https://formspree.io/f/xbjvqglq" method="POST">
-                    <div id="contact-success" class="form-success" role="status" aria-live="polite">
-                        Thanks. Your message has been sent. We will get back to you as soon as we can, usually within two working days.
-                    </div>
-                    <input type="hidden" name="_subject" value="New TPB website enquiry">
-                    <input type="hidden" name="_next" value="https://tpattersonbuilders.co.nz/?enquiry=sent#contact">
-                    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true">
-                    <label for="name">Your Name</label>
-                    <input id="name" type="text" name="name" placeholder="Your Name" required>
-                    <div class="form-grid">
-                        <div>
-                            <label for="phone">Phone</label>
-                            <input id="phone" type="tel" name="phone" placeholder="Best number to reach you">
-                        </div>
-                        <div>
-                            <label for="email">Your Email</label>
-                            <input id="email" type="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div>
-                            <label for="suburb">Suburb or site address</label>
-                            <input id="suburb" type="text" name="suburb" placeholder="Where is the job?">
-                        </div>
-                        <div>
-                            <label for="project-type">Type of work</label>
-                            <select id="project-type" name="project_type" required>
-                                <option value="">Select a project type</option>
-                                <option value="Renovation or addition">Renovation or addition</option>
-                                <option value="Bathroom or kitchen">Bathroom or kitchen</option>
-                                <option value="Deck, fence, or exterior work">Deck, fence, or exterior work</option>
-                                <option value="New build or major project">New build or major project</option>
-                                <option value="Other residential work">Other residential work</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="timeframe">Preferred timing</label>
-                            <select id="timeframe" name="timeframe">
-                                <option value="">When would you like to start?</option>
-                                <option value="As soon as possible">As soon as possible</option>
-                                <option value="Within 1 to 3 months">Within 1 to 3 months</option>
-                                <option value="Within 3 to 6 months">Within 3 to 6 months</option>
-                                <option value="Planning ahead for later this year">Planning ahead for later this year</option>
-                                <option value="Just pricing and early planning">Just pricing and early planning</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="plans">Plans or sketches</label>
-                            <select id="plans" name="plans_status">
-                                <option value="">Do you have plans yet?</option>
-                                <option value="No plans yet">No plans yet</option>
-                                <option value="Rough sketches only">Rough sketches only</option>
-                                <option value="Working drawings or plans ready">Working drawings or plans ready</option>
-                                <option value="Consent underway">Consent underway</option>
-                            </select>
-                        </div>
-                    </div>
-                    <label for="message">Project Details</label>
-                    <textarea id="message" name="message" rows="6" placeholder="Tell us about the job, where it is, and when you would like to get started..." required></textarea>
-                    <button type="submit">Send Message</button>
-                    <p class="form-helper">Prefer to talk directly? Call <a href="tel:+64211041289">021 104 1289</a>. If you already have plans, dimensions, or inspiration photos, mention that in the message and we can take it from there.</p>
-                </form>
-            </div>
+                <label for="message">Project Details</label>
+                <textarea id="message" name="message" rows="5" placeholder="Tell us about the job, where it is, and when you would like to get started..." required></textarea>
+                <button type="submit" class="btn">Send Message</button>
+                <p class="form-helper">Prefer to talk directly? Call <a href="tel:+64211041289">021 104 1289</a>.</p>
+            </form>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Game -->
+    <section id="site-run" class="game pad">
+        <div class="wrap">
+            <div class="head-row">
+                <div>
+                    <div class="label">Smoko break</div>
+                    <h2 class="disp">A quick bit of fun while you are here.</h2>
+                </div>
+                <a href="tpb_builder_game.html" class="textlink">Open full game</a>
+            </div>
+            <div class="game-frame-wrap">
+                <iframe src="tpb_builder_game.html" class="site-runner-frame" title="TPB Builder game" loading="lazy" allow="fullscreen; autoplay" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+            <p class="game-note"><strong>Controls:</strong> use left and right arrows or A and D to move, space or up to jump, and X or left mouse click to hammer. Touch controls appear on smaller screens.</p>
+        </div>
+    </section>
+    </main>
+
     <footer>
-        <div class="container">
-            <div class="footer-brand">
-                <img src="images/tpb-logo-mark.png" alt="Tristan Patterson Builders logo">
-                <div class="footer-logo">Tristan Patterson Builders</div>
+        <div class="wrap">
+            <div class="foot">
+                <div>
+                    <img src="images/web/logo-white.png" alt="Tristan Patterson Builders logo" width="480" height="274" loading="lazy">
+                    <div class="name">Tristan Patterson Builders</div>
+                    <p>All construction and roofing · Newlands, Wellington</p>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <p style="margin-top:8px"><a href="tel:+64211041289">021 104 1289</a><br><a href="mailto:tpattersonbuilders@gmail.com">tpattersonbuilders@gmail.com</a><br><a href="https://www.lbp.govt.nz/for-homeowners/find-an-lbp/" target="_blank" rel="noopener">Licensed Building Practitioner #111780</a><br><a href="https://www.facebook.com/tpattersonbuilderswellington" target="_blank" rel="noopener">Follow us on Facebook</a></p>
+                </div>
+                <div>
+                    <h4>Share</h4>
+                    <div class="share-cluster footer-share" aria-label="Share Tristan Patterson Builders from footer">
+                        <a data-share-target="facebook" data-share-scope="page" href="#" target="_blank" rel="noopener">Facebook</a>
+                        <a data-share-target="whatsapp" data-share-scope="page" href="#" target="_blank" rel="noopener">WhatsApp</a>
+                        <a data-share-target="x" data-share-scope="page" href="#" target="_blank" rel="noopener">X</a>
+                        <a data-share-target="linkedin" data-share-scope="page" href="#" target="_blank" rel="noopener">LinkedIn</a>
+                        <a data-share-target="pinterest" data-share-scope="page" href="#" target="_blank" rel="noopener">Pinterest</a>
+                        <a data-share-target="email" data-share-scope="page" href="#">Email</a>
+                    </div>
+                </div>
             </div>
-            <p><a href="https://www.lbp.govt.nz/for-homeowners/find-an-lbp/" target="_blank" rel="noopener">Licensed Building Practitioner #111780</a></p>
-            <div class="share-cluster footer-share" aria-label="Share Tristan Patterson Builders from footer">
-                <a class="share-button light icon-only" data-share-target="facebook" data-share-scope="page" href="#" target="_blank" rel="noopener" aria-label="Share on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-                <a class="share-button light icon-only" data-share-target="x" data-share-scope="page" href="#" target="_blank" rel="noopener" aria-label="Share on X"><i class="fa-brands fa-x-twitter"></i></a>
-                <a class="share-button light icon-only" data-share-target="linkedin" data-share-scope="page" href="#" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-                <a class="share-button light icon-only" data-share-target="whatsapp" data-share-scope="page" href="#" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-                <a class="share-button light icon-only" data-share-target="pinterest" data-share-scope="page" href="#" target="_blank" rel="noopener" aria-label="Share on Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
-                <a class="share-button light icon-only" data-share-target="email" data-share-scope="page" href="#" aria-label="Share by email"><i class="fa-solid fa-envelope"></i></a>
-            </div>
-            <div class="copyright">
-                &copy; 2026 Tristan Patterson Builders. All rights reserved.
-            </div>
-            <div style="margin-top:12px;">
-                <a href="https://www.facebook.com/tpattersonbuilderswellington" target="_blank" rel="noopener" style="color:#ffffff;text-decoration:none;font-size:0.9rem;"><i class="fa-brands fa-facebook-f" style="margin-right:6px;"></i>Follow us on Facebook</a>
-            </div>
+            <div class="copyright">&copy; 2026 Tristan Patterson Builders. All rights reserved.</div>
         </div>
     </footer>
 
+    <div class="callbar" id="callbar">
+        <a href="tel:+64211041289">Call 021 104 1289</a>
+        <a href="#contact">Get a Quote</a>
+    </div>
 
     <!-- Lightbox Modal -->
-    <div id="lightbox" onclick="if(event.target===this)closeLightbox()" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.95);z-index:9999;align-items:center;justify-content:center;flex-direction:column;">
-        <button onclick="closeLightbox()" style="position:absolute;top:16px;right:24px;background:none;border:none;color:#fff;font-size:44px;cursor:pointer;line-height:1;z-index:10001;">&times;</button>
-        <div id="lb-counter" style="position:absolute;top:20px;left:24px;color:rgba(255,255,255,0.55);font-size:0.85rem;font-family:sans-serif;"></div>
+    <div id="lightbox" onclick="if(event.target===this)closeLightbox()" role="dialog" aria-modal="true" aria-label="Project gallery">
+        <button class="lb-close" onclick="closeLightbox()" aria-label="Close gallery">&times;</button>
+        <div id="lb-counter"></div>
+        <button id="lb-prev" class="lb-arrow" onclick="navLightbox(-1)" aria-label="Previous photo">&#8249;</button>
+        <img id="lb-img" src="" alt="">
+        <button id="lb-next" class="lb-arrow" onclick="navLightbox(1)" aria-label="Next photo">&#8250;</button>
         <div class="lightbox-share" aria-label="Share this project image">
-            <button type="button" class="share-button icon-only" onclick="nativeShareLightbox()" aria-label="Share this image"><i class="fa-solid fa-share-nodes"></i></button>
-            <a class="share-button icon-only" data-share-target="facebook" data-share-scope="lightbox" href="#" target="_blank" rel="noopener" aria-label="Share this image on Facebook"><i class="fa-brands fa-facebook-f"></i></a>
-            <a class="share-button icon-only" data-share-target="x" data-share-scope="lightbox" href="#" target="_blank" rel="noopener" aria-label="Share this image on X"><i class="fa-brands fa-x-twitter"></i></a>
-            <a class="share-button icon-only" data-share-target="linkedin" data-share-scope="lightbox" href="#" target="_blank" rel="noopener" aria-label="Share this image on LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
-            <a class="share-button icon-only" data-share-target="whatsapp" data-share-scope="lightbox" href="#" target="_blank" rel="noopener" aria-label="Share this image on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
-            <a class="share-button icon-only" data-share-target="pinterest" data-share-scope="lightbox" href="#" target="_blank" rel="noopener" aria-label="Share this image on Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
-            <a class="share-button icon-only" data-share-target="email" data-share-scope="lightbox" href="#" aria-label="Share this image by email"><i class="fa-solid fa-envelope"></i></a>
+            <button type="button" onclick="nativeShareLightbox()">Share</button>
+            <a data-share-target="facebook" data-share-scope="lightbox" href="#" target="_blank" rel="noopener">Facebook</a>
+            <a data-share-target="whatsapp" data-share-scope="lightbox" href="#" target="_blank" rel="noopener">WhatsApp</a>
+            <a data-share-target="pinterest" data-share-scope="lightbox" href="#" target="_blank" rel="noopener">Pinterest</a>
+            <a data-share-target="email" data-share-scope="lightbox" href="#">Email</a>
         </div>
-        <button id="lb-prev" onclick="navLightbox(-1)" style="position:absolute;left:10px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:48px;cursor:pointer;padding:8px 16px;border-radius:4px;z-index:10001;">&#8249;</button>
-        <img id="lb-img" style="max-width:90vw;max-height:82vh;object-fit:contain;display:block;margin:auto;" src="" alt="">
-        <div id="lb-title" style="position:absolute;bottom:24px;left:0;right:0;text-align:center;color:#fff;font-size:1.05rem;font-weight:600;font-family:sans-serif;text-shadow:0 1px 4px rgba(0,0,0,0.8);"></div>
-        <button id="lb-next" onclick="navLightbox(1)" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.1);border:none;color:#fff;font-size:48px;cursor:pointer;padding:8px 16px;border-radius:4px;z-index:10001;">&#8250;</button>
+        <div id="lb-title"></div>
     </div>
 
     <script>
@@ -2111,6 +803,76 @@
         const cleanUrl = window.location.pathname + (query ? '?' + query : '') + window.location.hash;
         if (window.history && window.history.replaceState) {
             window.history.replaceState({}, document.title, cleanUrl);
+        }
+    })();
+    
+    </script>
+    <script>
+    /* Scroll-driven motion: sets --p (0 to 1) on each [data-fx] element as it passes through the screen. */
+    (function () {
+        var doc = document.documentElement;
+        doc.classList.add('js');
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var header = document.getElementById('top');
+        var callbar = document.getElementById('callbar');
+        var fx = [].slice.call(document.querySelectorAll('[data-fx]'));
+        var pending = false;
+
+        document.querySelectorAll('.hcard[data-g]').forEach(function (card) {
+            var g = lbGalleries[card.getAttribute('data-g')];
+            if (g) card.querySelector('.count').textContent = g.photos.length + ' photos';
+        });
+
+        // The old menu toggle only flips the menu; also tint the header and lock scrolling while it is open.
+        var menu = document.getElementById('mobile-menu');
+        new MutationObserver(function () {
+            var open = menu.classList.contains('open');
+            header.classList.toggle('open', open);
+            document.body.style.overflow = open ? 'hidden' : '';
+        }).observe(menu, { attributes: true, attributeFilter: ['class'] });
+
+        function clamp(v) { return v < 0 ? 0 : v > 1 ? 1 : v; }
+        function tick() {
+            pending = false;
+            var y = window.scrollY, h = window.innerHeight, w = window.innerWidth;
+            header.classList.toggle('solid', y > 30);
+            callbar.classList.toggle('show', y > h * 0.6);
+            if (reduce) return;
+            fx.forEach(function (el) {
+                var r = el.getBoundingClientRect();
+                if (r.bottom < -300 || r.top > h + 300) return;
+                var p;
+                if (el.getAttribute('data-fx') === 'pin') {
+                    p = clamp(-r.top / (r.height - h));
+                    if (el.hasAttribute('data-track')) {
+                        var tr = el.querySelector('.track');
+                        tr.style.setProperty('--shift', (Math.max(0, tr.scrollWidth - w) * p).toFixed(1));
+                        tr.querySelectorAll('.hcard').forEach(function (c) {
+                            var cr = c.getBoundingClientRect();
+                            var d = Math.abs(cr.left + cr.width / 2 - w / 2) / (Math.max(w, cr.width) * 0.5);
+                            c.style.setProperty('--f', clamp(1.25 - d * 1.25).toFixed(3));
+                        });
+                    }
+                } else {
+                    p = clamp((h - r.top) / (h + r.height));
+                }
+                el.style.setProperty('--p', p.toFixed(4));
+            });
+        }
+        function queue() { if (!pending) { pending = true; requestAnimationFrame(tick); } }
+        window.addEventListener('scroll', queue, { passive: true });
+        window.addEventListener('resize', queue);
+        window.addEventListener('load', queue);
+        queue();
+
+        var rv = document.querySelectorAll('.rv');
+        if ('IntersectionObserver' in window && !reduce) {
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+            }, { rootMargin: '0px 0px -8% 0px' });
+            rv.forEach(function (el) { io.observe(el); });
+        } else {
+            rv.forEach(function (el) { el.classList.add('in'); });
         }
     })();
     </script>
